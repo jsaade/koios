@@ -1,0 +1,143 @@
+body 
+{
+	line-height: 1;
+	font-size: 13px;
+	background-color: #f7f7f7;
+}
+
+/**
+ * COMMON STYLES
+ */
+h1
+{
+	font-size: 36px;
+	margin-bottom: 10px;
+	margin-top: 0;
+	line-height: 1.1;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 4px;
+}
+
+h3
+{
+	color: #b94a48;
+	font-weight: 600;
+	font-size: 22px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	line-height: 1.1;
+}
+
+ul.form-handler
+{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+ul.form-handler li 
+{
+	list-style: none;
+	margin-bottom: 12px;
+}
+
+.form-title
+{
+	color: #428bca;
+	font-weight: 600;
+	font-size: 15px;
+	margin-top:30px;
+	margin-bottom: 20px;
+	display: block;
+	border-left: 3px solid #428bca;
+	padding-left: 9px;
+}
+
+.form-control 
+{
+	padding: 6px;
+	font-size: 13px;
+}
+
+.field-desc
+{
+	margin-left: 13px;
+	display: block;
+	font-style: italic;
+	font-size: 11px;
+	margin-top: 2px;
+}
+
+.no-mt
+{
+	margin-top: 0;
+}
+
+.no-mb
+{
+	margin-bottom: 0;
+}
+
+.centered
+{
+	text-align: center;
+}
+
+.unfortunate
+{
+	text-align: center;
+	font-size: 17px;
+	color: #666;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+/**
+ * LAYOUT COMPONENTS
+ */
+div.top-bar
+{
+	margin: 0;
+	background-color: #b94a48;
+	height: 120px;
+	color: #FFF;
+}
+
+div.main 
+{
+	background-color: #FFF;
+	min-height: 500px;
+	padding-top: 40px;
+	margin-top: -40px;
+	padding-bottom: 40px;
+	border-radius: 10px 10px 0px 0px;
+}
+
+/**
+ * APPLICATION
+ */
+.app-card
+{
+	border: 1px solid #eee;
+	height: 148px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+h5.app-title
+{
+	color:#000;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 15px;
+	margin-bottom: 3px;
+}
+
+.app-card code 
+{
+	color: green;
+	margin-top: 2px;
+	display: block;
+}

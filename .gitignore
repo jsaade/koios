@@ -1,6 +1,7 @@
 /bootstrap/compiled.php
 composer.phar
 /vendor
+/public/uploads
 .env.*.php
 .env.php
 .DS_Store
