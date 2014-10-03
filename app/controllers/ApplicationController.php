@@ -20,7 +20,6 @@ class ApplicationController extends \BaseController {
 	{
 		$components = Component::all();
 		$clients = Client::lists('name', 'id');
-		
 		return View::make('application.create')->with('components' , $components)->with('clients', $clients);
 	}
 
@@ -42,15 +41,10 @@ class ApplicationController extends \BaseController {
 				'api_secret' => Hash::make($input['name'])
 			]);
 
-			//upload the image if provided
+			//upload the image if provided and save it in db
 			if($uploaded_image)
 			{
-				$image = Image::make($uploaded_image->getRealPath()); 
-				$filename = $uploaded_image->getClientOriginalName();
-				$image->save($this->application->getUploadsPath().$filename)
-					  ->resize(128, 128)
-					  ->save($this->application->getUploadsPath()."128-".$filename);
-
+				$filename = $this->application->upload_image($uploaded_image);
 				$this->application->update(['image' => $this->application->getUploadsRelativeUrl()."128-".$filename]);
 			}
 			
@@ -66,22 +60,57 @@ class ApplicationController extends \BaseController {
 		return Redirect::route('application.create')->withInput()->withErrors($this->application->errors);
 	}
 
-	public function show($id)
+	public function show(Application $application)
 	{
 		//
 	}
 
-	public function edit($id)
+	public function edit(Application $application)
 	{
-		//
+		$this->application = $application;
+		$components = Component::all();
+		$clients = Client::lists('name', 'id');
+
+		return View::make('application.edit')
+			->with('components' , $components)
+			->with('clients', $clients)
+			->with('application', $this->application)
+			->with('application_components', $this->application->components->lists('id'));
 	}
 
-	public function update($id)
+	public function update(Application $application)
 	{
-		//
+		$this->application = $application;
+		$input = Input::all(); //post data
+		$uploaded_image = Input::file('image');
+
+		if($this->application->isValid($input))
+		{
+			$this->application->update([
+				'name' => $input['name'],
+				'description' => $input['description'], 
+				'client_id' => $input['client']
+			]);
+
+			//upload the image if provided and save it in db
+			if($uploaded_image)
+			{
+				$filename = $this->application->upload_image($uploaded_image);
+				$this->application->update(['image' => $this->application->getUploadsRelativeUrl()."128-".$filename]);
+			}
+			
+			//add the components to pivot table
+			if($this->application->components())
+				$this->application->components()->detach();
+			if(isset($input['component']))
+				$this->application->components()->attach($input['component']);
+
+			return Redirect::route('application.index');
+		}
+		return Redirect::route('application.edit', $id)->withInput()->withErrors($this->application->errors);
 	}
 
-	public function destroy($id)
+	public function destroy(Application $application)
 	{
 		//
 	}

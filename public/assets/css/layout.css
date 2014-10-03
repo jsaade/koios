@@ -124,6 +124,7 @@ div.main
 	height: 148px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 h5.app-title
@@ -135,9 +136,31 @@ h5.app-title
 	margin-bottom: 3px;
 }
 
+.app-card .api 
+{
+	margin-top: 2px;
+	display: block;
+}
 .app-card code 
 {
 	color: green;
-	margin-top: 2px;
+}
+
+.app-card-edit
+{
+	background-image: url('../images/edit.png');
+	width: 16px;
+	height: 16px;
+	display: block;
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	cursor: pointer !important;
+	z-index: 999;
+	display: none;
+}
+
+.app-card:hover .app-card-edit
+{
 	display: block;
 }

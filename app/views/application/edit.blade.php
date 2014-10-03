@@ -3,7 +3,7 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
-			<h1>Create an application</h1>
+			<h1>Edit {{ $application->name }}</h1>
 		</div>
 	</div>
 
@@ -11,8 +11,7 @@
 		<div class="col-md-4">
 			 @include('common.form_error_messages', array('errors' => $errors))
 
-			<?php // form fields name should be the same as the db fields for automatic laravel binding ?>
-			{{ Form::open(array('route' => 'application.store', 'files' => true)) }}
+			{{ Form::model($application, ['method' => 'PATCH','route' => ['application.update', $application->id], 'files' => true]) }}
 				@include('application.partials._form')
 			{{ Form::close() }}
 		</div>

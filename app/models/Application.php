@@ -38,14 +38,14 @@ class Application extends \Eloquent {
 		return false;
 	}
 
-	/***********
-	 * UPLOADS *
-	 ***********/
+	/****************
+	 * IMAGE UPLOAD *
+	 ****************/
 	public function getUploadsPath()
 	{
 		$path = uploads_path().$this->slug."/";
 		File::exists($path) or File::makeDirectory($path);
-		
+
 		return $path;
 	}
 
@@ -54,11 +54,14 @@ class Application extends \Eloquent {
 		return uploads_relative_url().$this->slug."/";
 	}
 
-	public function getImageRelativeUrl()
+	public function upload_image($uploaded_image)
 	{
-		if($this->image)
-			return $this->getUploadsRelativeUrl().$this->image;
+		$image = Image::make($uploaded_image->getRealPath()); 
+		$filename = $uploaded_image->getClientOriginalName();
+		$image->save($this->getUploadsPath().$filename)
+			  ->resize(128, 128)
+			  ->save($this->getUploadsPath()."128-".$filename);
 
-		return NULL;
+		return $filename;
 	}
 }
