@@ -22,6 +22,14 @@ class UsersTableSeeder extends Seeder {
 			"last_name" => "Andraos",
 			"password" => Hash::make("mercury2k14")
 		]);
+
+		User::create([
+			"username" => "joseph_saade",
+			"email" => "j.saade@mercury.me",
+			"first_name" => "Joseph",
+			"last_name" => "Saade",
+			"password" => Hash::make("mercury2k14")
+		]);
 		
 	}
 

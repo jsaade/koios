@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"intervention/image": "dev-master"
+		"intervention/image": "dev-master",
+		"fzaninotto/faker": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

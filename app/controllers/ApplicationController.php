@@ -107,7 +107,7 @@ class ApplicationController extends \BaseController {
 
 			return Redirect::route('application.index');
 		}
-		return Redirect::route('application.edit', $id)->withInput()->withErrors($this->application->errors);
+		return Redirect::route('application.edit', $application->slug)->withInput()->withErrors($this->application->errors);
 	}
 
 	public function destroy(Application $application)
