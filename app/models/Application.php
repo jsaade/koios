@@ -17,6 +17,11 @@ class Application extends \Eloquent {
 		return $this->belongsToMany('Component');
 	}
 
+	public function newsCategories()
+	{
+		return $this->hasMany('NewsCategory');
+	}
+
 	/*******************
 	 * FORM VALIDATION *
 	 *******************/

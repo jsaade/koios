@@ -13,7 +13,7 @@
 	@if (!count($clients))
 		<div class="row">
 			<div class="col-md-12 centered">
-				<p class="unfortunate">You haven't create any application yet :(</p>
+				<p class="unfortunate">You haven't created any application yet :(</p>
 				{{ HTML::linkAction('ApplicationController@create', 'Create One Now', [], ['class' => 'btn btn-primary centered']) }}
 			</div>
 		</div>

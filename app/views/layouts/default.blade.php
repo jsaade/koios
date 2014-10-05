@@ -27,5 +27,6 @@
 	{{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
 	{{ HTML::script('assets/js/bootstrap.min.js') }}
 	{{ HTML::script('assets/js/placeholders.min.js') }}
+	{{ HTML::script('assets/js/main.js') }}
 </body>
 </html>
