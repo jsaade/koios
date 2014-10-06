@@ -24,6 +24,14 @@
 		@yield('content')
 	</div>
 
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12" id="footer">
+				
+			</div>
+		</div>
+	</div>
+
 	{{ HTML::script('assets/js/jquery-2.1.1.min.js') }}
 	{{ HTML::script('assets/js/bootstrap.min.js') }}
 	{{ HTML::script('assets/js/placeholders.min.js') }}

@@ -125,6 +125,12 @@ div.main
 	border-radius: 10px 10px 0px 0px;
 }
 
+#footer
+{
+	background-color: #333;
+	height: 200px;
+}
+
 /**
  * TABLE LISTING
  */
