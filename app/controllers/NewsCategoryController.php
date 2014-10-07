@@ -24,9 +24,9 @@ class NewsCategoryController extends \BaseController {
 		{
 			if($this->news_category->isValid($input))
 			{
-				$this->news_category->Create($input);
+				$this->news_category->create($input);
 				$categories = $application->newsCategories;
-				$view = View::make('news_category.partials._list')->withCategories($categories);
+				$view = View::make('news_category.partials._list')->withCategories($categories)->withApplication($application);
 				$response = ['data' => $view->render()];
 				return Response::json($response);
 			}
@@ -39,18 +39,32 @@ class NewsCategoryController extends \BaseController {
 	public function edit(Application $application, NewsCategory $news_category)
 	{
 		$this->news_category = $news_category;
-		return ($this->news_category);
+		return View::make('news_category.edit')->withApplication($application)->withCategory($news_category);
 	}
 
 
-	public function update($id)
+	public function update(Application $application, NewsCategory $news_category)
 	{
-		//
+		$input = Input::all();
+		$this->news_category = $news_category;
+
+		if($this->news_category->isValid($input))
+		{
+			$this->news_category->update($input);
+			return Redirect::route('application.{application}.news-categories.index', $application->slug);
+		}
+		return Redirect::route('application.{application}.news-categories.edit', [$application->slug, $this->news_category->id])
+				->withInput()
+				->withErrors($this->news_category->errors);
 	}
 
-	public function destroy($id)
+	public function destroy(Application $application, NewsCategory $news_category)
 	{
-		//
+		if(Request::ajax())
+		{
+			$news_category->delete();
+			$response = ['data' => "destroyed"];
+		}
 	}
 
 }

@@ -104,6 +104,11 @@ h1 .btn-primary.pull-right
 	margin-top: -5px;
 }
 
+.btn-xs
+{
+	margin-right: 5px;
+}
+
 /**
  * LAYOUT COMPONENTS
  */
@@ -162,6 +167,11 @@ div.main
  {
  	text-align: center;
  	width: 60px;
+ }
+
+ table.listing td form
+ {
+ 	display: inline;
  }
 
 /**

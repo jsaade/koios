@@ -4,6 +4,7 @@
 	<table class="listing">
 		<tr>
 			<th>Category</th>
+			<th>Nb. news</th>
 			<th>Action</th>
 		</tr>
 		@foreach($categories as $category)

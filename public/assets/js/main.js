@@ -1,12 +1,15 @@
 $(document).ready(function(){
+	console.log('s');
 	//bind ajax forms
 	handleRemoteForms();
+	//bind ajax links
+	handleRemoteLinks();
 	
 })
 
 function handleRemoteForms()
 {
-	$('form[data-remote]').on('submit', function(e){
+	$('body').on('submit', 'form[data-remote]', function(e){
 		e.preventDefault();
 		var form = $(this);
 		var method = form.find('input[name="_method"]').val() || "POST";
@@ -19,13 +22,37 @@ function handleRemoteForms()
 			data: form.serialize(),
 			success: function(response){
 				if(callback)
-					window[callback](response);
+					window[callback](response, form);
 			}
 		})
 	})
 }
 
-function updateNewsCategoriesList(response)
+function handleRemoteLinks()
+{
+	$('body').on('click', 'a[data-remote]', function(e){
+		e.preventDefault();
+		var anchor = $(this);
+		var url = anchor.prop('href');
+		var callback = form.data('callback');
+
+		$.ajax({
+			method: method,
+			url: url,
+			success: function(response){
+				if(callback)
+					window[callback](response);
+			}
+		})
+	});
+}
+
+
+/**************************
+ * NEWS CATEGORIES MODULE *
+ **************************/
+
+function updateNewsCategoriesList(response, form)
 {
 	if(response.errors)
 	{
@@ -39,4 +66,18 @@ function updateNewsCategoriesList(response)
 
 	$("#news-category-list").html(response.data);
 	$('input[name="name"]').val('');
+}
+
+function removeNewsCategory(response, form)
+{
+	$(form).closest('tr').fadeOut(750);
+}
+
+/***************
+ * NEWS MODULE *
+ ***************/
+
+ function removeNews(response, form)
+{
+	$(form).closest('tr').fadeOut(750);
 }

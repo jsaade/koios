@@ -71,7 +71,11 @@ class NewsController extends \BaseController {
 
 	public function destroy(Application $application, News $news)
 	{
-		//
+		if(Request::ajax())
+		{
+			$news->delete();
+			$response = ['data' => "destroyed"];
+		}
 	}
 
 }

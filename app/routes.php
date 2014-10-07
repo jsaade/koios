@@ -12,7 +12,6 @@ Route::model('news_categories', 'NewsCategory');
 //Group routes that requires authentication
 Route::group(array('before' => 'auth'), function()
 {
-    
 	Route::group(array('prefix' => 'application/{application}'), function()
 	{
 		Route::resource('news-categories', 'NewsCategoryController');
