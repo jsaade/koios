@@ -8,7 +8,8 @@ class NewsCategoryTableSeeder extends Seeder {
 	public function run()
 	{
 		$faker = Faker::create();
-
+		Eloquent::unguard();
+		
 		foreach(range(1, 3) as $index)
 		{
 			NewsCategory::create([

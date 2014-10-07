@@ -8,14 +8,16 @@ Route::bind('application', function($value, $route){
 
 Route::model('news', 'News');
 Route::model('news_categories', 'NewsCategory');
+Route::model('questions', 'Question');
 
 //Group routes that requires authentication
 Route::group(array('before' => 'auth'), function()
 {
 	Route::group(array('prefix' => 'application/{application}'), function()
 	{
-		Route::resource('news-categories', 'NewsCategoryController');
 		Route::resource('news', 'NewsController');
+		Route::resource('news-categories', 'NewsCategoryController');
+		Route::resource('questions', 'QuestionsController');
 	});
 
     //Application routing

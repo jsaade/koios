@@ -7,6 +7,8 @@ class UsersTableSeeder extends Seeder {
 
 	public function run()
 	{
+		Eloquent::unguard();
+		
 		User::create([
 			"username" => "jimmy_ghazal",
 			"email" => "j.ghazal@mercury.me",

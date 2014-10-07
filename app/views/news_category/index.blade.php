@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h1>
-				News Categories List
+				{{ $application->name }} - News Categories List
 			</h1>
 		</div>
 	</div>

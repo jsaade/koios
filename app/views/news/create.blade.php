@@ -7,7 +7,7 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
-			<h1>Create a news</h1>
+			<h1>{{ $application->name }} - Create a news</h1>
 		</div>
 	</div>
 

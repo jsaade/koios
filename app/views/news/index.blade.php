@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h1>
-				News List
+				{{ $application->name }} - News List
 				{{ HTML::linkAction('NewsController@create', 'Create News', [$application->slug], ['class' => 'btn btn-primary pull-right']) }}
 			</h1>
 		</div>

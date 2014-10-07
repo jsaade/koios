@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<h1>
-				Applications "{{ $application->name }}"
+				Application "{{ $application->name }}"
 			</h1>
 		</div>
 	</div>

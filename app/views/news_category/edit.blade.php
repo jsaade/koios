@@ -7,7 +7,7 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
-			<h1>Edit "{{ $category->name }}"</h1>
+			<h1>{{ $application->name }} -  Edit "{{ $category->name }}"</h1>
 		</div>
 	</div>
 

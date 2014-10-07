@@ -25,7 +25,10 @@
 				{{ HTML::linkAction('NewsController@index', 'View All', [$application->slug], []) }}
 			</li>
 			<li>
-				{{ HTML::linkAction('NewsCategoryController@index', 'Categories', [$application->slug], []) }}
+				{{ HTML::linkAction('NewsController@create', 'Create new', [$application->slug], []) }}
+			</li>
+			<li>
+				{{ HTML::linkAction('NewsCategoryController@index', 'Manage Categories', [$application->slug], []) }}
 			</li>
 		</ul>
 	@endif
