@@ -24,7 +24,7 @@
 					<h3>{{ $client->name }}</h3>
 				</div>
 				@foreach($client->applications as $application)
-					@include('application.partials._application_card')
+						@include('application.partials._application_card')
 				@endforeach
 			</div>
 		@endforeach

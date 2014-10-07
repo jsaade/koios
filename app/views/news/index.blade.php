@@ -1,5 +1,10 @@
 @extends('layouts.default')
 
+@section('applicationMenu')
+	{{ $application->renderMenu() }}
+@stop
+
+
 @section('content')
 	<div class="row">
 		<div class="col-md-12">

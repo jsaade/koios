@@ -69,4 +69,23 @@ class Application extends \Eloquent {
 
 		return $filename;
 	}
+
+	/********************
+	 * Application Menu *
+	 ********************/
+	public function renderMenu()
+	{
+		$view = View::make('application.partials._menu')->withApplication($this);
+		$this->hasComponent('News');
+		return $view->render();
+	}
+
+	public function hasComponent($componentName)
+	{
+		$components = $this->components->lists('name', 'id');
+		if(in_array($componentName, $components))
+			return true;
+
+		return false;
+	}
 }

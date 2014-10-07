@@ -4,7 +4,10 @@ $(document).ready(function(){
 	handleRemoteForms();
 	//bind ajax links
 	handleRemoteLinks();
-	
+	//application menu
+	$('#application-menu-btn').sidr({
+		source: '#application-side-menu-content'
+	});
 })
 
 function handleRemoteForms()

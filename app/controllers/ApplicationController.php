@@ -62,7 +62,7 @@ class ApplicationController extends \BaseController {
 
 	public function show(Application $application)
 	{
-		//
+		return View::make('application.show')->withApplication($application)->withFullcard(true);
 	}
 
 	public function edit(Application $application)

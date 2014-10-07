@@ -136,6 +136,28 @@ div.main
 	height: 200px;
 }
 
+#application-menu-btn
+{
+	background-image: url('../images/menu-toggle.png');
+	background-repeat: no-repeat;
+	width: 32px;
+	height: 32px;
+	display: block;
+	margin-left: 10px;
+	margin-top: 10px;
+	padding-left: 40px;
+}
+
+a.home
+{
+	width: 24px;
+	height: 25px;
+	background-image: url('../images/home.png');
+	background-repeat: no-repeat;
+	display: block;
+	margin-top: -20px;
+}
+
 /**
  * TABLE LISTING
  */
@@ -187,6 +209,13 @@ div.main
 	word-wrap: break-word;
 }
 
+.app-card a, 
+.app-card a:hover 
+{
+	color:#000;
+	text-decoration: none;
+}
+
 h5.app-title
 {
 	color:#000;
@@ -223,4 +252,60 @@ h5.app-title
 .app-card:hover .app-card-edit
 {
 	display: block;
+}
+
+/********************
+ * APPLICATION MENU *
+ ********************/
+#sidr .sidr-inner 
+{
+	padding: 10px;
+}
+
+#sidr img 
+{
+	width: 48px !important;
+	height: 48px !important;
+}
+
+.sidr ul 
+{
+	border: none;
+	margin-bottom: 20px;
+}
+
+#sidr-id-menu-app-info
+{
+	margin-bottom: 60px;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 22px;
+}
+
+#sidr-id-menu-app-info a,
+#sidr-id-menu-app-info a:hover
+{
+	color:#FFF;
+	text-decoration: none;
+}
+
+#sidr-id-menu-app-info a img 
+{
+	margin-right: 10px;
+}
+
+.sidr ul li,.sidr ul li.sidr-class-active,.sidr ul li:hover 
+{
+	line-height: 35px;
+	font-size: 14px;
+}
+
+.sidr ul li.sidr-class-menu-app-seperator,
+.sidr ul li.sidr-class-menu-app-seperator:hover
+{
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size: 16px;
+	border-top: none;
+	box-shadow: none;
 }
