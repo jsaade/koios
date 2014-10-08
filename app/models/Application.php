@@ -22,6 +22,11 @@ class Application extends \Eloquent {
 		return $this->hasMany('NewsCategory');
 	}
 
+	public function questions()
+	{
+		return $this->hasMany('Question');
+	}
+
 	/*******************
 	 * FORM VALIDATION *
 	 *******************/

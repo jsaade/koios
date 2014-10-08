@@ -16,4 +16,14 @@ function uploads_relative_url()
 {
 	return "uploads/";
 }
+
+function extract_params($array)
+{
+	$str = "";
+	
+	foreach($array as $key => $val)
+		$str .= "{$key} = '{$val}' ";
+
+	return $str;
+}
 ?>

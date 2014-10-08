@@ -39,7 +39,9 @@ class News extends \Eloquent {
 	 ****************/
 	public function getUploadsPath()
 	{
-		$path = uploads_path().$this->newsCategory->application->slug."/news/";
+		$path = uploads_path().$this->newsCategory->application->slug."/";
+		File::exists($path) or File::makeDirectory($path);
+		$path .= "news/";
 		File::exists($path) or File::makeDirectory($path);
 		$path .= $this->id."/";
 		File::exists($path) or File::makeDirectory($path);

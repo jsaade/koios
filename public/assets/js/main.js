@@ -84,3 +84,12 @@ function removeNewsCategory(response, form)
 {
 	$(form).closest('tr').fadeOut(750);
 }
+
+/********************
+ * QUESTIONS MODULE *
+ ********************/
+
+ function removeQuestion(response, form)
+{
+	$(form).closest('tr').fadeOut(750);
+}

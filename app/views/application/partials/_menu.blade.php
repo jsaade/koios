@@ -33,8 +33,16 @@
 		</ul>
 	@endif
 
-	@if ($application->hasComponent('Pages Management'))
-		
+	@if ($application->hasComponent('Q&A'))
+		<ul>
+			<li class="menu-app-seperator">Q&A</li>
+			<li>
+				{{ HTML::linkAction('QuestionsController@index', 'View All', [$application->slug], []) }}
+			</li>
+			<li>
+				{{ HTML::linkAction('QuestionsController@create', 'Create new', [$application->slug], []) }}
+			</li>
+		</ul>
 	@endif
 
 </div>
