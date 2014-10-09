@@ -54,11 +54,22 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
-Route::filter('secure', function($route, $request)
+
+
+App::error(function(Exception $exception, $code)
 {
-   	$app = $route->getParameter('app');
-   	//dd($application->api_secret);
+	switch($code)
+	{
+		case 404:
+			return Response::make(['code' => $code, 'message' => "Invalid Request Url"]);
+		case 500:
+			return Response::make(['code' => $code, 'message' => "Internal Server Error"]);
+	}
 });
+
+Route::filter('secure', '\Acme\Filters\SecureFilter');
+Route::filter('newsBelongsToApp', '\Acme\Filters\NewsFilter'); 
+Route::filter('newsCategoryBelongsToApp', '\Acme\Filters\NewsCategoryFilter'); 
 
 /*
 |--------------------------------------------------------------------------

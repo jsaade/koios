@@ -2,7 +2,6 @@
 
 class ApiController extends \BaseController {
 
-
 	public function show(Application $application)
 	{
 		return $application;
