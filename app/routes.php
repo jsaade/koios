@@ -14,10 +14,25 @@ Route::bind('questions', function($value, $route){
 });
 
 
-//Group routes that requires user authentication
-Route::group(array('before' => 'auth'), function()
+Route::model('app', 'Application');
+Route::bind('app', function($value, $route){
+	return Application::where('api_key', $value)->first();
+});
+
+//Api Routes
+Route::group(['prefix'=>'api/', 'before'=>'secure'], function()
 {
-	Route::group(array('prefix' => 'application/{application}'), function()
+	Route::get('app/{app}/news', 'ApiController@news');
+	Route::get('app/{app}/news/{news}/show', 'ApiController@news_show');
+	Route::get('app/{app}/news-categories', 'ApiController@news_categories');
+	Route::get('app/{app}/news-category/{news_categories}/news', 'ApiController@news_by_category');
+	Route::resource('app', 'ApiController');
+});
+
+//Group routes that requires user authentication
+Route::group(['before'=>'auth'], function()
+{
+	Route::group(['prefix' => 'application/{application}'], function()
 	{
 		Route::resource('news', 'NewsController');
 		Route::resource('news-categories', 'NewsCategoryController');

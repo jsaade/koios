@@ -24,6 +24,6 @@
 	</li>
 
 	<li>
-		<br/>{{ Form::submit('Save Application', ['class' => 'btn btn-primary']) }}
+		<br/>{{ Form::submit('Save Question', ['class' => 'btn btn-primary']) }}
 	</li>
 </ul>
