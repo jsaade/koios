@@ -56,7 +56,8 @@ Route::filter('auth.basic', function()
 
 Route::filter('secure', function($route, $request)
 {
-   
+   	$app = $route->getParameter('app');
+   	//dd($application->api_secret);
 });
 
 /*

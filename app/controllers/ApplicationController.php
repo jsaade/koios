@@ -37,7 +37,7 @@ class ApplicationController extends \BaseController {
 				'client_id' => $input['client'], 
 				'image' => '',
 				'slug' => uniqid(),
-				'api_key' => uniqid().uniqid(),
+				'api_key' => uniqid(),
 				'api_secret' => Hash::make($input['name'])
 			]);
 
