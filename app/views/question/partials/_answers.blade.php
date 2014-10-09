@@ -1,24 +1,25 @@
 
-@if( !isset($answers))
-	@for ($i = 0; $i < 4; $i++)
-	    <tr>
-		    <td>
-		    	{{ Form::radio('is_correct[]', $i, null) }} 
-		    </td>
-			<td>
-				{{ Form::TextGroup("answer_desc", null, [ 'class' => 'form-control', 'placeholder' => 'Enter answer value'] ) }} 
-			</td>
-		</tr>
-	@endfor
-@else
-	@foreach($answers as $answer)
-		<tr>
-		    <td>
-		    	{{ Form::radio('is_correct[]', $answer->id, $answer->is_correct) }} 
-		    </td>
-			<td>
-				{{ Form::TextGroup("answer_desc", $answer->description, [ 'class' => 'form-control', 'placeholder' => 'Enter answer value'] ) }} 
-			</td>
-		</tr>
-	@endforeach
-@endif
+@for ($i = 0; $i < 4; $i++)
+	 @if (isset($question->answers) && count($question->answers))
+	 	{{--*/ $answerTextfieldName = 'answer.description.'.$question->answers[$i]->id /*--}}
+	 @else
+	 	{{--*/ $answerTextfieldName = 'answer.description.'.$i /*--}}
+	 @endif
+
+    <tr>
+	    <td>
+	    	{{ Form::radio(
+	    		'answer.is_correct', 
+	    		$i, 
+	    		(isset($question->answers) && count($question->answers))?$question->answers[$i]->is_correct:null
+	    	)}} 
+	    </td>
+		<td>
+			{{ Form::Text(
+				$answerTextfieldName,
+				(isset($question->answers) && count($question->answers))? $question->answers[$i]->description:null, 
+				[ 'class' => 'form-control', 'placeholder' => 'Enter answer value'] 
+			)}} 
+		</td>
+	</tr>
+@endfor

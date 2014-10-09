@@ -18,18 +18,18 @@ class QuestionsController extends \BaseController {
 
 	public function create(Application $application)
 	{
-		return View::make('question.create')->withApplication($application);
+		return View::make('question.create')->withApplication($application)->withQuestion($this->question);
 	}
 
 
 	public function store(Application $application)
 	{
-		$input = Input::all(); 
+		$input = Input::all();
 		$uploaded_image = Input::file('image');
 
 		if($this->question->isValid($input))
 		{
-			$this->question = Question::create(['description' => $input['description'], 'application_id' => $input['application_id'] ]);
+			$this->question = Question::create($input);
 			$this->question->uploadImage($uploaded_image);
 			$this->question->createOrUpdateAnswers($input);
 			return Redirect::route('application.{application}.questions.index', $application->slug);
@@ -41,8 +41,7 @@ class QuestionsController extends \BaseController {
 
 	public function edit(Application $application, Question $question)
 	{
-		$answers = $question->answers;
-		return View::make('question.edit')->withAnswers($answers)->withApplication($application)->withQuestion($question);
+		return View::make('question.edit')->withApplication($application)->withQuestion($question);
 	}
 
 

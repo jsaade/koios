@@ -91,16 +91,17 @@ class Question extends \Eloquent {
 
 	public function createOrUpdateAnswers($input)
 	{
-		$answers = $input['answer_desc'];
-		$correct = $input['is_correct'][0];
-		
+		$answers = get_keys_startingwith_as_subarray($input, 'answer_description');
+		$correct = $input['answer_is_correct'];
+
 		if(isset($input['_method']) && $input['_method'] == "PATCH")
 		{
 			foreach($this->answers as $key => $answer)
 			{
+				$key = str_replace('answer_description_', '', $key);
 				$answer->update([
-					'description' => $answers[$key],
-					'is_correct' => ($correct == ($key+1))?true:false
+					'description' => $answers['answer_description_'.$answer->id],
+					'is_correct' => ($correct == $key)?true:false
 				]);
 			}
 		}
@@ -108,11 +109,11 @@ class Question extends \Eloquent {
 		{
 			foreach($answers as $key => $val)
 			{
-				Answer::create([
-					'description' => $val,
-					'question_id' => $this->id,
-					'is_correct' => ($correct == $key)?true:false
-				]);
+				$answer = new Answer;
+				$answer->description = $val;
+				$answer->is_correct = ($correct == 'answer_description_'.$key)?true:false;
+				$answer->question()->associate($this);
+				$answer->save();
 			}
 		}
 	}

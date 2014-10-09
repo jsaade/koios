@@ -26,4 +26,9 @@ function extract_params($array)
 
 	return $str;
 }
+
+function get_keys_startingwith_as_subarray($array, $str_starting)
+{
+	return array_intersect_key($array, array_flip(preg_grep('/^'.$str_starting.'/', array_keys($array))));
+}
 ?>

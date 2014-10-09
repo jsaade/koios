@@ -28,7 +28,7 @@ class ValidatorExtended extends IlluminateValidator
     protected function validateAnswersRequired($attribute, $value)
     {
         $valid = true;
-        $answers = $this->input['answer_desc'];
+        $answers = get_keys_startingwith_as_subarray($this->input, 'answer_description');
         foreach($answers as $answer)
             if(!trim($answer))
                 $valid = false;
@@ -44,7 +44,7 @@ class ValidatorExtended extends IlluminateValidator
      */
     protected function validateCorrectAnswerRequired($attribute, $value)
     {
-        return isset($this->input['is_correct']);
+        return isset($this->input['answer_is_correct']);
     }
  
 }
