@@ -14,8 +14,8 @@ class ApplicationTableSeeder extends Seeder {
 			'description' => "Bachir Gemayel life biography",
 			'image' => null,
 			'slug' => uniqid(),
-			'api_key' => uniqid().uniqid(),
-			'api_secret' => Hash::make($faker->word()),
+			'api_key' => uniqid(),
+			'api_secret' => hash('sha256', substr($faker->word(),0,9), false),
 			'client_id' => 1
 		]);
 
@@ -24,8 +24,8 @@ class ApplicationTableSeeder extends Seeder {
 			'description' => "Can your kite survive a war?",
 			'image' => null,
 			'slug' => uniqid(),
-			'api_key' => uniqid().uniqid(),
-			'api_secret' => Hash::make($faker->word()),
+			'api_key' => uniqid(),
+			'api_secret' => hash('sha256', substr($faker->word(),0,9), false),
 			'client_id' => 1
 		]);
 
@@ -34,8 +34,8 @@ class ApplicationTableSeeder extends Seeder {
 			'description' => "All in one app for LAF.",
 			'image' => null,
 			'slug' => uniqid(),
-			'api_key' => uniqid().uniqid(),
-			'api_secret' => Hash::make($faker->word()),
+			'api_key' => uniqid(),
+			'api_secret' => hash('sha256', substr($faker->word(),0,9), false),
 			'client_id' => 2
 		]);
 	}

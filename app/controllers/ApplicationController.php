@@ -38,7 +38,7 @@ class ApplicationController extends \BaseController {
 				'image' => '',
 				'slug' => uniqid(),
 				'api_key' => uniqid(),
-				'api_secret' => Hash::make($input['name'])
+				'api_secret' => hash('sha256', substr($input['name'],0,9), false)
 			]);
 
 			//upload the image if provided and save it in db
