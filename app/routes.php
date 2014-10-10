@@ -56,7 +56,7 @@ Route::group(['before'=>'auth'], function()
 	Route::resource('application', 'ApplicationController');
 	
 	//homepage routing
-	Route::get('/', 'ApplicationController@index');
+	Route::get('/', ['as' => 'home', 'uses' => 'ApplicationController@index']);
 });
 
 //Authentication 
