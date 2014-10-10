@@ -7,6 +7,7 @@ class NewsCategoryController extends \BaseController {
 	public function __construct(NewsCategory $news_category)
 	{
 		$this->news_category = $news_category;
+		View::share('showAppMenu',true);
 	}
 
 	public function index(Application $application)

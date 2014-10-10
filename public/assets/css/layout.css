@@ -144,21 +144,38 @@ div.main
 	width: 32px;
 	height: 32px;
 	display: block;
-	margin-left: 10px;
-	margin-top: 10px;
+	left: 10px;
+	top: 20px;
 	padding-left: 40px;
+	position: absolute;
 }
 
-a.home
+.header-bar
+{
+	margin-top: 20px;
+}
+
+.header-bar a.home
 {
 	width: 24px;
 	height: 25px;
 	background-image: url('../images/home.png');
 	background-repeat: no-repeat;
 	display: block;
-	margin-top: -20px;
 }
 
+.credentials
+{
+	text-align: right;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.credentials a 
+{
+	color: #FFF;
+	text-decoration: underline;
+}
 /**
  * TABLE LISTING
  */

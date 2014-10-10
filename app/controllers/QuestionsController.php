@@ -7,6 +7,7 @@ class QuestionsController extends \BaseController {
 	public function __construct(Question $question)
 	{
 		$this->question = $question;
+		View::share('showAppMenu',true);
 	}
 
 	public function index(Application $application)

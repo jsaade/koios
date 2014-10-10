@@ -8,6 +8,7 @@ class NewsController extends \BaseController {
 	public function __construct(News $news)
 	{
 		$this->news = $news;
+		View::share('showAppMenu',true);
 	}
 
 

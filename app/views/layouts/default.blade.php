@@ -14,16 +14,17 @@
 
 	<div class="container-fluid top-bar">
 	  	<div class="row">
-	    	<a id="application-menu-btn" href="#sidr"></a>
-	    	<div class="container">
-		    	<div class="col-md-12">
-		    		<a href='/' class="home"></a>
-		    	</div>
-		    </div>
+	  		@if ( isset($showAppMenu) && $showAppMenu)
+	    		<a id="application-menu-btn" href="#sidr"></a>
+	    	@endif
+
+	    	@include('layouts.partials._nav')
 	  	</div>
 	</div>
 
-	@yield('applicationMenu')
+	@if ( isset($showAppMenu) && $showAppMenu)
+		@yield('applicationMenu')
+	@endif
 
 	<div class="container main">
 		@yield('content')

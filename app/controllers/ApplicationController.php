@@ -62,6 +62,7 @@ class ApplicationController extends \BaseController {
 
 	public function show(Application $application)
 	{
+		View::share('showAppMenu',true);
 		return View::make('application.show')->withApplication($application)->withFullcard(true);
 	}
 
