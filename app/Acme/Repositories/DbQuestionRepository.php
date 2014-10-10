@@ -42,9 +42,9 @@ class DbQuestionRepository
 		$output['id'] = $question->id;
 		$output['description'] = $question->description;;
 		if($question->image)
-			$output['thumb'] = url($question->getImageRelativeUrl());
+			$output['image'] = url($question->getImageRelativeUrl());
 		else
-			$output['thumb'] = null;
+			$output['image'] = null;
 
 		$answers = $question->answers;
 		$output['answers'] = [];

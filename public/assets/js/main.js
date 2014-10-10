@@ -1,9 +1,7 @@
 $(document).ready(function(){
-	console.log('s');
+	initDeveloperConsole();
 	//bind ajax forms
 	handleRemoteForms();
-	//bind ajax links
-	handleRemoteLinks();
 	//application menu
 	$('#application-menu-btn').sidr({
 		source: '#application-side-menu-content'
@@ -30,26 +28,6 @@ function handleRemoteForms()
 		})
 	})
 }
-
-function handleRemoteLinks()
-{
-	$('body').on('click', 'a[data-remote]', function(e){
-		e.preventDefault();
-		var anchor = $(this);
-		var url = anchor.prop('href');
-		var callback = form.data('callback');
-
-		$.ajax({
-			method: method,
-			url: url,
-			success: function(response){
-				if(callback)
-					window[callback](response);
-			}
-		})
-	});
-}
-
 
 /**************************
  * NEWS CATEGORIES MODULE *
@@ -92,4 +70,31 @@ function removeNewsCategory(response, form)
  function removeQuestion(response, form)
 {
 	$(form).closest('tr').fadeOut(750);
+}
+
+function initDeveloperConsole()
+{
+	$("input[name='console-url']").on("keypress", function(e){
+		var input = $(this);
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+		if(keycode == 13) 
+			getApiResponse(input.val());
+	})
+}
+
+function getApiResponse(uri)
+{
+	var action = $("input[name='action']").val();
+	$.ajax({
+			method: "POST",
+			url: action,
+			data: {"uri": uri},
+			success: function(data){
+				//prettify the json request
+				var jsonObj = JSON.parse(data);
+				var jsonPretty = JSON.stringify(jsonObj, null, '\t');
+
+				$("#response").html("<pre class='naked'>"+jsonPretty+"</pre>");
+			}
+		})
 }

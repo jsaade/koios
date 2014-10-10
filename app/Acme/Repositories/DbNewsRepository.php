@@ -46,9 +46,9 @@ class DbNewsRepository
 		$arr['description'] = $n->description;
 		$arr['caption'] = $n->caption;
 		if($n->image)
-			$arr['thumb'] = url($n->getImageRelativeUrl());
+			$arr['image'] = url($n->getImageRelativeUrl());
 		else
-			$arr['thumb'] = null;
+			$arr['image'] = null;
 		$arr['category'] = $n->news_category->name;
 
 		return $arr;

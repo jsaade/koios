@@ -54,7 +54,9 @@ Route::group(['before'=>'auth'], function()
 
     //Application routing
 	Route::resource('application', 'ApplicationController');
-	
+	//Developer routing
+	Route::get('developer/console', 'DeveloperController@console');
+	Route::post('developer/response', 'DeveloperController@response');
 	//homepage routing
 	Route::get('/', ['as' => 'home', 'uses' => 'ApplicationController@index']);
 });

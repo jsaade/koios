@@ -131,12 +131,6 @@ div.main
 	border-radius: 10px 10px 0px 0px;
 }
 
-#footer
-{
-	background-color: #333;
-	height: 200px;
-}
-
 #application-menu-btn
 {
 	background-image: url('../images/menu-toggle.png');
@@ -175,6 +169,52 @@ div.main
 {
 	color: #FFF;
 	text-decoration: underline;
+}
+
+/**
+ * FOOTER
+ */
+
+#footer-container
+{
+	background-color: #FFF;
+	padding-bottom: 30px;
+	padding-top: 30px;
+}
+
+#footer
+{
+	padding-top: 10px;
+	padding-bottom: 30px;
+	border-top: 1px solid #d7d7d7;
+}
+
+#footer ul 
+{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+
+#footer ul li
+{
+	list-style: none;
+	margin-right: 20px;
+	display: inline;
+}
+
+#footer ul li a 
+{
+	font-size: 13px;
+	font-weight: 500;
+	text-decoration: none;
+	color: #999;
+}
+
+#footer ul li a:hover
+{
+	color: #000;
 }
 /**
  * TABLE LISTING
@@ -330,3 +370,29 @@ h5.app-title
 	border-top: none;
 	box-shadow: none;
 }
+
+/*********************
+ * DEVELOPER CONSOLE *
+ *********************/
+
+ div.url-prefix
+ {
+ 	font-size: 14px;
+ 	font-weight: 400;
+ 	line-height: 34px;
+ }
+
+ div#response
+ {
+ 	width: 100%;
+ 	height: 500px;
+ 	background-color:#f2f2f2;
+ 	border: 1px solid #ccc;
+ 	margin-top: 30px;
+ }
+
+ pre.naked
+ {
+ 	border: none;
+ 	background-color: transparent;
+ }

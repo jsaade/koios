@@ -62,8 +62,8 @@ App::error(function(Exception $exception, $code)
 	{
 		case 404:
 			return Response::make(['code' => $code, 'message' => "Invalid Request Url"]);
-		//case 500:
-		//	return Response::make(['code' => $code, 'message' => "Internal Server Error"]);
+		case 500:
+			return Response::make(['code' => $code, 'message' => "Internal Server Error"]);
 	}
 });
 

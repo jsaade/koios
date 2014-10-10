@@ -93,7 +93,6 @@ class Question extends \Eloquent {
 	{
 		$answers = get_keys_startingwith_as_subarray($input, 'answer_description');
 		$correct = $input['answer_is_correct'];
-
 		if(isset($input['_method']) && $input['_method'] == "PATCH")
 		{
 			foreach($this->answers as $key => $answer)
@@ -109,9 +108,10 @@ class Question extends \Eloquent {
 		{
 			foreach($answers as $key => $val)
 			{
+				var_dump($correct, $key);
 				$answer = new Answer;
 				$answer->description = $val;
-				$answer->is_correct = ($correct == 'answer_description_'.$key)?true:false;
+				$answer->is_correct = ('answer_description_'.$correct == $key)?true:false;
 				$answer->question()->associate($this);
 				$answer->save();
 			}
