@@ -12,15 +12,23 @@ class CreateApplicationComponentTable extends Migration {
 	 */
 	public function up()
 	{
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
 		Schema::create('application_component', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('application_id')->unsigned()->index();
-			$table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');
-			$table->integer('component_id')->unsigned()->index();
-			$table->foreign('component_id')->references('id')->on('components')->onDelete('cascade');
+			$table->integer('application_id')->unsigned();
+			$table->integer('component_id')->unsigned();
 			$table->timestamps();
 		});
+
+		Schema::table('application_component', function(Blueprint $table)
+		{
+			$table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');
+			$table->foreign('component_id')->references('id')->on('components')->onDelete('cascade');
+		});
+		DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+
 	}
 
 
@@ -31,7 +39,9 @@ class CreateApplicationComponentTable extends Migration {
 	 */
 	public function down()
 	{
+		DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 		Schema::drop('application_component');
+		DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 	}
 
 }

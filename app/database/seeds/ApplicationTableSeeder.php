@@ -10,34 +10,29 @@ class ApplicationTableSeeder extends Seeder {
 		$faker = Faker::create();
 
 		Application::create([
-			'name' => "Bachir",
-			'description' => "Bachir Gemayel life biography",
+			'name' => "NBA Stream",
+			'description' => "NBA News and some other stuff",
 			'image' => null,
 			'slug' => uniqid(),
 			'api_key' => uniqid(),
-			'api_secret' => hash('sha256', substr($faker->word(),0,9), false),
+			'api_secret' => hash('sha256', substr('NBA Stream',0,9), false),
 			'client_id' => 1
 		]);
 
-		Application::create([
-			'name' => "KiteRun",
-			'description' => "Can your kite survive a war?",
-			'image' => null,
-			'slug' => uniqid(),
-			'api_key' => uniqid(),
-			'api_secret' => hash('sha256', substr($faker->word(),0,9), false),
-			'client_id' => 1
+		DB::table('application_component')->insert([
+			'application_id' => 1,
+			'component_id' => 1
 		]);
 
-		Application::create([
-			'name' => "Lebanese Army",
-			'description' => "All in one app for LAF.",
-			'image' => null,
-			'slug' => uniqid(),
-			'api_key' => uniqid(),
-			'api_secret' => hash('sha256', substr($faker->word(),0,9), false),
-			'client_id' => 2
+		DB::table('application_component')->insert([
+			'application_id' => 1,
+			'component_id' => 2
 		]);
+
+		DB::table('application_component')->insert([
+			'application_id' => 1,
+			'component_id' => 3
+		]);				
 	}
 
 }

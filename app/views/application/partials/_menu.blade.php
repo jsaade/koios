@@ -33,7 +33,7 @@
 		</ul>
 	@endif
 
-	@if ($application->hasComponent('Q&A'))
+	@if ($application->hasComponent('Quiz'))
 		<ul>
 			<li class="menu-app-seperator">Q&A</li>
 			<li>

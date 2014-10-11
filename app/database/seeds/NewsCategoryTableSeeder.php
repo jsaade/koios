@@ -9,28 +9,13 @@ class NewsCategoryTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 		Eloquent::unguard();
+		$categories = ['Team', 'Player', 'Playoffs', 'Trades', 'Rumors', 'Fans'];
 		
-		foreach(range(1, 3) as $index)
+		foreach($categories as $category)
 		{
 			NewsCategory::create([
-				"name" => $faker->word(),
+				"name" => $category,
 				"application_id" => 1
-			]);
-		}
-
-		foreach(range(1, 3) as $index)
-		{
-			NewsCategory::create([
-				"name" => $faker->word(),
-				"application_id" => 2
-			]);
-		}
-
-		foreach(range(1, 3) as $index)
-		{
-			NewsCategory::create([
-				"name" => $faker->word(),
-				"application_id" => 3
 			]);
 		}
 	}

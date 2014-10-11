@@ -10,23 +10,12 @@ class QuestionTableSeeder extends Seeder {
 		Eloquent::unguard();	
 		$faker = Faker::create();
 
-		foreach(range(1, 10) as $index)
+		foreach(range(1, 15) as $index)
 		{
 			Question::create([
-				'description' => $faker->sentence(12),
+				'description' => $faker->sentence(),
 				'application_id' => 1
-			]);
-
-			Question::create([
-				'description' => $faker->sentence(12),
-				'application_id' => 2
-			]);
-
-			Question::create([
-				'description' => $faker->sentence(12),
-				'application_id' => 3
 			]);
 		}
 	}
-
 }

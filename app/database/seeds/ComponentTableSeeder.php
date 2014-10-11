@@ -7,11 +7,11 @@ class ComponentTableSeeder extends Seeder {
 
 	public function run()
 	{
-		$components = ['Pages Management', 'News', 'Q&A'];
+		$components = ['Pages Management', 'News', 'Quiz'];
 		$desc = [
 			'Creates static pages with all type of content (texts,images,videos,links)',
 			'A module that generates news',
-			'Questions with multiple answers (includes quiz ability)'	
+			'Questions with multiple answers'	
 			];
 
 		foreach($components as $key => $val)

@@ -21,7 +21,7 @@ class DeveloperController extends \BaseController {
 		
 		//$request = URL::to('/')."/api/app/".$uri;
 		//for local testing, make a checkbox in the interface
-		$request = "http://localhost:80/koios/public/index.php/api/app/".$uri;
+		$request = "http://localhost:8888/koios/public/index.php/api/app/".$uri;
 		
 		$ch = curl_init();
 		$headers = array('X-Auth-Token: '.$app->api_secret, 'Content-Type: application/json', 'Accept: application/json'); 
