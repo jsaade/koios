@@ -11,7 +11,7 @@ class ApplicationTableSeeder extends Seeder {
 
 		Application::create([
 			'name' => "NBA Stream",
-			'description' => "NBA News and some other stuff",
+			'description' => "NBA news and some other stuff",
 			'image' => null,
 			'slug' => uniqid(),
 			'api_key' => uniqid(),

@@ -24,8 +24,8 @@ class CreateApplicationComponentTable extends Migration {
 
 		Schema::table('application_component', function(Blueprint $table)
 		{
-			$table->foreign('application_id')->references('id')->on('applications')->onDelete('cascade');
-			$table->foreign('component_id')->references('id')->on('components')->onDelete('cascade');
+			$table->foreign('application_id')->references('id')->on('application')->onDelete('cascade');
+			$table->foreign('component_id')->references('id')->on('component')->onDelete('cascade');
 		});
 		DB::statement('SET FOREIGN_KEY_CHECKS = 1');
 

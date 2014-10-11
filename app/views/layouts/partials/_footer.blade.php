@@ -6,6 +6,7 @@
 					<li><a href="#">About</li>
 					<li><a href="#">API</a></li>
 					<li><a href="#">Console</a></li>
+					<li><a href="#">Analytics</a></li>
 					<li><a href="#">Roadmap</a></li>
 				</ul>
 			</div>
