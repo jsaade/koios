@@ -67,7 +67,7 @@ App::error(function(Exception $exception, $code)
 	}
 });
 
-Route::filter('secure', '\Acme\Filters\SecureFilter');
+//Route::filter('secure', '\Acme\Filters\SecureFilter');
 Route::filter('newsBelongsToApp', '\Acme\Filters\NewsFilter'); 
 Route::filter('newsCategoryBelongsToApp', '\Acme\Filters\NewsCategoryFilter'); 
 Route::filter('questionBelongsToApp', '\Acme\Filters\QuestionFilter'); 

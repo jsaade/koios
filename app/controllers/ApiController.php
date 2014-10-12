@@ -1,11 +1,18 @@
 <?php
 
-use \Acme\Repositories\DbNewsRepository;
-use \Acme\Repositories\DbNewsCategoryRepository;
-use \Acme\Repositories\DbQuestionRepository;
+//use \Acme\Repositories\DbNewsRepository;
+//use \Acme\Repositories\DbNewsCategoryRepository;
+//use \Acme\Repositories\DbQuestionRepository;
 
 class ApiController extends \BaseController {
 
+	
+	public function respondOk($data, $headers = [])
+	{
+		return Response::json(['data' => [ 'status' => 200, 'content' => $data]], 200, $headers);
+	}
+
+	/*
 	public function __construct(DbNewsCategoryRepository $newsCategoryRepos, DbNewsRepository $newsRepos, DbQuestionRepository $questionRepos)
 	{
 		$this->newsCategoryRepos = $newsCategoryRepos;
@@ -54,5 +61,6 @@ class ApiController extends \BaseController {
 	{
 		return Response::make(['code' => 200, 'data' => $this->questionRepos->find($questions->id) ]);
 	}
+	*/
 
 }

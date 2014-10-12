@@ -55,12 +55,34 @@ class News extends \Eloquent {
 
 	public function getImageThumbRelativeUrl()
 	{
-		return $this->getUploadsRelativeUrl()."30-".$this->image;
+		if($this->image)
+		 	return $this->getUploadsRelativeUrl()."30-".$this->image;
+		
+		return null;
 	}
 
 	public function getImageRelativeUrl()
 	{
-		return $this->getUploadsRelativeUrl().$this->image;
+		if($this->image)
+			return $this->getUploadsRelativeUrl().$this->image;
+
+		return null;
+	}
+
+	public function getImageThumbFullUrl()
+	{
+		if($this->image)
+		 	return url($this->getUploadsRelativeUrl()."30-".$this->image);
+		
+		return null;
+	}
+
+	public function getImageFullUrl()
+	{
+		if($this->image)
+			return url($this->getUploadsRelativeUrl().$this->image);
+
+		return null;
 	}
 
 
