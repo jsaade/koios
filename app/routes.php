@@ -33,11 +33,9 @@ Route::group(['prefix'=>'api/', 'before'=>'secure'], function()
 	//News Categories
 	Route::get('app/{app}/news-categories', ['as' => 'api.news_category', 'uses' => 'ApiNewsCategoryController@index']);
 	Route::get('app/{app}/news-categories/{news_categories}/show', ['as' => 'api.news_category.show', 'uses' => 'ApiNewsCategoryController@show']);
-
-	
-	//Questions and Answers
-	//Route::get('app/{app}/questions', 'ApiController@questions');
-	//Route::get('app/{app}/questions/{questions}/show', 'ApiController@questions_show')->before('questionBelongsToApp');
+	//Questions 
+	Route::get('app/{app}/questions', ['as' => 'api.questions', 'uses' => 'ApiQuestionController@index']);
+	Route::get('app/{app}/questions/{questions}/show', ['as' => 'api.questions.show', 'uses' => 'ApiQuestionController@show']);
 	
 	//Route::resource('app', 'ApiController');
 });

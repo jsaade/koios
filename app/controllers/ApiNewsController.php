@@ -32,7 +32,6 @@ class ApiNewsController extends \ApiController {
 		$page = Input::get('page');
 		$news = $this->newsRepos->getAll($application, $limit, $page, $newsCategory->id);
 		return $this->respondOk($this->newsApiParser->parseCollection($news));
-
 	}
 
 	// Gets a single news	

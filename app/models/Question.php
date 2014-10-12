@@ -68,6 +68,23 @@ class Question extends \Eloquent {
 	}
 
 
+	public function getImageThumbFullUrl()
+	{
+		if($this->image)
+			return url($this->getUploadsRelativeUrl()."30-".$this->image);
+
+		return null;
+	}
+
+	public function getImageFullUrl()
+	{
+		if($this->image)
+			return url($this->getUploadsRelativeUrl().$this->image);
+
+		return null;
+	}
+
+
 	public function uploadImage($uploaded_image)
 	{
 		

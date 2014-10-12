@@ -2,28 +2,33 @@
 namespace Acme\Repositories;
 use Question;
 
-class DbQuestionRepository
+class DbQuestionRepository extends DbRepos
 {
 	/**
 	 * Get all the questions of an application
 	 * @param  Appliaction $application 
 	 * @return Array
 	 */
-	public function getAll($application)
+	public function getAll($application, $limit, $page)
 	{
-		$output = array();
-		$questions = $application->questions;
+		$output = ['data' => [], 'pages' => []];
+		
+		if(!$limit) $limit = 25;
+		if(!$page) $page = 1;
+
+		$questions = $application->questions()->paginate($limit);
 
 		foreach($questions as $question)
 		{
-			$arr['id'] = $question->id;
+			$arr['id']          = $question->id;
 			$arr['description'] = $question->description;
-			if($question->image)
-				$arr['thumb'] = url($question->getImageThumbRelativeUrl());
-			else
-				$arr['thumb'] = null;
-			array_push($output, $arr);
+			$arr['thumb']       = $question->getImageThumbFullUrl();
+			$arr['api_url']     = route('api.questions.show', [$application->api_key, $question->id]);
+
+			array_push($output['data'], $arr);
 		}
+
+		$output['pages'] = $this->getApiPagerLinks($questions, 'api.questions', [$application->api_key]);
 
 		return $output;
 	}
@@ -39,19 +44,18 @@ class DbQuestionRepository
 		$question = Question::findOrFail($id);
 		$output = [];
 
-		$output['id'] = $question->id;
-		$output['description'] = $question->description;;
-		if($question->image)
-			$output['image'] = url($question->getImageRelativeUrl());
-		else
-			$output['image'] = null;
+		$output['id'] 			= $question->id;
+		$output['description']  = $question->description;;
+		$output['thumb']       	= $question->getImageThumbFullUrl();
+		$output['image'] 		= $question->getImageFullUrl();
 
 		$answers = $question->answers;
 		$output['answers'] = [];
 		foreach($answers as $answer)
 		{
+			$arr['id']			= $answer->id;
 			$arr['description'] = $answer->description;
-			$arr['is_correct'] = $answer->is_correct;
+			$arr['is_correct']  = $answer->is_correct;
 			array_push($output['answers'], $arr);
 		}
 
