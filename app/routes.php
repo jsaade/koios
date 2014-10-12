@@ -26,15 +26,14 @@ Route::bind('app', function($value, $route){
  **************/
 Route::group(['prefix'=>'api/', 'before'=>'secure'], function()
 {
-	//News
+	//News 
 	Route::get('app/{app}/news', ['as' => 'api.news', 'uses' => 'ApiNewsController@index']);
 	Route::get('app/{app}/news/{news}/show', ['as' => 'api.news.show', 'uses' => 'ApiNewsController@show']);
+	Route::get('app/{app}/news/category/{news_categories}', ['as' => 'api.news.category', 'uses' => 'ApiNewsController@category']);
+	//News Categories
+	Route::get('app/{app}/news-categories', ['as' => 'api.news_category', 'uses' => 'ApiNewsCategoryController@index']);
+	Route::get('app/{app}/news-categories/{news_categories}/show', ['as' => 'api.news_category.show', 'uses' => 'ApiNewsCategoryController@show']);
 
-	//News and News Categories
-	//Route::get('app/{app}/news', 'ApiController@news');
-	//Route::get('app/{app}/news/{news}/show', 'ApiController@news_show')->before('newsBelongsToApp');
-	//Route::get('app/{app}/news-categories', 'ApiController@news_categories');
-	//Route::get('app/{app}/news-category/{news_categories}/news', 'ApiController@news_by_category')->before('newsCategoryBelongsToApp');
 	
 	//Questions and Answers
 	//Route::get('app/{app}/questions', 'ApiController@questions');

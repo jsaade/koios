@@ -25,7 +25,16 @@ class ApiNewsController extends \ApiController {
 		return $this->respondOk($this->newsApiParser->parseCollection($news));
 	}
 
-	
+	// Gets all news inside a category	
+	public function category(Application $application, NewsCategory $newsCategory)
+	{
+		$limit = Input::get('limit');
+		$page = Input::get('page');
+		$news = $this->newsRepos->getAll($application, $limit, $page, $newsCategory->id);
+		return $this->respondOk($this->newsApiParser->parseCollection($news));
+
+	}
+
 	// Gets a single news	
 	public function show(Application $application, News $news)
 	{

@@ -2,49 +2,51 @@
 namespace Acme\Repositories;
 use NewsCategory;
 
-class DbNewsCategoryRepository 
+class DbNewsCategoryRepository extends DbRepos
 {
 	/**
 	 * Get All the news categories of an application
 	 * @param  Application $application 
 	 * @return Array              
 	 */
-	public function getAll($application)
+	public function getAll($application, $limit, $page)
 	{
-		$news_categories = $application->newsCategories;
-		$output = [];
+		$output = ['data' => [], 'pages' => []];
+
+		if(!$limit) $limit = 25;
+		if(!$page) $page = 1;
+
+		$news_categories = $application->newsCategories()->paginate($limit);
+
 		foreach($news_categories as $news_category)
 		{
 			$arr['id'] = $news_category->id;
 			$arr['name'] = $news_category->name;
 			$arr['nb_news'] = $news_category->news->count();
-			array_push($output, $arr);
+			array_push($output['data'], $arr);
 		}
+
+		$output['pages'] = $this->getApiPagerLinks($news_categories, 'api.news_category', [$application->api_key]);
+
 		return $output;
 	}
 
 	/**
-	 * Get the news list of a news_category
-	 * @param  NewsCategory $news_category 
+	 * Find a single news category
+	 * @param  Integer $id 
 	 * @return Array
 	 */
-	public function getNews($news_category)
+	public function find($id)
 	{
-		$news = $news_category->news;
-		$output = [];
+		$news_category = NewsCategory::findOrFail($id);
 
-		foreach($news as $n)
-		{
-			$arr['id'] = $n->id;
-			$arr['name'] = $n->name;
-			$arr['category'] = $n->news_category->name;
-			if($n->image)
-				$arr['thumb'] = url($n->getImageThumbRelativeUrl());
-			else
-				$arr['thumb'] = null;
-			array_push($output, $arr);
-		}
+		$arr = array();
+		$arr['id'] = $news_category->id;
+		$arr['name'] = $news_category->name;
+		$arr['nb_news'] = $news_category->news->count();
 
-		return $output;
+		return $arr;
 	}
+
+
 }

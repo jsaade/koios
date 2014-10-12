@@ -14,7 +14,7 @@ class DbRepos
 
 		$arr = [ 'total' => $collection->getTotal()];
 
-		if($nextPage < $lastPage)
+		if($nextPage <= $lastPage)
 			$arr['next'] = route($routeName, $routeParams)."?limit={$limit}&page={$nextPage}";
 		
 		if($prevPage >= 1)

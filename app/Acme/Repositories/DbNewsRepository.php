@@ -9,14 +9,18 @@ class DbNewsRepository extends DbRepos
 	 * @param  Appliaction $application 
 	 * @return Array
 	 */
-	public function getAll($application, $limit, $page)
+	public function getAll($application, $limit, $page, $category_id = null)
 	{
 		$output = ['data' => [], 'pages' => []];
 		
-		if(!$limit) $limit = 10;
+		if(!$limit) $limit = 25;
 		if(!$page) $page = 1;
 
-		$news = News::with('newsCategory')->where('application_id', $application->id)->paginate($limit);
+		$news = News::with('newsCategory')->where('application_id', $application->id);
+		if($category_id)
+			$news = $news->where('news_category_id', $category_id);
+
+		$news = $news->paginate($limit);
 
 		foreach($news as $n)
 		{
