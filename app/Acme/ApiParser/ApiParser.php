@@ -15,6 +15,4 @@ abstract class ApiParser
 	}
 
 	public abstract function parse($item);
-	public abstract function parseAnswers($answers);
-
 }

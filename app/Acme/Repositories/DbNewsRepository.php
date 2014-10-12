@@ -32,7 +32,18 @@ class DbNewsRepository extends DbRepos
 			array_push($output['data'], $arr);
 		}
 
-		$output['pages'] = $this->getApiPagerLinks($news, 'api.news', [$application->api_key]);
+		if($category_id)
+		{
+			$routeName = 'api.news.category';
+			$routeParams = [$application->api_key, $category_id];
+		}
+		else 
+		{
+			$routeName = 'api.news';
+			$routeParams= [$application->api_key];
+		}
+
+		$output['pages'] = $this->getApiPagerLinks($news, $routeName, $routeParams);
 
 		return $output;
 	}

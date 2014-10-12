@@ -7,7 +7,7 @@ class NewsApiParser extends ApiParser
 	{
 		//common fields between methods in the news repos
 		$output = [
-			'id'   => $news['id'],
+			'id'   => (int) $news['id'],
 			'name' => $news['name'],
 			'category' => $news['category'],
 			'thumb' => $news['thumb']

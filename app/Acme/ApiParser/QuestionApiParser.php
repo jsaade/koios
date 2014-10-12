@@ -7,7 +7,7 @@ class QuestionApiParser extends ApiParser
 	{
 		//common fields between methods in the news repos
 		$output = [
-			'id'   => $question['id'],
+			'id'   => (int) $question['id'],
 			'description' => $question['description'],
 			'thumb' => $question['thumb']
 		];
@@ -29,7 +29,7 @@ class QuestionApiParser extends ApiParser
 	{
 		return array_map( function($answer){
 			return [
-				'id' => $answer['id'],
+				'id' => (int) $answer['id'],
 				'description' => $answer['description'],
 				'valid' => (bool) $answer['is_correct'] 
 			];

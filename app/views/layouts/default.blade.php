@@ -8,6 +8,7 @@
 
 	{{ HTML::style('assets/css/bootstrap.min.css') }}
 	{{ HTML::style('assets/css/jquery.sidr.dark.css') }}
+	{{ HTML::style('assets/css/jquery.jsonview.css') }}
 	{{ HTML::style('assets/css/layout.css') }}
 </head>
 <body>
@@ -36,6 +37,7 @@
 	{{ HTML::script('assets/js/bootstrap.min.js') }}
 	{{ HTML::script('assets/js/placeholders.min.js') }}
 	{{ HTML::script('assets/js/jquery.sidr.js') }}
+	{{ HTML::script('assets/js/jquery.jsonview.js') }}
 	{{ HTML::script('assets/js/main.js') }}
 </body>
 </html>

@@ -72,6 +72,10 @@ function removeNewsCategory(response, form)
 	$(form).closest('tr').fadeOut(750);
 }
 
+/*********************
+ * DEVELOPER CONSOLE *
+ *********************/
+
 function initDeveloperConsole()
 {
 	$("input[name='console-url']").on("keypress", function(e){
@@ -79,6 +83,16 @@ function initDeveloperConsole()
 		var keycode = (event.keyCode ? event.keyCode : event.which);
 		if(keycode == 13) 
 			getApiResponse(input.val());
+	})
+
+	$("body").on("click", "#response a", function(e){
+		e.preventDefault();
+		var url = $(this).text();
+		url = url.replace(/\"/g, ""); //remove quotes returned from json
+		var index = url.indexOf('app/') + 4;
+		var uri = url.substr(index);
+		getApiResponse(uri);
+		$("input[name='console-url']").val(uri);
 	})
 }
 
@@ -91,10 +105,11 @@ function getApiResponse(uri)
 			data: {"uri": uri},
 			success: function(data){
 				//prettify the json request
-				var jsonObj = JSON.parse(data);
-				var jsonPretty = JSON.stringify(jsonObj, null, '\t');
+				//var jsonObj = JSON.parse(data);
+				//var jsonPretty = JSON.stringify(jsonObj, null, '\t');
 
-				$("#response").html("<pre class='naked'>"+jsonPretty+"</pre>");
+				//$("#response").html("<pre class='naked'>"+jsonPretty+"</pre>");
+				$("#response").JSONView(data);
 			}
 		})
 }
