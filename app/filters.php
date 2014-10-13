@@ -62,15 +62,15 @@ App::error(function(Exception $exception, $code)
 	{
 		case 404:
 			return Response::make(['code' => $code, 'message' => "Invalid Request Url"]);
-		//case 500:
-		//	return Response::make(['code' => $code, 'message' => "Internal Server Error"]);
+		case 500:
+			return Response::make(['code' => $code, 'message' => "Internal Server Error"]);
 	}
 });
 
-//Route::filter('secure', '\Acme\Filters\SecureFilter');
-Route::filter('newsBelongsToApp', '\Acme\Filters\NewsFilter'); 
-Route::filter('newsCategoryBelongsToApp', '\Acme\Filters\NewsCategoryFilter'); 
-Route::filter('questionBelongsToApp', '\Acme\Filters\QuestionFilter'); 
+Route::filter('secure', '\Acme\Filters\SecureFilter');
+Route::filter('newsAppRelation', '\Acme\Filters\NewsFilter'); 
+Route::filter('newsCategoryAppRelation', '\Acme\Filters\NewsCategoryFilter'); 
+Route::filter('questionAppRelation', '\Acme\Filters\QuestionFilter'); 
 
 /*
 |--------------------------------------------------------------------------

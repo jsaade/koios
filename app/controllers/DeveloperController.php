@@ -17,6 +17,7 @@ class DeveloperController extends \BaseController {
 		$uri = $input['uri'];
 		$uri_parts = explode("/", $uri);
 		$api_key = $uri_parts[0];
+
 		$app = Application::where('api_key', $api_key)->first();
 		
 		//$request = URL::to('/')."/api/app/".$uri;
