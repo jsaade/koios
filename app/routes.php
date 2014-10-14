@@ -8,6 +8,7 @@ Route::bind('application', function($value, $route){
     return Application::where('slug', $value)->first();
 });
 
+Route::model('subscribers', 'Subscriber');
 Route::model('news', 'News');
 Route::model('news_categories', 'NewsCategory');
 Route::model('questions', 'Question');
@@ -26,6 +27,9 @@ Route::bind('app', function($value, $route){
  **************/
 Route::group(['prefix'=>'api/', 'before'=>'secure'], function()
 {
+	//subscribers
+	Route::post('app/{app}/subscriber/create', 'ApiSubscriberController@store');                                                                                                                                                                                                                                                                                                        
+	Route::post('app/{app}/subscriber/{subscribers}/create-profile', 'ApiSubscriberController@storeProfile');                                                                                                                                                                                                                                                                                                        
 	//News 
 	Route::get('app/{app}/news', ['as' => 'api.news', 'uses' => 'ApiNewsController@index']);
 	Route::get('app/{app}/news/{news}/show', ['as' => 'api.news.show', 'uses' => 'ApiNewsController@show'])->before('newsAppRelation');

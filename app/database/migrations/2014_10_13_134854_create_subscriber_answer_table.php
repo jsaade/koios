@@ -22,10 +22,10 @@ class CreateSubscriberAnswerTable extends Migration {
 						->on('question')
 						->onDelete('cascade');
 
-			$table->integer('application_subscriber_id')->unsigned();
-			$table->foreign('application_subscriber_id')
+			$table->integer('subscriber_id')->unsigned();
+			$table->foreign('subscriber_id')
 						->references('id')
-						->on('application_subscriber')
+						->on('subscriber')
 						->onDelete('cascade');
 
 			$table->boolean('is_correct')->default(0);

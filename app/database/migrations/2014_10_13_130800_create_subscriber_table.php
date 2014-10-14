@@ -15,17 +15,18 @@ class CreateSubscriberTable extends Migration {
 		Schema::create('subscriber', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('username', 255)->unique()->index();
-			$table->string('email', 255)->unique()->index();
+			$table->string('username', 255)->index();
+			$table->string('email', 255)->index();
 			$table->string('password', 255);
 			$table->boolean('is_verified')->default(0);
 			$table->string('verification_token', 255);
 
-			$table->integer('subscriber_profile_id')->unsigned();
-			$table->foreign('subscriber_profile_id')
+			$table->integer('application_id')->unsigned();
+			$table->foreign('application_id')
 						->references('id')
-						->on('subscriber_profile');
-
+						->on('application')
+						->onDelete('cascade');
+						
 			$table->timestamps();
 		});
 	}
