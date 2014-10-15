@@ -12,7 +12,6 @@ class QuestionApiParser extends ApiParser
 			'thumb' => $question['thumb']
 		];
 
-
 		if(array_key_exists('image', $question))
 			 $output['image'] = $question['image'];
 
@@ -24,6 +23,8 @@ class QuestionApiParser extends ApiParser
 
 		return $output;
 	}
+
+
 
 	public function parseAnswers($answers)
 	{

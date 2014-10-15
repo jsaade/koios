@@ -7,6 +7,20 @@ class Subscriber extends \Eloquent {
 	/*****************
 	 * RELATIONSHIPS *
 	 *****************/
+	public function devices()
+	{
+		return $this->hasMany('Device');
+	}
+
+	public function profile()
+	{
+		return $this->hasOne('SubscriberProfile');
+	}
+
+	public function application()
+	{
+		return $this->belongsTo('Application');
+	}
 
 	/*******************
 	 * FORM VALIDATION *

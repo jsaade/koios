@@ -71,6 +71,7 @@ Route::filter('secure', '\Acme\Filters\SecureFilter');
 Route::filter('newsAppRelation', '\Acme\Filters\NewsFilter'); 
 Route::filter('newsCategoryAppRelation', '\Acme\Filters\NewsCategoryFilter'); 
 Route::filter('questionAppRelation', '\Acme\Filters\QuestionFilter'); 
+Route::filter('subscriberAppRelation', '\Acme\Filters\subscriberFilter'); 
 
 /*
 |--------------------------------------------------------------------------

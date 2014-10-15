@@ -18,7 +18,7 @@ class CreateSubscriberProfileTable extends Migration {
 			$table->string('first_name', 255);
 			$table->string('last_name', 255);
 			$table->string('image', 255);
-			$table->bigInteger('facebook_id')->unique();
+			$table->bigInteger('facebook_id');
 
 			$table->integer('subscriber_id')->unsigned();
 			$table->foreign('subscriber_id')

@@ -28,8 +28,11 @@ Route::bind('app', function($value, $route){
 Route::group(['prefix'=>'api/', 'before'=>'secure'], function()
 {
 	//subscribers
-	Route::post('app/{app}/subscriber/create', 'ApiSubscriberController@store');                                                                                                                                                                                                                                                                                                        
-	Route::post('app/{app}/subscriber/{subscribers}/create-profile', 'ApiSubscriberController@storeProfile');                                                                                                                                                                                                                                                                                                        
+	Route::get('app/{app}/subscribers', ['as' => 'api.subscribers', 'uses' => 'ApiSubscriberController@index']);
+	Route::get('app/{app}/subscribers/{subscribers}/show', ['as' => 'api.subscribers.show', 'uses' => 'ApiSubscriberController@show'])->before('subscriberAppRelation');
+	Route::post('app/{app}/subscribers/create', 'ApiSubscriberController@store');
+	Route::post('app/{app}/subscribers/{subscribers}/create-profile', 'ApiSubscriberController@storeProfile')->before('subscriberAppRelation');                                                                                                                                                                                                                                                                                                      
+	Route::post('app/{app}/subscribers/{subscribers}/add-device', 'ApiSubscriberController@storeDevice')->before('subscriberAppRelation');                                                                                                                                                                                                                                                                                                      
 	//News 
 	Route::get('app/{app}/news', ['as' => 'api.news', 'uses' => 'ApiNewsController@index']);
 	Route::get('app/{app}/news/{news}/show', ['as' => 'api.news.show', 'uses' => 'ApiNewsController@show'])->before('newsAppRelation');
@@ -60,6 +63,7 @@ Route::group(['before'=>'auth'], function()
     //Application routing
 	Route::resource('application', 'ApplicationController');
 	//Developer routing
+	Route::get('developer/api', 'DeveloperController@api');
 	Route::get('developer/console', 'DeveloperController@console');
 	Route::post('developer/response', 'DeveloperController@response');
 	//homepage routing
