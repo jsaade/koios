@@ -67,6 +67,12 @@ ul.form-handler li
 	font-size: 13px;
 }
 
+.form-control-inline
+{
+	display: inline !important;
+	width: auto;
+}
+
 .field-desc
 {
 	margin-left: 13px;
@@ -377,9 +383,8 @@ h5.app-title
 
  div.url-prefix
  {
- 	font-size: 14px;
- 	font-weight: 400;
  	line-height: 34px;
+ 	text-align: right;
  }
 
  div#response

@@ -20,7 +20,7 @@ class ApiController extends \BaseController {
 	{
 		return Response::json(
 			['data' => [ 'status' => $status, 'message' => $message, 'errors' => $erros] ], 
-			$status, 
+			200, //to handle the js console
 			$headers
 		);
 	}

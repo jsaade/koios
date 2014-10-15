@@ -82,34 +82,26 @@ function initDeveloperConsole()
 		var input = $(this);
 		var keycode = (event.keyCode ? event.keyCode : event.which);
 		if(keycode == 13) 
-			getApiResponse(input.val());
-	})
-
-	$("body").on("click", "#response a", function(e){
-		e.preventDefault();
-		var url = $(this).text();
-		url = url.replace(/\"/g, ""); //remove quotes returned from json
-		var index = url.indexOf('app/') + 4;
-		var uri = url.substr(index);
-		getApiResponse(uri);
-		$("input[name='console-url']").val(uri);
+		{
+			var api_home_url = $("input[name='_api_home_url']").val(); 
+			var method = $("select[name='method'] option:selected").val();
+			var request_url = api_home_url + input.val();
+			getApiResponse(request_url, method);
+		}
 	})
 }
 
-function getApiResponse(uri)
+function getApiResponse(request_url, method)
 {
-	var action = $("input[name='action']").val();
 	$.ajax({
-			method: "POST",
-			url: action,
-			data: {"uri": uri},
-			success: function(data){
-				//prettify the json request
-				//var jsonObj = JSON.parse(data);
-				//var jsonPretty = JSON.stringify(jsonObj, null, '\t');
-
-				//$("#response").html("<pre class='naked'>"+jsonPretty+"</pre>");
-				$("#response").JSONView(data);
-			}
-		})
+		url: request_url,
+		type: method,
+		beforeSend: function(xhr){
+			xhr.setRequestHeader('X-Auth-Token', 'console');
+		},
+		success: function(data){
+			console.log(data);
+			$("#response").JSONView(data);
+		}
+	})
 }
