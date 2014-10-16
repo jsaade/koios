@@ -78,6 +78,7 @@ function removeNewsCategory(response, form)
 
 function initDeveloperConsole()
 {
+	//Submit request
 	$("input[name='console-url']").on("keypress", function(e){
 		var input = $(this);
 		var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -89,13 +90,51 @@ function initDeveloperConsole()
 			getApiResponse(request_url, method);
 		}
 	})
+
+	//generate post params
+	$("input[name='post_key[]']").on("blur", function(e){
+		var new_params = $(".params-container:last").clone(true);
+		new_params.find("input[name='post_key[]']").val('');
+		$("#post-params").append(new_params);
+	})
+
+	//remove a post param row
+	$("body").on("click", ".params-container .remove-row", function(){
+		$(this).closest('.params-container').remove();
+	})
+
+	//toggle post params container
+	$("select[name='method']").change(function(e)
+	{
+		if($(this).val() == "POST")
+		{
+			$("div#post-params input").val('');
+			$("div#post-params").show();
+		}
+		else
+			$("div#post-params").hide();
+	})
 }
 
 function getApiResponse(request_url, method)
 {
+	var dataParams = {};
+	if(method == "POST")
+	{
+		$("input[name='post_key[]']").each(function(){
+		  key = $(this).val();
+		  value = $(this).closest('.params-container').find("input[name='post_value[]']").val();
+		  dataParams[key] = value;
+		})
+		dataParams = JSON.stringify(dataParams);
+		console.log(dataParams);
+		return;
+	}
+
 	$.ajax({
 		url: request_url,
 		type: method,
+		data: "asd=asd&test=tete",
 		beforeSend: function(xhr){
 			xhr.setRequestHeader('X-Auth-Token', 'console');
 		},

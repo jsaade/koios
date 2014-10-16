@@ -399,3 +399,35 @@ h5.app-title
  	padding: 10px;
  	overflow: auto;
  }
+
+ div#post-params
+ {
+ 	margin-top: 20px;
+ 	border-top: 1px solid #f7f7f7;
+ 	padding-top: 10px;
+ 	display: none;
+ }
+
+ div#post-params input.form-control 
+ {	
+ 	height: 20px;
+ 	line-height: 20px;
+ 	font-size: 11px;
+ 	padding: 10px;
+ 	text-transform: lowercase;
+ }
+
+ a.remove-row
+ {
+ 	display: block;
+ 	width: 16px;
+ 	height: 16px;
+ 	margin-top: 2px;
+ 	background-image: url('../images/delete.png');
+	background-repeat: no-repeat;
+ }
+
+ div.params-container
+ {
+ 	margin-bottom: 10px;
+ }

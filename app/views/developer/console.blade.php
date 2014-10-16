@@ -35,6 +35,20 @@
 					</div>
 				</div>
 			</div>
+
+			<div id="post-params">
+				 <div class="row params-container">
+					<div class="col-md-2">
+						{{ Form::text('post_key[]', null, [ 'class' => 'form-control', 'placeholder' => 'key...'] ) }}
+					</div>
+					<div class="col-md-2">
+						{{ Form::text('post_value[]', null, [ 'class' => 'form-control', 'placeholder' => 'value...'] ) }}
+					</div>
+					<div class="col-md-1">
+						<a href="#" class='remove-row'></a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
