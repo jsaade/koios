@@ -38,7 +38,6 @@ class ApiSubscriberController extends \ApiController {
 	public function store(Application $application)
 	{
 		$input = Input::all();
-		dd($input);
 		$input['application_id'] = $application->id;
 
 		if($this->subscriber->isValid($input))

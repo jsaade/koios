@@ -91,6 +91,15 @@ function initDeveloperConsole()
 		}
 	})
 
+	//bind the inside links in the response 
+	$("body").on("click", "#response a", function(e){
+		e.preventDefault();
+		var url = $(this).attr('href');
+		var index = url.indexOf('app/') + 4;
+		var uri = url.substr(index);
+		$("input[name='console-url']").val(uri);
+		getApiResponse( url, 'GET');
+	})
 	//generate post params
 	$("input[name='post_key[]']").on("blur", function(e){
 		var new_params = $(".params-container:last").clone(true);
@@ -118,28 +127,28 @@ function initDeveloperConsole()
 
 function getApiResponse(request_url, method)
 {
-	var dataParams = {};
+	var _data = "";
+
 	if(method == "POST")
 	{
 		$("input[name='post_key[]']").each(function(){
 		  key = $(this).val();
 		  value = $(this).closest('.params-container').find("input[name='post_value[]']").val();
-		  dataParams[key] = value;
+		  _data += key + "=" + value + "&";
 		})
-		dataParams = JSON.stringify(dataParams);
-		console.log(dataParams);
-		return;
+		_data = _data.substring(0, _data.length - 1);
 	}
 
 	$.ajax({
 		url: request_url,
 		type: method,
-		data: "asd=asd&test=tete",
+		data: _data,
 		beforeSend: function(xhr){
 			xhr.setRequestHeader('X-Auth-Token', 'console');
+			$("#response").css("opacity", 0.3);
 		},
 		success: function(data){
-			console.log(data);
+			$("#response").css("opacity", 1);
 			$("#response").JSONView(data);
 		}
 	})

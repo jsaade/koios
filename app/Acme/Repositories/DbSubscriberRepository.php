@@ -58,7 +58,7 @@ class DbSubscriberRepository extends DbRepos
 		if($subscriber->profile)
 		{
 			$output['profile']['first_name'] = $subscriber->profile->first_name;
-			$output['profile']['last_name'] = $subscriber->profile->first_name;
+			$output['profile']['last_name'] = $subscriber->profile->last_name;
 			$output['profile']['image'] = $subscriber->profile->image;
 			$output['profile']['facebook_id'] = $subscriber->profile->facebook_id;
 		}
