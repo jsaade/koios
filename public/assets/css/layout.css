@@ -431,3 +431,68 @@ h5.app-title
  {
  	margin-bottom: 10px;
  }
+
+
+/************
+ * API DOCS *
+ ************/
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbar ul:not {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+
+.api-docs , .sidebar-nav
+{
+	margin-top: 20px;
+}
+
+
+.sidebar-nav ul li ul 
+{
+	margin-left: 20px;
+}
+
+.sidebar-nav ul li:hover a 
+{
+	background-color: transparent;
+}
+
+.sidebar-nav .navbar li a {
+	padding-top: 4px;
+	padding-bottom: 4px;
+	font-size: 12px;
+}
+
+.sidebar-nav li.active a,
+.sidebar-nav .navbar li a:hover 
+{
+	font-weight: 400;
+	color: #000;
+}
+
+.navbar.affix {
+    position: fixed;
+    top: 20px;
+    width: 100%;
+  }
+
+  .section 
+  {
+  	min-height: 150px;
+  }
