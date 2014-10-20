@@ -436,32 +436,11 @@ h5.app-title
 /************
  * API DOCS *
  ************/
-@media (min-width: 768px) {
-  .sidebar-nav .navbar .navbar-collapse {
-    padding: 0;
-    max-height: none;
-  }
-  .sidebar-nav .navbar ul {
-    float: none;
-  }
-  .sidebar-nav .navbar ul:not {
-    display: block;
-  }
-  .sidebar-nav .navbar li {
-    float: none;
-    display: block;
-  }
-  .sidebar-nav .navbar li a {
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
-}
 
 .api-docs , .sidebar-nav
 {
 	margin-top: 20px;
 }
-
 
 .sidebar-nav ul li ul 
 {
@@ -474,25 +453,90 @@ h5.app-title
 }
 
 .sidebar-nav .navbar li a {
-	padding-top: 4px;
-	padding-bottom: 4px;
-	font-size: 12px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-bottom: 2px;
+	margin-top: 2px;
+	font-size: 13px;
+}
+
+.sidebar-nav .navbar li ul li a
+{
+	font-size: 11px;
+	font-weight: 300;
 }
 
 .sidebar-nav li.active a,
-.sidebar-nav .navbar li a:hover 
+.sidebar-nav .navbar li a:hover,
+.sidebar-nav li.active ul li.active a 
 {
 	font-weight: 400;
 	color: #000;
+	border-left: 2px solid #000;
+}
+
+.sidebar-nav li.active ul li a 
+{
+	border: none;
+	color: #428bca;
+	font-weight: 300;
 }
 
 .navbar.affix {
-    position: fixed;
-    top: 20px;
-    width: 100%;
-  }
+	position: fixed;
+	top: 20px;
+}
 
-  .section 
-  {
-  	min-height: 150px;
-  }
+.section 
+{
+	font-size: 12px;
+	line-height: 14px;
+}
+
+.section strong 
+{
+	font-weight: 400;
+}
+
+.section h3 
+{
+	font-size: 16px;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 15px;
+}
+
+.section h5 
+{
+	font-size: 12px;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding: 0;
+	margin: 0;
+}
+
+.section code.tip 
+{
+	color:green;
+}
+
+.section pre
+{
+	font-size: 11px;
+	border: none;
+	background-color: transparent;
+	margin: 0;
+	padding: 0;
+	height: auto;
+	white-space: pre !important;
+	border-radius: 0;
+	margin-top: 10px;
+	min-height: 26px;
+}
+
+.section td.status-code
+{
+	font-weight: 600;
+	font-size: 13px;
+	color:#666;
+}

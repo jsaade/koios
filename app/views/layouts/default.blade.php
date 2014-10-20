@@ -39,5 +39,12 @@
 	{{ HTML::script('assets/js/jquery.sidr.js') }}
 	{{ HTML::script('assets/js/jquery.jsonview.js') }}
 	{{ HTML::script('assets/js/main.js') }}
+
+	<!-- syntax highlighter for api docs -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/default.min.css">
+	{{ HTML::style('assets/css/railcasts.css')}}
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+
 </body>
 </html>

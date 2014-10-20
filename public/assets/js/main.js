@@ -6,6 +6,14 @@ $(document).ready(function(){
 	$('#application-menu-btn').sidr({
 		source: '#application-side-menu-content'
 	});
+	//docs api nav
+	if($(".sidebar-nav").length)
+	{
+		$(document).ready(function(){
+			$('body').scrollspy({ target: '.sidebar-nav' });
+
+		})
+	}
 })
 
 function handleRemoteForms()

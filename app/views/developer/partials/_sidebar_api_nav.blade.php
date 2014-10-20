@@ -3,17 +3,17 @@
 	 	<ul class="nav">
 	    	<li class="active"><a href="#authorization">Authorization</a></li>
 	        <li>
-	        	<a href="#">Subscribers</a>
+	        	<a href="#subscriber-create">Subscribers</a>
 	        	<ul class="nav">
-	        		<li><a href="#subscriber-create">Create</a></li>
-	        		<li><a href="#subscriber-create-profile">Create profile</a></li>
-	        		<li><a href="#subscriber-add-device">Add device</a></li>
+	        		<li><a href="#subscribers-create">Create</a></li>
+	        		<li><a href="#subscribers-create-profile">Create profile</a></li>
+	        		<li><a href="#subscribers-add-device">Add device</a></li>
 	        		<li><a href="#subscribers-list">List</a></li>
 	        		<li><a href="#subscribers-show">Show</a></li>
 	        	</ul>
-	        </li>
+	        </li> 
 	        <li>
-	        	<a href="#">News</a>
+	        	<a href="#news-list">News</a>
 	        	<ul class="nav">
 	        		<li><a href="#news-list">List</a></li>
 	        		<li><a href="#news-show">Show</a></li>
@@ -22,10 +22,10 @@
 	        	</ul>
 	        <li>
 	        <li>
-	        	<a href="#news-list">Questions</a>
+	        	<a href="#questions-list">Questions</a>
 	        	<ul class="nav">
 	        		<li><a href="#questions-list">List</a></li>
-	        		<li><a href="#Questions-show">Show</a></li>
+	        		<li><a href="#questions-show">Show</a></li>
 	        	</ul>
 	        <li>
 	        <li><a href="#limit-pagination">Limit and pagination</a></li>
