@@ -400,6 +400,13 @@ h5.app-title
  	overflow: auto;
  }
 
+  div#response.with-loader 
+  {
+  	background-image: url('../images/loader-xs.gif');
+	background-repeat: no-repeat;
+	background-position: center center;
+  }
+
  div#post-params
  {
  	margin-top: 20px;

@@ -153,11 +153,17 @@ function getApiResponse(request_url, method)
 		data: _data,
 		beforeSend: function(xhr){
 			xhr.setRequestHeader('X-Auth-Token', 'console');
-			$("#response").css("opacity", 0.3);
+			$("#response").empty();
+			$("#response").addClass('with-loader');
 		},
 		success: function(data){
-			$("#response").css("opacity", 1);
-			$("#response").JSONView(data);
+			setTimeout(
+			  function() 
+			  {
+				 $("#response").JSONView(data);
+				 $("#response").removeClass('with-loader');
+			  }, 1000);
+
 		}
 	})
 }
