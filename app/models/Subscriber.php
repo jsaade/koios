@@ -29,8 +29,8 @@ class Subscriber extends \Eloquent {
 	public static $rules = [
 		'username'    => 'required|username_unique_per_app',
 		'email'       => 'required|email|email_unique_per_app',
-		'password'    => 'required|min:8',
-		'is_verified' => 'required'
+		'password'    => '',
+		'is_verified' => ''
 	];
 
 	public function isValid($data)
