@@ -70,6 +70,7 @@ App::error(function(Exception $exception, $code)
 });
 
 Route::filter('secure', '\Acme\Filters\SecureFilter');
+Route::filter('token', '\Acme\Filters\AccessTokenFilter');
 Route::filter('newsAppRelation', '\Acme\Filters\NewsFilter'); 
 Route::filter('newsCategoryAppRelation', '\Acme\Filters\NewsCategoryFilter'); 
 Route::filter('questionAppRelation', '\Acme\Filters\QuestionFilter'); 

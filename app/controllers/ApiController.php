@@ -3,7 +3,7 @@
 
 class ApiController extends \BaseController {
 
-	const HTTP_VALID_PARAMS = 409;
+	const HTTP_VALID_PARAMS = 449;
 	const HTTP_RESPONSE_OK = 200;
 
 	

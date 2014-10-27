@@ -2,7 +2,7 @@
 
 class Subscriber extends \Eloquent {
 	protected $table = 'subscriber';
-	protected $fillable = ['username', 'email', 'password', 'is_verified', 'verification_token', 'application_id'];
+	protected $fillable = ['username', 'email', 'password', 'is_verified', 'verification_token', 'access_token','application_id'];
 
 	/*****************
 	 * RELATIONSHIPS *
@@ -27,10 +27,8 @@ class Subscriber extends \Eloquent {
 	 *******************/
 	public $errors;
 	public static $rules = [
-		'username'    => 'required|username_unique_per_app',
-		'email'       => 'required|email|email_unique_per_app',
-		'password'    => '',
-		'is_verified' => ''
+		'username'      => 'required|username_unique_per_app',
+		'email'       	=> 'required|email|email_unique_per_app|facebook_id_or_password_required',
 	];
 
 	public function isValid($data)

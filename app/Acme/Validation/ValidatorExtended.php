@@ -11,8 +11,10 @@ class ValidatorExtended extends IlluminateValidator
         //Question Validation
         "answers_required" => "The answers for this question are required.",
         "correct_answer_required" => "One answer should be set as correct.",
+        //Subscriber Validation
         "username_unique_per_app" => "The username is already taken.",
         "email_unique_per_app" => "The email is already taken.",
+        "facebook_id_or_password_required" => "One of the password or facebook_id fields is required."
     );
     protected $input = [];
  
@@ -61,7 +63,7 @@ class ValidatorExtended extends IlluminateValidator
         $app_id   = $this->input['application_id'];
         $username = $this->input['username'];
 
-        $subscriber = Subscriber::whereUsername($username)->whereApplicationId($app_id)->first();
+        $subscriber = Subscriber::whereUsername($username)->whereIsVerified(1)->whereApplicationId($app_id)->first();
         if($subscriber)
             return false;
 
@@ -79,8 +81,22 @@ class ValidatorExtended extends IlluminateValidator
         $app_id   = $this->input['application_id'];
         $email = $this->input['email'];
 
-        $subscriber = Subscriber::whereEmail($email)->whereApplicationId($app_id)->first();
+        $subscriber = Subscriber::whereEmail($email)->whereIsVerified(1)->whereApplicationId($app_id)->first();
         if($subscriber)
+            return false;
+
+        return true;
+    }
+
+    /**
+     * If the facebook is not set, then the password field is required
+     * @param  [type] $attribute [description]
+     * @param  [type] $value     [description]
+     * @return [type]            [description]
+     */
+    protected function validateFacebookIdOrPasswordRequired($attribute, $value)
+    {
+        if(!isset($this->input['password']) && !isset($this->input['facebook_id']))
             return false;
 
         return true;

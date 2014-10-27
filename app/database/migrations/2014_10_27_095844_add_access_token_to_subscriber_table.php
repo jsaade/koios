@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class AddScoreLevelFieldsToSubscriberTable extends Migration {
+class AddAccessTokenToSubscriberTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,11 +14,10 @@ class AddScoreLevelFieldsToSubscriberTable extends Migration {
 	{
 		Schema::table('subscriber', function(Blueprint $table)
 		{
-			$table->bigInteger('score');
-			$table->integer('level');
-			$table->text('fields')->nullable();
+			$table->string('access_token', 255);
 		});
 	}
+
 
 	/**
 	 * Reverse the migrations.
@@ -29,9 +28,7 @@ class AddScoreLevelFieldsToSubscriberTable extends Migration {
 	{
 		Schema::table('subscriber', function(Blueprint $table)
 		{
-			$table->dropColumn('score');
-			$table->dropColumn('level');
-			$table->dropColumn('fields');
+			$table->dropColumn('access_token');
 		});
 	}
 

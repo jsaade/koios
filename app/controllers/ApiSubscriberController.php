@@ -44,7 +44,7 @@ class ApiSubscriberController extends \ApiController {
 		{
 			$this->subscriber = $this->subscriberRepos->create($input);
 			return $this->respondOk(
-				['subscriberId' => $this->subscriber->id], 
+				['subscriberId' => $this->subscriber->id, 'access_token' => $this->subscriber->access_token],
 				'Subscriber was created successfully.'
 			);
 		}
@@ -54,7 +54,7 @@ class ApiSubscriberController extends \ApiController {
 
 
 
-	//POST method to create a user profile
+	//POST method to create a user profile 3e5032205e2042d3b1dc5812c1c8bc9e
 	public function storeProfile(Application $application, Subscriber $subscriber)
 	{
 		$input = Input::all();

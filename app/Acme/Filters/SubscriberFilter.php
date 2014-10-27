@@ -3,7 +3,7 @@
 namespace Acme\Filters;
 use Illuminate\Support\Facades\Response as Response;
 
-class subscriberFilter
+class SubscriberFilter
 {
 	public function filter($route, $request)
 	{
