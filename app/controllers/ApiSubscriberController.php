@@ -14,7 +14,7 @@ class ApiSubscriberController extends \ApiController {
 	}
 
 
-	//Get all the application verfied subscribers
+	/* GET all the application subscribers */
 	public function index(Application $application)
 	{
 		$limit = Input::get('limit');
@@ -23,10 +23,9 @@ class ApiSubscriberController extends \ApiController {
 
 		return $this->respondOk($this->subscriberApiParser->parseCollection($subscribers));
 	}	
-	
 
 
-	// Get a single subscriber	
+	/* GET a single subscriber info */
 	public function show(Application $application, Subscriber $subscriber)
 	{
 		$subscriber = $this->subscriberRepos->find($subscriber->id);
@@ -34,7 +33,7 @@ class ApiSubscriberController extends \ApiController {
 	}
 
 
-	//POST method to create subscriber
+	/* POST method to create subscriber */
 	public function store(Application $application)
 	{
 		$input = Input::all();
@@ -53,8 +52,7 @@ class ApiSubscriberController extends \ApiController {
 	}
 
 
-
-	//POST method to create a user profile 3e5032205e2042d3b1dc5812c1c8bc9e
+	/* POST method to create a subscriber profile */
 	public function storeProfile(Application $application, Subscriber $subscriber)
 	{
 		$input = Input::all();
@@ -74,8 +72,7 @@ class ApiSubscriberController extends \ApiController {
 	}
 
 
-
-	//POST method to create a user profile
+	/* POST method to create a subscriber device */
 	public function storeDevice(Application $application, Subscriber $subscriber)
 	{
 		$input = Input::all();
@@ -92,5 +89,54 @@ class ApiSubscriberController extends \ApiController {
 		}
 
 		return $this->respondErrors( $device->errors, "Retry with valid parameters", self::HTTP_VALID_PARAMS);
+	}
+
+	/* POST method to update the subscriber score and level */
+	public function update(Application $application, Subscriber $subscriber)
+	{
+		$input = Input::all();
+		$errors = [];
+		
+		if(!isset($input['score']))
+			$errors['score'] = 'The score field is required';
+
+		if(!isset($input['level']))
+			$errors['level'] = 'The level field is required';
+
+		if(!count($errors))
+		{
+			$this->subscriberRepos->update($input, $subscriber);
+			return $this->respondOk( ['subscriberId' => $subscriber->id ], 'Subscriber was updated successfully.');
+		}
+
+		return $this->respondErrors( $errors, "Retry with valid parameters", self::HTTP_VALID_PARAMS);
+	}
+
+
+	/* POST method to add subscriber game meta */
+	public function addGameMeta(Application $application, Subscriber $subscriber)
+	{
+		$input = Input::all();
+		$input['subscriber_id'] = $subscriber->id;
+		$game_meta = new GameMeta();
+
+		if($game_meta->isValid($input))
+		{
+			$game_meta = GameMeta::create($input);
+			return $this->respondOk(
+				['GameMetaId' => $game_meta->id, 'subscriberId' => $subscriber->id ], 
+				'Game meta was created successfully.'
+			);
+		}
+
+		return $this->respondErrors( $game_meta->errors, "Retry with valid parameters", self::HTTP_VALID_PARAMS);
+	}
+
+
+	/* GET method to display game info */
+	public function gameInfo(Application $application, Subscriber $subscriber)
+	{
+		$subscriber = $this->subscriberRepos->getGameInfo($subscriber->id);
+		return $this->respondOk($this->subscriberApiParser->parse($subscriber));
 	}
 }

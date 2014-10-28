@@ -6,12 +6,13 @@ class SubscriberApiParser extends ApiParser
 	public function parse($subscriber)
 	{
 		//common fields between methods in the news repos
-		$output = [
-			'id'         => (int) $subscriber['id'],
-			'username'   => $subscriber['username'],
-			'email'		 => $subscriber['email'],
-			'verified'   => (bool) $subscriber['is_verified']
-		];
+		$output = [ 'id' => (int) $subscriber['id'], 'username' => $subscriber['username'] ];
+
+		if(array_key_exists('email', $subscriber))
+	 		$output['email'] = $subscriber['email'];
+
+		if(array_key_exists('verified', $subscriber))
+	 		$output['verified'] = (bool) $subscriber['verified'];	 			 	
 
 		if(array_key_exists('application', $subscriber))
 	 		$output['application'] = $subscriber['application'];
@@ -24,6 +25,15 @@ class SubscriberApiParser extends ApiParser
 	 		
 	 	if(array_key_exists('api_url', $subscriber))
 	 		$output['url'] = $subscriber['api_url'];
+
+	 	if(array_key_exists('score', $subscriber))
+	 		$output['score'] = (int) $subscriber['score'];
+
+	 	if(array_key_exists('level', $subscriber))
+	 		$output['level'] = (int) $subscriber['level'];	 	
+
+	 	if(array_key_exists('metas', $subscriber))
+	 		$output['metas'] = $subscriber['metas'];	
 
 		return $output;
 	}

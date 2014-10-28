@@ -30,9 +30,12 @@ Route::group(['prefix'=>'api/', 'before'=>'secure'], function()
 	//subscribers
 	Route::get('app/{app}/subscribers', ['as' => 'api.subscribers', 'uses' => 'ApiSubscriberController@index']);
 	Route::get('app/{app}/subscribers/{subscribers}/show', ['as' => 'api.subscribers.show', 'uses' => 'ApiSubscriberController@show'])->before('subscriberAppRelation');
+	Route::get('app/{app}/subscribers/{subscribers}/game-info', ['as' => 'api.subscribers.game-info', 'uses' => 'ApiSubscriberController@gameInfo'])->before('subscriberAppRelation');
 	Route::post('app/{app}/subscribers/create', 'ApiSubscriberController@store');
 	Route::post('app/{app}/subscribers/{subscribers}/create-profile', 'ApiSubscriberController@storeProfile')->before('subscriberAppRelation')->before('token');                                                                                                                                                                                                                                                                                                      
 	Route::post('app/{app}/subscribers/{subscribers}/add-device', 'ApiSubscriberController@storeDevice')->before('subscriberAppRelation')->before('token');                                                                                                                                                                                                                                                                                                      
+	Route::post('app/{app}/subscribers/{subscribers}/update', 'ApiSubscriberController@update')->before('subscriberAppRelation')->before('token');
+	Route::post('app/{app}/subscribers/{subscribers}/add-game-meta', 'ApiSubscriberController@addGameMeta')->before('subscriberAppRelation')->before('token');
 	//News 
 	Route::get('app/{app}/news', ['as' => 'api.news', 'uses' => 'ApiNewsController@index']);
 	Route::get('app/{app}/news/{news}/show', ['as' => 'api.news.show', 'uses' => 'ApiNewsController@show'])->before('newsAppRelation');

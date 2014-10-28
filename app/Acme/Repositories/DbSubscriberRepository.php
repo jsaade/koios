@@ -22,7 +22,7 @@ class DbSubscriberRepository extends DbRepos
 		if(!$limit) $limit = 25;
 		if(!$page) $page = 1;
 
-		$subscribers = $application->subscribers()->where('is_verified', 1)->paginate($limit);
+		$subscribers = $application->subscribers()->paginate($limit);
 		foreach($subscribers as $subscriber)
 		{
 			$arr['id']			= $subscriber->id;
@@ -131,5 +131,46 @@ class DbSubscriberRepository extends DbRepos
 	{
 		$device = Device::create($input);
 		return $device;
+	}
+
+
+
+	/**
+	 * Updates the subscriber score and level
+	 * @param  [type] $input      [description]
+	 * @param  [type] $subscriber [description]
+	 * @return [type]             [description]
+	 */
+	public function update($input, $subscriber)
+	{
+		$subscriber->score = $input['score'];
+		$subscriber->level = $input['level'];
+		$subscriber->save();
+		return $subscriber;
+	}
+
+
+
+	public function getGameInfo($id)
+	{
+		$subscriber = Subscriber::with('game_metas')->findOrFail($id);
+		$output = [];
+
+		$output['id']			= $subscriber->id;
+		$output['username'] 	= $subscriber->username;
+		$output['score']  = $subscriber->score;
+		$output['level']  = $subscriber->level;
+
+		$output['metas'] = [];
+		if($subscriber->game_metas)
+		{
+			foreach($subscriber->game_metas as $meta)
+			{
+				$arr[$meta->meta_key] = $meta->meta_value;
+			}
+			array_push($output['metas'], $arr);
+		}
+		
+		return $output;
 	}
 }

@@ -34,6 +34,16 @@
 		<span class="field-desc">{{ $component->description }}</span>
 	</li>
 	@endforeach
+	
+	<p class="form-title">Default integrated components:</p>
+	<li>
+		<strong style="margin-left:13px">Subscribers Authentication</strong><br/>
+		<span class="field-desc">Register subscribers (via facebook and signup form), add profile and devices</span>
+	<li>
+	<li>
+		<strong style="margin-left:13px">Gaming Features</strong><br/>
+		<span class="field-desc">Manage subscribers score, level, metas and leaderboards.</span>
+	</li>
 
 	<li>
 		<br/>{{ Form::submit('Save Application', ['class' => 'btn btn-primary']) }}

@@ -17,6 +17,11 @@ class Subscriber extends \Eloquent {
 		return $this->hasOne('SubscriberProfile');
 	}
 
+	public function game_metas()
+	{
+		return $this->hasMany('GameMeta');
+	}
+
 	public function application()
 	{
 		return $this->belongsTo('Application');
