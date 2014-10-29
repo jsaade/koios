@@ -150,7 +150,11 @@ class DbSubscriberRepository extends DbRepos
 	}
 
 
-
+	/**
+	 * Get a subscriber gaming info
+	 * @param  [type] $id [description]
+	 * @return [type]     [description]
+	 */
 	public function getGameInfo($id)
 	{
 		$subscriber = Subscriber::with('game_metas')->findOrFail($id);
@@ -173,4 +177,47 @@ class DbSubscriberRepository extends DbRepos
 		
 		return $output;
 	}
+
+
+	/**
+	 * Gets all the application verfied subscribers
+	 * @param  [type] $application [description]
+	 * @param  [type] $limit       [description]
+	 * @param  [type] $page        [description]
+	 * @return [type]              [description]
+	 */
+	public function getLeaderboard($application, $order, $sort, $limit, $page)
+	{
+		$output = ['data' => [], 'pages' => []];
+		
+		if(!$limit) $limit = 25;
+		if(!$page) $page = 1;
+
+		$subscribers = $application->subscribers()->with('profile')->orderBy($order, $sort)->paginate($limit);
+		foreach($subscribers as $subscriber)
+		{
+			$arr['id']			= $subscriber->id;
+			$arr['username'] 	= $subscriber->username;
+			$arr['score']       = $subscriber->score;
+			$arr['level']       = $subscriber->level;
+
+			$arr['profile'] = [];
+			if($subscriber->profile)
+			{
+				$arr['profile']['first_name'] = $subscriber->profile->first_name;
+				$arr['profile']['last_name'] = $subscriber->profile->last_name;
+				$arr['profile']['image'] = $subscriber->profile->image;
+				$arr['profile']['facebook_id'] = $subscriber->profile->facebook_id;
+			}
+
+			array_push($output['data'], $arr);
+		}
+		$output['pages'] = $this->getApiPagerLinks($subscribers, 'api.subscribers', [$application->api_key]);
+		return $output;
+	}
+
+
+	//SELECT *, CAST( meta_value AS SIGNED INTEGER ) AS meta_value_cast FROM game_meta ORDER BY `game_meta`.`meta_value` ASC
+
+
 }

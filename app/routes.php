@@ -27,6 +27,8 @@ Route::bind('app', function($value, $route){
  **************/
 Route::group(['prefix'=>'api/', 'before'=>'secure'], function()
 {
+	//LeaderBoard
+	Route::get('app/{app}/leaderboard/{order}/{sort}', ['as' => 'api.leaderboard', 'uses' => 'ApiLeaderboardController@index']);
 	//subscribers
 	Route::get('app/{app}/subscribers', ['as' => 'api.subscribers', 'uses' => 'ApiSubscriberController@index']);
 	Route::get('app/{app}/subscribers/{subscribers}/show', ['as' => 'api.subscribers.show', 'uses' => 'ApiSubscriberController@show'])->before('subscriberAppRelation');
