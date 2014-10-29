@@ -11,10 +11,16 @@ class AccessTokenFilter
 	   	$subscriber = $route->getParameter('subscribers');
 	   	$input = Input::all();
 	   	
-	   if( !isset($input['access_token']) || !$subscriber->access_token || $input['access_token'] != $subscriber->access_token)
+	   	if(!isset($input['access_token']))
+	   		return Response::make(
+	   			['code' => 499, 
+	   			'message' => "Token required | The access token is not set."]
+	   		);
+
+	    if(!$subscriber->access_token || $input['access_token'] != $subscriber->access_token)
 	   		return Response::make(
 	   			['code' => 498, 
-	   			'message' => "Invalid Token | The access token is invalid or not set"]
+	   			'message' => "Token invalid | The access token is invalid."]
 	   		);
 	}
 }

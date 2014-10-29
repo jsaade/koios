@@ -44,7 +44,8 @@ class ApiSubscriberController extends \ApiController {
 			$this->subscriber = $this->subscriberRepos->create($input);
 			return $this->respondOk(
 				['subscriberId' => $this->subscriber->id, 'access_token' => $this->subscriber->access_token],
-				'Subscriber was created successfully.'
+				'Subscriber was created successfully.',
+				self::HTTP_CREATED
 			);
 		}
 
@@ -64,7 +65,8 @@ class ApiSubscriberController extends \ApiController {
 			$subscriberProfile = $this->subscriberRepos->createProfile($input);
 			return $this->respondOk(
 				['subscriberProfileId' => $subscriberProfile->id, 'subscriberId' => $subscriber->id ], 
-				'Subscriber profile was created successfully.'
+				'Subscriber profile was created successfully.',
+				self::HTTP_CREATED
 			);
 		}
 
@@ -84,7 +86,8 @@ class ApiSubscriberController extends \ApiController {
 			$device = $this->subscriberRepos->createDevice($input);
 			return $this->respondOk(
 				['deviceId' => $device->id, 'subscriberId' => $subscriber->id ], 
-				'Subscriber device was created successfully.'
+				'Subscriber device was created successfully.',
+				self::HTTP_CREATED
 			);
 		}
 
@@ -113,8 +116,8 @@ class ApiSubscriberController extends \ApiController {
 	}
 
 
-	/* POST method to add subscriber game meta */
-	public function addGameMeta(Application $application, Subscriber $subscriber)
+	/* POST method to create subscriber game meta */
+	public function storeGameMeta(Application $application, Subscriber $subscriber)
 	{
 		$input = Input::all();
 		$input['subscriber_id'] = $subscriber->id;
@@ -125,11 +128,51 @@ class ApiSubscriberController extends \ApiController {
 			$game_meta = GameMeta::create($input);
 			return $this->respondOk(
 				['GameMetaId' => $game_meta->id, 'subscriberId' => $subscriber->id ], 
-				'Game meta was created successfully.'
+				'Game meta was created successfully.',
+				self::HTTP_CREATED
 			);
 		}
 
 		return $this->respondErrors( $game_meta->errors, "Retry with valid parameters", self::HTTP_VALID_PARAMS);
+	}
+
+
+	/* POST method to update subscriber game meta */
+	public function updateGameMeta(Application $application, Subscriber $subscriber, $meta_key)
+	{
+		$game_meta = GameMeta::whereMetaKey($meta_key)->whereSubscriberId($subscriber->id)->first();
+		if(!$game_meta)
+			return $this->respondErrors( "The meta key does not exist.", "Bad request.", self::HTTP_BAD_REQUEST);
+		
+		$input = Input::all();
+		$input['subscriber_id'] = $subscriber->id;
+		$input['meta_key'] = $meta_key;
+
+		if(!$game_meta->isValid($input))
+			return $this->respondErrors( $game_meta->errors, "Retry with valid parameters", self::HTTP_VALID_PARAMS);
+
+		$game_meta->update($input);
+		return $this->respondOk(
+				['GameMetaId' => $game_meta->id, 'subscriberId' => $subscriber->id ], 
+				'Game meta was updated successfully.',
+				self::HTTP_RESPONSE_OK
+			);
+	}
+
+
+	/* POST method to delete subscriber game meta */
+	public function destroyGameMeta(Application $application, Subscriber $subscriber, $meta_key)
+	{
+		$game_meta = GameMeta::whereMetaKey($meta_key)->whereSubscriberId($subscriber->id)->first();
+		if(!$game_meta)
+			return $this->respondErrors( "The meta key does not exist.", "Bad request.", self::HTTP_BAD_REQUEST);
+
+		$game_meta->delete();
+		return $this->respondOk(
+				['subscriberId' => $subscriber->id ], 
+				'No content | Game meta deleted.',
+				self::HTTP_NO_CONTENT
+			);
 	}
 
 

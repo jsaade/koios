@@ -35,7 +35,9 @@ Route::group(['prefix'=>'api/', 'before'=>'secure'], function()
 	Route::post('app/{app}/subscribers/{subscribers}/create-profile', 'ApiSubscriberController@storeProfile')->before('subscriberAppRelation')->before('token');                                                                                                                                                                                                                                                                                                      
 	Route::post('app/{app}/subscribers/{subscribers}/add-device', 'ApiSubscriberController@storeDevice')->before('subscriberAppRelation')->before('token');                                                                                                                                                                                                                                                                                                      
 	Route::post('app/{app}/subscribers/{subscribers}/update', 'ApiSubscriberController@update')->before('subscriberAppRelation')->before('token');
-	Route::post('app/{app}/subscribers/{subscribers}/add-game-meta', 'ApiSubscriberController@addGameMeta')->before('subscriberAppRelation')->before('token');
+	Route::post('app/{app}/subscribers/{subscribers}/add-game-meta', 'ApiSubscriberController@storeGameMeta')->before('subscriberAppRelation')->before('token');
+	Route::post('app/{app}/subscribers/{subscribers}/update-game-meta/{meta_key}', 'ApiSubscriberController@updateGameMeta')->before('subscriberAppRelation')->before('token');
+	Route::post('app/{app}/subscribers/{subscribers}/delete-game-meta/{meta_key}', 'ApiSubscriberController@destroyGameMeta')->before('subscriberAppRelation')->before('token');
 	//News 
 	Route::get('app/{app}/news', ['as' => 'api.news', 'uses' => 'ApiNewsController@index']);
 	Route::get('app/{app}/news/{news}/show', ['as' => 'api.news.show', 'uses' => 'ApiNewsController@show'])->before('newsAppRelation');
