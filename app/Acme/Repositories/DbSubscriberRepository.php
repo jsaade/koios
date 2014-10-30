@@ -3,6 +3,7 @@ namespace Acme\Repositories;
 use Subscriber;
 use SubscriberProfile;
 use Device;
+use DB;
 use Illuminate\Support\Facades\Hash as Hash;
 
 class DbSubscriberRepository extends DbRepos
@@ -180,7 +181,7 @@ class DbSubscriberRepository extends DbRepos
 
 
 	/**
-	 * Gets all the application verfied subscribers
+	 * Gets all the subscribers sorted by score or level
 	 * @param  [type] $application [description]
 	 * @param  [type] $limit       [description]
 	 * @param  [type] $page        [description]
@@ -192,6 +193,7 @@ class DbSubscriberRepository extends DbRepos
 		
 		if(!$limit) $limit = 25;
 		if(!$page) $page = 1;
+		if(!$sort) $sort = 'DESC';
 
 		$subscribers = $application->subscribers()->with('profile')->orderBy($order, $sort)->paginate($limit);
 		foreach($subscribers as $subscriber)
@@ -217,7 +219,52 @@ class DbSubscriberRepository extends DbRepos
 	}
 
 
-	//SELECT *, CAST( meta_value AS SIGNED INTEGER ) AS meta_value_cast FROM game_meta ORDER BY `game_meta`.`meta_value` ASC
+
+	/**
+	 * Get all the subscribers sorted by a meta_key
+	 * @param  [type] $application [description]
+	 * @param  [type] $meta_key    [description]
+	 * @param  [type] $sort        [description]
+	 * @param  [type] $cast        [description]
+	 * @param  [type] $limit       [description]
+	 * @param  [type] $page        [description]
+	 * @return [type]              [description]
+	 */
+	public function getLeaderboardMeta($application, $meta_key, $sort, $cast, $limit, $page)
+	{
+		$output = ['data' => [], 'pages' => []];
+		
+		if(!$limit) $limit = 25;
+		if(!$page) $page = 1;
+		if(!$sort) $sort = 'DESC';
+		if(!$cast) $cast = 'SIGNED INTEGER'; //can be CHAR
+
+		$subscribers = DB::table('subscriber')
+					 ->join('game_meta', 'subscriber.id', '=', 'game_meta.subscriber_id')
+					 ->leftJoin('subscriber_profile', 'subscriber.id', '=', 'subscriber_profile.subscriber_id')
+                     ->select(DB::raw("subscriber.id, subscriber.username, subscriber_profile.first_name, subscriber_profile.last_name, subscriber_profile.image,subscriber_profile.facebook_id, CAST(meta_value AS ".$cast.") meta_value_cast"))
+                     ->where('application_id', '=', $application->id)
+                     ->where('meta_key', '=', $meta_key)
+                     ->orderBy('meta_value_cast', $sort)
+                     ->paginate($limit);
+
+       foreach($subscribers as $subscriber)
+		{
+			$arr['id']			= $subscriber->id;
+			$arr['username'] 	= $subscriber->username;
+			$arr['meta_value']  = $subscriber->meta_value_cast;
+
+			$arr['profile'] = [];
+			$arr['profile']['first_name'] = $subscriber->first_name;
+			$arr['profile']['last_name'] = $subscriber->last_name;
+			$arr['profile']['image'] = $subscriber->image;
+			$arr['profile']['facebook_id'] = $subscriber->facebook_id;
+
+			array_push($output['data'], $arr);
+		}
+		$output['pages'] = $this->getApiPagerLinks($subscribers, 'api.subscribers', [$application->api_key]);
+		return $output;
+	}
 
 
 }

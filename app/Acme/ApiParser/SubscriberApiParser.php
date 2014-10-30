@@ -20,20 +20,25 @@ class SubscriberApiParser extends ApiParser
 		if(array_key_exists('devices', $subscriber))
 	 		$output['devices'] = $this->parseDevices( $subscriber['devices'] );
 
+	 	if(array_key_exists('score', $subscriber))
+	 		$output['score'] = (int) $subscriber['score'];
+
+	 	if(array_key_exists('level', $subscriber))
+	 		$output['level'] = (int) $subscriber['level'];	
+
+	 	if(array_key_exists('meta_value', $subscriber))
+	 		$output['meta_value'] = $subscriber['meta_value']; 	
+
+	 	if(array_key_exists('metas', $subscriber))
+	 		$output['metas'] = $subscriber['metas'];
+
 		if(array_key_exists('profile', $subscriber))
 	 		$output['profile'] = $this->parseProfile( $subscriber['profile'] );
 	 		
 	 	if(array_key_exists('api_url', $subscriber))
 	 		$output['url'] = $subscriber['api_url'];
 
-	 	if(array_key_exists('score', $subscriber))
-	 		$output['score'] = (int) $subscriber['score'];
-
-	 	if(array_key_exists('level', $subscriber))
-	 		$output['level'] = (int) $subscriber['level'];	 	
-
-	 	if(array_key_exists('metas', $subscriber))
-	 		$output['metas'] = $subscriber['metas'];	
+	
 
 		return $output;
 	}
