@@ -31,7 +31,7 @@ class CreateSubscriberAnswerTable extends Migration {
 			$table->boolean('is_correct')->default(0);
 			
 			$table->integer('answer_id')->unsigned();
-			$table->foreign('answer_id')
+			$table->foreign('answer_id') 
 						->references('id')
 						->on('answer')
 						->onDelete('cascade');

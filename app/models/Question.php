@@ -17,6 +17,11 @@ class Question extends \Eloquent {
 		return $this->hasMany('Answer');
 	}
 
+	public function questions_subscribers()
+	{
+		return $this->hasMany('QuestionSubscriber');
+	}
+
 	/*******************
 	 * FORM VALIDATION *
 	 *******************/

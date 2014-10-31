@@ -182,4 +182,44 @@ class ApiSubscriberController extends \ApiController {
 		$subscriber = $this->subscriberRepos->getGameInfo($subscriber->id);
 		return $this->respondOk($this->subscriberApiParser->parse($subscriber));
 	}
+
+
+
+	/* Post method to save a subscribers answer on a question */
+	public function storeQuestionSubscriber(Application $application, Subscriber $subscriber, Question $question)
+	{
+		$input = Input::all();
+		$input['subscriber_id']  = $subscriber->id;
+		$input['question_id'] = $question->id;
+		$question_subscriber = new QuestionSubscriber();
+
+		if($question_subscriber->isValid($input))
+		{
+			$question_subscriber = QuestionSubscriber::create($input);
+			return $this->respondOk(
+				['QuestionSubscriberId' => $question_subscriber->id ], 
+				'Question was answered successfully.',
+				self::HTTP_CREATED
+			);
+		}
+
+		return $this->respondErrors( $question_subscriber->errors, "Retry with valid parameters", self::HTTP_VALID_PARAMS);
+	}
+
+
+
+	/* GET method to display quiz answers */
+	public function answers(Application $application, Subscriber $subscriber)
+	{
+		$subscriber_questions = $subscriber->questions_subscribers()->with('question')->get();
+		/*$output = [];
+		foreach($subscriber_questions as $subscriber_question)
+		{
+			$arr = [];
+			$arr['question_id'] = $subscriber_question->question_id;
+			$arr['answer_id'] = $subscriber_question->answer_id;
+			array_push($output, $arr);
+		}*/
+		return $this->respondOk($subscriber_questions);
+	}
 }

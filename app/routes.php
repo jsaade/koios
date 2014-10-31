@@ -30,13 +30,17 @@ Route::group(['prefix'=>'api/', 'before'=>'secure'], function()
 	//LeaderBoard
 	Route::get('app/{app}/leaderboard/{order}', ['as' => 'api.leaderboard', 'uses' => 'ApiLeaderboardController@index']);
 	Route::get('app/{app}/leaderboard/meta/{order}', ['as' => 'api.leaderboard.meta', 'uses' => 'ApiLeaderboardController@meta']);
-	//subscribers
+	//subscribers authentication
 	Route::get('app/{app}/subscribers', ['as' => 'api.subscribers', 'uses' => 'ApiSubscriberController@index']);
 	Route::get('app/{app}/subscribers/{subscribers}/show', ['as' => 'api.subscribers.show', 'uses' => 'ApiSubscriberController@show'])->before('subscriberAppRelation');
 	Route::get('app/{app}/subscribers/{subscribers}/game-info', ['as' => 'api.subscribers.game-info', 'uses' => 'ApiSubscriberController@gameInfo'])->before('subscriberAppRelation');
 	Route::post('app/{app}/subscribers/create', 'ApiSubscriberController@store');
 	Route::post('app/{app}/subscribers/{subscribers}/create-profile', 'ApiSubscriberController@storeProfile')->before('subscriberAppRelation')->before('token');                                                                                                                                                                                                                                                                                                      
 	Route::post('app/{app}/subscribers/{subscribers}/add-device', 'ApiSubscriberController@storeDevice')->before('subscriberAppRelation')->before('token');                                                                                                                                                                                                                                                                                                      
+	//subscriber Quiz
+	Route::post('app/{app}/subscribers/{subscribers}/questions/{questions}/answer', 'ApiSubscriberController@storeQuestionSubscriber')->before('subscriberAppRelation')->before('questionAppRelation')->before('token');                                                                                                                                                                                                                                                                                                      
+	Route::get('app/{app}/subscribers/{subscribers}/answers', 'ApiSubscriberController@answers')->before('subscriberAppRelation');                                                                                                                                                                                                                                                                                                      
+	//subscribers gaming
 	Route::post('app/{app}/subscribers/{subscribers}/update', 'ApiSubscriberController@update')->before('subscriberAppRelation')->before('token');
 	Route::post('app/{app}/subscribers/{subscribers}/add-game-meta', 'ApiSubscriberController@storeGameMeta')->before('subscriberAppRelation')->before('token');
 	Route::post('app/{app}/subscribers/{subscribers}/update-game-meta/{meta_key}', 'ApiSubscriberController@updateGameMeta')->before('subscriberAppRelation')->before('token');

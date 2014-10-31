@@ -27,6 +27,11 @@ class Subscriber extends \Eloquent {
 		return $this->belongsTo('Application');
 	}
 
+	public function questions_subscribers()
+	{
+		return $this->hasMany('QuestionSubscriber');
+	}
+
 	/*******************
 	 * FORM VALIDATION *
 	 *******************/
