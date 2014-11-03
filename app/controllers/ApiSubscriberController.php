@@ -212,14 +212,18 @@ class ApiSubscriberController extends \ApiController {
 	public function answers(Application $application, Subscriber $subscriber)
 	{
 		$subscriber_questions = $subscriber->questions_subscribers()->with('question')->get();
-		/*$output = [];
+		$output = [];
 		foreach($subscriber_questions as $subscriber_question)
 		{
 			$arr = [];
 			$arr['question_id'] = $subscriber_question->question_id;
+			$arr['question_description'] = $subscriber_question->question->description;
 			$arr['answer_id'] = $subscriber_question->answer_id;
+
+			$answer = Answer::where('is_correct', '=', 1)->whereQuestionId($subscriber_question->question_id)->first();
+			$arr['answer_correct'] = $answer->id;
 			array_push($output, $arr);
-		}*/
-		return $this->respondOk($subscriber_questions);
+		}
+		return $this->respondOk($output);
 	}
 }
