@@ -167,8 +167,9 @@ class DbSubscriberRepository extends DbRepos
 		$output['level']  = $subscriber->level;
 
 		$output['metas'] = [];
-		if($subscriber->game_metas)
+		if(count($subscriber->game_metas))
 		{
+			$arr = [];
 			foreach($subscriber->game_metas as $meta)
 			{
 				$arr[$meta->meta_key] = $meta->meta_value;

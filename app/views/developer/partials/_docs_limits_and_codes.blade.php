@@ -29,6 +29,18 @@ This status code provides information about the status of the request.
 				<td>Response is OK!</td>
 			</tr>
 			<tr>
+				<td class='status-code'>201</td>
+				<td>Created | a record is created in the database</td>
+			</tr>
+			<tr>
+				<td class='status-code'>204</td>
+				<td>No Content | when deleting a record from the databse</td>
+			</tr>
+			<tr>
+				<td class='status-code'>400</td>
+				<td>Bad Request | the meta key doesn't exist.</td>
+			</tr>
+			<tr>
 				<td class='status-code'>401</td>
 				<td>Unauthorized | You don't have permission to perform this request.</td>
 			</tr>
@@ -45,8 +57,16 @@ This status code provides information about the status of the request.
 				<td>HTTP method not allowed for this request</td>
 			</tr>
 			<tr>
-				<td class='status-code'>409</td>
+				<td class='status-code'>449</td>
 				<td>Retry with valid parameters</td>
+			</tr>
+			<tr>
+				<td class='status-code'>498</td>
+				<td>Invalid Token</td>
+			</tr>
+			<tr>
+				<td class='status-code'>499</td>
+				<td>Required Token</td>
 			</tr>
 			<tr>
 				<td class='status-code'>500</td>

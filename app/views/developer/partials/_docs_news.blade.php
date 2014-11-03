@@ -1,78 +1,52 @@
-<div class="section no-mt" id="news-list">
-	<h3>List News</h3>
-	<p>
-		Full list of the news:
-		<pre>
-<code class="php">$url = 'http://koios.mercury.me/api/app/{api-key}/news';
+<div class="section no-mt" id="news">
+	<h3>News and Categories</h3>
 
-$options = array(
-    'http' => array(
-        'header'  => "X-Auth-Token: {api-secret}\r\n",
-        'method'  => 'GET'
-        ),
-);
-$context  = stream_context_create($options);
-$result = file_get_contents($url, false, $context);
-</code>			
-	<p>
-</div>
+	<!-- list news -->
+	<p>Full list of the application's news:</p>
+<pre>
+<code class="http">GET /api/app/{api-key}/news HTTP/1.1
+
+X-Auth-Token: {md5(api-secret-here)}
+Host: koios.mercury.me
+Content-Type: application/json; charset=utf-8
+</code>
+</pre>
 
 
+	<!-- single news -->
+	<p>Displaying everything about one single news:</p>
+<pre>
+<code class="http">GET /api/app/{api-key}/news/{news-id}/show HTTP/1.1
 
-<div class="section no-mt" id="news-show">
-	<h3>Single news info</h3>
-	<p>
-		<pre>
-<code class="php">$url = 'http://koios.mercury.me/api/app/{api-key}/news/{news-id}/show';
-
-$options = array(
-    'http' => array(
-        'header'  => "X-Auth-Token: {api-secret}\r\n",
-        'method'  => 'GET'
-        ),
-);
-$context  = stream_context_create($options);
-$result = file_get_contents($url, false, $context);
-</code>			
-	<p>
-</div>
+X-Auth-Token: {md5(api-secret-here)}
+Host: koios.mercury.me
+Content-Type: application/json; charset=utf-8
+</code>
+</pre>
 
 
-<div class="section no-mt" id="news-categories">
-	<h3>News Categories</h3>
-	<p>
-		List the news categories available.
-		<pre>
-<code class="php">$url = 'http://koios.mercury.me/api/app/{api-key}/news-categories';
+	<!-- news categories -->
+	<p>List the news categories available.</p>
+<pre>
+<code class="http">GET /api/app/{api-key}/news-categories HTTP/1.1
 
-$options = array(
-    'http' => array(
-        'header'  => "X-Auth-Token: {api-secret}\r\n",
-        'method'  => 'GET'
-        ),
-);
-$context  = stream_context_create($options);
-$result = file_get_contents($url, false, $context);
-</code>			
-	<p>
-</div>
+X-Auth-Token: {md5(api-secret-here)}
+Host: koios.mercury.me
+Content-Type: application/json; charset=utf-8
+</code>
+</pre>
 
 
-<div class="section no-mt" id="news-by-category">
-	<h3>List news by category</h3>
-	<p>
-		List the news for a specific category.
-		<pre>
-<code class="php">$url = 'http://koios.mercury.me/api/app/{api-key}/news/category/{category-id}';
+	<!-- news by category -->
+	<p>List the news of a specific category.</p>
+<pre>
+<code class="http">GET /api/app/{api-key}/news/category/{category-id} HTTP/1.1
 
-$options = array(
-    'http' => array(
-        'header'  => "X-Auth-Token: {api-secret}\r\n",
-        'method'  => 'GET'
-        ),
-);
-$context  = stream_context_create($options);
-$result = file_get_contents($url, false, $context);
-</code>			
-	<p>
+X-Auth-Token: {md5(api-secret-here)}
+Host: koios.mercury.me
+Content-Type: application/json; charset=utf-8
+</code>
+</pre>
+
+		
 </div>

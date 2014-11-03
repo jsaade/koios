@@ -1,5 +1,5 @@
-<div class="section no-mt" id="authorization">
-	<h3>Authorization</h3>
+<div class="section no-mt" id="auth">
+	<h3>Authorization & Authentication</h3>
 	<p>
 		The Koios API is the primary way to get data in and out of its created apps.<br/>
 		It's a low-level HTTP-based API that you can use to query data, subscribe users, <br/>
@@ -7,27 +7,30 @@
 	</p>
 	<p>
 		Every request is secured with an HTTP Header <strong>X-Auth-Token</strong>, in which the application 
-		secret key is stored.<br/>The below examples demontsrate how to send the token header via CURL and PHP.
+		secret key is encrypted to md5.
 	</p>
 
-	<h5>Sending headers with CURL</h5>
-	
-	<pre>
-		<code class="python">curl -X GET -H "X-Auth-Token: {api-secret-here}" http://koios.mercury.me/api/app/{api-key}/news</code>
-	</pre>
+<pre>
+<code class="http">GET /api/app/{api-key}/news HTTP/1.1
 
-	<h5>Sending headers with PHP</h5>
-	
-	<pre>
-<code class="php">$opts = array(
-'http'=> ['method'=>"GET", 'header'=>"X-Auth-Token: {api-secret-here}\r\n"]
-);
-
-$context = stream_context_create($opts);
-$file = file_get_contents('http://koios.mercury.me/api/app/{api-key}/news', false, $context);
+X-Auth-Token: {md5(api-secret-here)}
+Host: koios.mercury.me
+Content-Type: application/json; charset=utf-8
 </code>
-	</pre>
+</pre>
 
+	<p>
+		Any POST request related to the subscriber needs authentication verification, therefore an access_token should be passed.<br/>The access token is sent upon creating the subscriber or can be queried with a specific request.
+	</p>
+
+<pre>
+<code class="http">POST /api/app/{api-key}/subscribers/{subscriber_id}/create-profile?access_token={token-here} HTTP/1.1
+
+X-Auth-Token: {md5(api-secret-here)}
+Host: koios.mercury.me
+Content-Type: application/json; charset=utf-8
+</code>
+</pre>
 
 
 </div>

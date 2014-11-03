@@ -4,6 +4,7 @@
 	
 @stop
 
+
 @section('content')
 	<div class="row">
 		<div class="col-md-12">
@@ -14,6 +15,8 @@
 					@include('developer.partials._docs_subscribers')
 					@include('developer.partials._docs_news')
 					@include('developer.partials._docs_questions')
+					@include('developer.partials._docs_games')
+					@include('developer.partials._docs_games_leaderboard')
 					@include('developer.partials._docs_limits_and_codes')
 				</div>
 				<div class="col-md-3 col-md-push-1 sidebar-nav">

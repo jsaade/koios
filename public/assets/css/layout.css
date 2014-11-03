@@ -444,14 +444,15 @@ h5.app-title
  * API DOCS *
  ************/
 
+span.hljs-request .hljs-string 
+{
+	color: #7f9f7f;
+	font-weight: 400;
+}
+	
 .api-docs , .sidebar-nav
 {
 	margin-top: 20px;
-}
-
-.sidebar-nav ul li ul 
-{
-	margin-left: 20px;
 }
 
 .sidebar-nav ul li:hover a 
@@ -465,29 +466,19 @@ h5.app-title
 	margin-bottom: 2px;
 	margin-top: 2px;
 	font-size: 13px;
+	border-left: 2px solid #EEE;
+	color: #CCC;
 }
 
-.sidebar-nav .navbar li ul li a
-{
-	font-size: 11px;
-	font-weight: 300;
-}
 
-.sidebar-nav li.active a,
-.sidebar-nav .navbar li a:hover,
-.sidebar-nav li.active ul li.active a 
+.sidebar-nav .navbar li.active a,
+.sidebar-nav .navbar li a:hover
 {
 	font-weight: 400;
 	color: #000;
 	border-left: 2px solid #000;
 }
 
-.sidebar-nav li.active ul li a 
-{
-	border: none;
-	color: #428bca;
-	font-weight: 300;
-}
 
 .navbar.affix {
 	position: fixed;
@@ -498,6 +489,7 @@ h5.app-title
 {
 	font-size: 12px;
 	line-height: 14px;
+	margin-bottom: 50px;
 }
 
 .section strong 
@@ -511,6 +503,7 @@ h5.app-title
 	padding: 0;
 	margin: 0;
 	margin-bottom: 15px;
+	color:#428bca;
 }
 
 .section h5 

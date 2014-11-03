@@ -1,39 +1,56 @@
-<div class="section no-mt" id="questions-list">
-	<h3>List News</h3>
+<div class="section no-mt" id="quiz">
+	<h3>Quiz</h3>
+
+		<!-- list questions -->
+	<p>Full list of questions of the application's quiz:</p>
+<pre>
+<code class="http">GET /api/app/{api-key}/questions HTTP/1.1
+
+X-Auth-Token: {md5(api-secret-here)}
+Host: koios.mercury.me
+Content-Type: application/json; charset=utf-8
+</code>
+</pre>
+
+
+	<!-- single question -->
+	<p>Displaying everything about one single question and its answers:</p>
+<pre>
+<code class="http">GET /api/app/{api-key}/questions/{question-id}/show HTTP/1.1
+
+X-Auth-Token: {md5(api-secret-here)}
+Host: koios.mercury.me
+Content-Type: application/json; charset=utf-8
+</code>
+</pre>
+
+	<!-- Subscriber answering a question -->
 	<p>
-		Full list of the questions:
-		<pre>
-<code class="php">$url = 'http://koios.mercury.me/api/app/{api-key}/questions';
-
-$options = array(
-    'http' => array(
-        'header'  => "X-Auth-Token: {api-secret}\r\n",
-        'method'  => 'GET'
-        ),
-);
-$context  = stream_context_create($options);
-$result = file_get_contents($url, false, $context);
-</code>			
+		A subscriber can answer to any question of the quiz by submitting the a POST request with the following parameters.
+		<ul type="square">
+			<li>answer_id <code class="tip">required</code></li>
+		</ul>
+		The request will return the <code class="tip">QuestionSubscriberId</code>.		
 	<p>
-</div>
+<pre>		
+<code class="http">POST /api/app/{api-key}/subscribers/{subscriber-id}/questions/{question-id}/answer?access_token={token} HTTP/1.1
+
+X-Auth-Token: {md5(api-secret-here)}
+Host: koios.mercury.me
+Content-Type: application/json; charset=utf-8
+</code>
+</pre>
 
 
+	<!-- Subscriber's answers -->
+	<p>Displaying all the answers submitted by a subscriber on a quiz questions:</p>
+<pre>
+<code class="http">GET /api/app/{api-key}/subscribers/{subscriber-id}/answers HTTP/1.1
 
-<div class="section no-mt" id="questions-show">
-	<h3>Single question info</h3>
-	<p>
-		Retrieves the question info with the answers list (including the correct one)
-		<pre>
-<code class="php">$url = 'http://koios.mercury.me/api/app/{api-key}/questions/{question-id}/show';
+X-Auth-Token: {md5(api-secret-here)}
+Host: koios.mercury.me
+Content-Type: application/json; charset=utf-8
+</code>
+</pre>
 
-$options = array(
-    'http' => array(
-        'header'  => "X-Auth-Token: {api-secret}\r\n",
-        'method'  => 'GET'
-        ),
-);
-$context  = stream_context_create($options);
-$result = file_get_contents($url, false, $context);
-</code>			
-	<p>
 </div>
