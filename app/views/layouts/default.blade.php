@@ -12,7 +12,6 @@
 	{{ HTML::style('assets/css/layout.css') }}
 </head>
 <body>
-	<h1>rached haddad</h1>
 	<div class="container-fluid top-bar">
 	  	<div class="row">
 	  		@if ( isset($showAppMenu) && $showAppMenu)
