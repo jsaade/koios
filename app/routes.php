@@ -1,6 +1,4 @@
 <?php
-print App::environment();
-
 /*******************
  * Models bindings *
  *******************/
