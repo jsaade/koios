@@ -1,20 +1,25 @@
 <?php
+use \Acme\Repositories\DbNewsRepository;
 
 class NewsController extends \BaseController {
 
 	
-	protected $news;
+	protected $news, $newsRepos;
 
-	public function __construct(News $news)
+	public function __construct(News $news, DbNewsRepository $newsRepos)
 	{
 		$this->news = $news;
+		$this->newsRepos = $newsRepos;
 		View::share('showAppMenu',true);
 	}
 
 
 	public function index(Application $application)
 	{
-		$news = News::with('newsCategory')->where('application_id', $application->id)->get();
+		$limit = (Input::get('limit'))?Input::get('limit'):15;
+		$page = Input::get('page');
+		$category_id = (Input::get('category'))?Input::get('category'):null;
+		$news = $this->newsRepos->getAll($application, $limit, $page, $category_id, "object");
 		return View::make('news.index')->withNews($news)->withApplication($application);
 	}
 

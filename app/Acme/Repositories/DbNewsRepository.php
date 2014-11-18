@@ -9,7 +9,7 @@ class DbNewsRepository extends DbRepos
 	 * @param  Appliaction $application 
 	 * @return Array
 	 */
-	public function getAll($application, $limit, $page, $category_id = null)
+	public function getAll($application, $limit, $page, $category_id = null, $return = "array")
 	{
 		$output = ['data' => [], 'pages' => []];
 		
@@ -21,6 +21,9 @@ class DbNewsRepository extends DbRepos
 			$news = $news->where('news_category_id', $category_id);
 
 		$news = $news->paginate($limit);
+		
+		if($return == "object")
+			return $news;
 
 		foreach($news as $n)
 		{
@@ -54,9 +57,12 @@ class DbNewsRepository extends DbRepos
 	 * @param  Integer $id 
 	 * @return Array
 	 */
-	public function find($id)
+	public function find($id, $return = "array")
 	{
 		$n = News::findOrFail($id);
+
+		if($return == "object")
+			return $n;
 
 		$arr = array();
 		$arr['id'] 			= $n->id;

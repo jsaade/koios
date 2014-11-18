@@ -36,6 +36,10 @@
 						@include('news.partials._list_row')
 					@endforeach
 				</table>
+
+				<div class="centered">
+					{{ $news->appends(Request::except('page'))->links() }}
+				</div>
 			</div>
 		</div>
 	@endif
