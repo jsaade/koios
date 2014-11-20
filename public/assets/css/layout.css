@@ -489,12 +489,13 @@ span.hljs-request .hljs-string
 {
 	font-size: 12px;
 	line-height: 14px;
+	font-weight: 400;
 	margin-bottom: 50px;
 }
 
 .section strong 
 {
-	font-weight: 400;
+	font-weight: 600;
 }
 
 .section h3 
