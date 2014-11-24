@@ -13,7 +13,7 @@ class ComponentTableSeeder extends Seeder {
 			'A module that generates news.',
 			'Questions with multiple answers.',
 			'Achievements list for any subscriber playing a game.',
-			'Contact form with email notification and attachments.'	
+			'Contact form with email notifications, attachments and reports.'	
 			];
 
 		foreach($components as $key => $val)

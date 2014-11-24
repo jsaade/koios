@@ -7,6 +7,7 @@
 		@endif
 	</td>
 	<td>{{ $single_news->name }}</td>
+	<td>{{ $single_news->created_at->format('F j, Y') }}</td>
 	<td>{{ $single_news->newsCategory->name }}</td>
 	<td>
 		{{ HTML::linkAction('NewsController@edit', 'Edit', [$application->slug, $single_news->id], ['class' => 'btn btn-info btn-xs']) }}

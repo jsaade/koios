@@ -29,6 +29,7 @@
 					<tr>
 						<th>Thumb</th>
 						<th>Title</th>
+						<th>Date</th>
 						<th>Category</th>
 						<th>Action</th>
 					</tr>
