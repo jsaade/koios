@@ -32,6 +32,11 @@ class Application extends \Eloquent {
 		return $this->hasMany('Subscriber');
 	}
 
+	public function contactForms()
+	{
+		return $this->hasMany('ContactForm');
+	}
+
 	/*******************
 	 * FORM VALIDATION *
 	 *******************/

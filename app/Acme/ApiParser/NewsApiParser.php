@@ -7,10 +7,11 @@ class NewsApiParser extends ApiParser
 	{
 		//common fields between methods in the news repos
 		$output = [
-			'id'   => (int) $news['id'],
-			'name' => $news['name'],
+			'id'       => (int) $news['id'],
+			'name'     => $news['name'],
 			'category' => $news['category'],
-			'thumb' => $news['thumb']
+			'date'     => $news['created_at']->format('F j, Y'),
+			'thumb'    => $news['thumb']
 		];
 
 		if(array_key_exists('caption', $news))
