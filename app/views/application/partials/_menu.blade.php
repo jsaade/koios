@@ -45,4 +45,17 @@
 		</ul>
 	@endif
 
+
+	@if ($application->hasComponent('Contact Forms'))
+		<ul>
+			<li class="menu-app-seperator">Contact Forms</li>
+			<li>
+				{{ HTML::linkAction('ContactFormController@index', 'View All', [$application->slug], []) }}
+			</li>
+			<li>
+				{{ HTML::linkAction('ContactFormController@create', 'Create new', [$application->slug], []) }}
+			</li>
+		</ul>
+	@endif
+
 </div>

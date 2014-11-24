@@ -2,7 +2,7 @@
 
 class ContactForm extends \Eloquent {
 	protected $table = 'contact_form';
-	protected $fillable = ['name', 'email'];
+	protected $fillable = ['name', 'email', 'application_id'];
 
 	/*****************
 	 * RELATIONSHIPS *
@@ -17,7 +17,7 @@ class ContactForm extends \Eloquent {
 	 *******************/
 	public $errors;
 	public static $rules = [
-		'name' => 'required',
+		'name' => 'required|alpha_dash',
 		'email' => 'required|email'
 	];
 

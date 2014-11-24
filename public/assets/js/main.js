@@ -80,6 +80,16 @@ function removeNewsCategory(response, form)
 	$(form).closest('tr').fadeOut(750);
 }
 
+
+/***********************
+ * CONTACT FORM MODULE *
+ ***********************/
+
+ function removeContactForm(response, form)
+{
+	$(form).closest('tr').fadeOut(750);
+}
+
 /*********************
  * DEVELOPER CONSOLE *
  *********************/
