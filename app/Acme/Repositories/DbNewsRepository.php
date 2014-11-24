@@ -20,6 +20,7 @@ class DbNewsRepository extends DbRepos
 		if($category_id)
 			$news = $news->where('news_category_id', $category_id);
 
+		$news = $news->orderBy('created_at', 'desc');
 		$news = $news->paginate($limit);
 		
 		if($return == "object")
@@ -27,11 +28,12 @@ class DbNewsRepository extends DbRepos
 
 		foreach($news as $n)
 		{
-			$arr['id'] 		 = $n->id;
-			$arr['name'] 	 = $n->name;
-			$arr['category'] = $n->news_category->name;
-			$arr['thumb']    = $n->getImageThumbFullUrl();
-			$arr['api_url']  = route('api.news.show', [$application->api_key, $n->id]);
+			$arr['id'] 		    = $n->id;
+			$arr['name'] 	    = $n->name;
+			$arr['category']    = $n->news_category->name;
+			$arr['thumb']       = $n->getImageThumbFullUrl();
+			$arr['created_at']  = $n->created_at;
+			$arr['api_url']     = route('api.news.show', [$application->api_key, $n->id]);
 			array_push($output['data'], $arr);
 		}
 
@@ -69,6 +71,7 @@ class DbNewsRepository extends DbRepos
 		$arr['name'] 		= $n->name;
 		$arr['description'] = $n->description;
 		$arr['caption'] 	= $n->caption;
+		$arr['created_at']  = $n->created_at;
 		$arr['category'] 	= $n->news_category->name;
 		$arr['image'] 		= $n->getImageFullUrl();
 		$arr['thumb'] 		= $n->getImageThumbFullUrl();
