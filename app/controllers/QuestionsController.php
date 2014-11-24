@@ -54,6 +54,7 @@ class QuestionsController extends \BaseController {
 
 		if($this->question->isValid($input))
 		{
+			unset($input['image']);
 			$this->question->update(['description' => $input['description']]);
 			$this->question->uploadImage($uploaded_image);
 			$this->question->createOrUpdateAnswers($input);
