@@ -15,9 +15,9 @@
   font-size: 15px;
   background: #333333;
   color: white;
-  -webkit-box-shadow: inset 0 0 5px 5px #222222;
+  /*-webkit-box-shadow: inset 0 0 5px 5px #222222;
   -moz-box-shadow: inset 0 0 5px 5px #222222;
-  box-shadow: inset 0 0 5px 5px #222222;
+  box-shadow: inset 0 0 5px 5px #222222;*/
 }
 /* line 15, ../../src/scss/sidr/_base.scss */
 .sidr .sidr-inner {
@@ -51,9 +51,9 @@
   background-image: -moz-linear-gradient(#4d4d4d, #1a1a1a);
   background-image: -o-linear-gradient(#4d4d4d, #1a1a1a);
   background-image: linear-gradient(#4d4d4d, #1a1a1a);
-  -webkit-box-shadow: 0 5px 5px 3px rgba(0, 0, 0, 0.2);
+  /*-webkit-box-shadow: 0 5px 5px 3px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 5px 5px 3px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 5px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 5px 3px rgba(0, 0, 0, 0.2);*/
 }
 /* line 52, ../../src/scss/sidr/_base.scss */
 .sidr p {
@@ -124,9 +124,9 @@
 }
 /* line 114, ../../src/scss/sidr/_base.scss */
 .sidr ul li ul li:hover > a, .sidr ul li ul li:hover > span, .sidr ul li ul li.active > a, .sidr ul li ul li.active > span, .sidr ul li ul li.sidr-class-active > a, .sidr ul li ul li.sidr-class-active > span {
-  -webkit-box-shadow: inset 0 0 15px 3px #222222;
+  /*-webkit-box-shadow: inset 0 0 15px 3px #222222;
   -moz-box-shadow: inset 0 0 15px 3px #222222;
-  box-shadow: inset 0 0 15px 3px #222222;
+  box-shadow: inset 0 0 15px 3px #222222;*/
 }
 /* line 119, ../../src/scss/sidr/_base.scss */
 .sidr ul li ul li a, .sidr ul li ul li span {

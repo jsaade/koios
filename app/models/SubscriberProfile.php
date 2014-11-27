@@ -1,7 +1,7 @@
 <?php
 
 class SubscriberProfile extends \Eloquent {
-	protected $fillable = ['first_name', 'last_name', 'image', 'facebook_id', 'subscriber_id'];
+	protected $fillable = ['first_name', 'last_name', 'image', 'subscriber_id'];
 	protected $table = 'subscriber_profile';
 
 	/*******************

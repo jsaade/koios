@@ -16,19 +16,19 @@ class ApiController extends \BaseController {
 	const HTTP_TOKEN_REQUIRED = 499; //access token not set
 
 	
-	public function respondOk($data, $message = "Response is ok!", $status = 200,  $headers = [])
+	public function respondOk($data, $message = "Response is ok!", $code = 200,  $headers = [])
 	{
 		return Response::json(
-			['data' => [ 'status' => $status, 'message' => $message, 'content' => $data]], 
+			['data' => [ 'code' => $code, 'message' => $message, 'content' => $data]], 
 			self::HTTP_RESPONSE_OK, 
 			$headers
 		);
 	}
 
-	public function respondErrors($erros, $message = "", $status, $headers = [])
+	public function respondErrors($errors, $message = "", $code, $headers = [])
 	{
 		return Response::json(
-			['data' => [ 'status' => $status, 'message' => $message, 'errors' => $erros] ], 
+			['data' => [ 'code' => $code, 'message' => $message, 'errors' => $errors] ], 
 			200, //to handle the js console
 			$headers
 		);

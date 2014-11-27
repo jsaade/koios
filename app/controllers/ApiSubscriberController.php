@@ -74,6 +74,37 @@ class ApiSubscriberController extends \ApiController {
 	}
 
 
+	/* POST method to create a subscriber and his profile in one call */
+	public function register(Application $application)
+	{
+		$input = Input::all();
+		$input['application_id'] = $application->id;
+		$profile_errors = []; 
+		
+		if(!isset($input['first_name']))
+			$profile_errors['first_name'] = ['The first_name is required'];
+		
+		if(!isset($input['last_name']))
+			$profile_errors['last_name'] = ['The last_name is required'];
+
+		if($this->subscriber->isValid($input) && !count($profile_errors))
+		{
+			$this->subscriber = $this->subscriberRepos->create($input);
+			$subscriber_id = $this->subscriber->id;
+			$input['subscriber_id'] = $subscriber_id;
+			$subscriberProfile = $this->subscriberRepos->createProfile($input);
+
+			return $this->respondOk(
+				['subscriberId' => $subscriber_id, 'subscriberProfileId' => $subscriberProfile->id, 'access_token' => $this->subscriber->access_token ], 
+				'Subscriber and his profile was created successfully.',
+				self::HTTP_CREATED
+			);
+		}
+
+		return $this->respondErrors( array_merge($this->subscriber->errors->toArray(), $profile_errors), "Retry with valid parameters", self::HTTP_VALID_PARAMS);
+	}
+
+
 	/* POST method to create a subscriber device */
 	public function storeDevice(Application $application, Subscriber $subscriber)
 	{
@@ -93,6 +124,62 @@ class ApiSubscriberController extends \ApiController {
 
 		return $this->respondErrors( $device->errors, "Retry with valid parameters", self::HTTP_VALID_PARAMS);
 	}
+
+
+	/* POST method to login a subscriber via email/password */
+	public function loginViaEmail(Application $application)
+	{
+		$input = Input::all();
+		$input['application_id'] = $application->id;
+		$errors = [];
+		
+		if(!isset($input['email']))
+			$errors['email'] = 'The email field is required';
+
+		if(!isset($input['password']))
+			$errors['password'] = 'The password field is required';
+
+		if(count($errors))
+		{
+			return $this->respondErrors( $errors, "Retry with valid parameters", self::HTTP_VALID_PARAMS);
+		}
+		else
+		{
+			$subscriber = $this->subscriberRepos->loginViaEmail($input['email'], $input['password'], $application->id);
+			
+			if($subscriber)
+				return $this->respondOk( ['subscriberId' => $subscriber->id, 'access_token' => $subscriber->access_token ], 'Subscriber was logged in.');
+			else
+				return $this->respondErrors([], $message = "Forbidden | Invalid Login Credentials", self::HTTP_FORBIDDEN, $headers = []);
+		}
+	}
+
+
+	public function loginViaFacebook(Application $application)
+	{
+		$input = Input::All();
+		$input['application_id'] = $application->id;
+
+		if(!isset($input['facebook_user_token']))
+			return $this->respondErrors( ['facebook_user_token' => 'The facebook user token is required'] , "Retry with valid parameters", self::HTTP_VALID_PARAMS);
+		//get the user id from the facebook user token
+		$url = "https://graph.facebook.com/me?access_token=".$input['facebook_user_token'];
+		$content = file_get_contents($url);
+		$info = json_decode($content);
+		
+		if(!$info->id)
+			return $this->respondErrors( [] , "Invalid facebook user token.", self::HTTP_TOKEN_INVALID);
+
+		$subscriber = $this->subscriberRepos->loginViaFacebook($info->id, $application->id);
+
+		if($subscriber)
+			return $this->respondOk( ['subscriberId' => $subscriber->id, 'access_token' => $subscriber->access_token ], 'Subscriber was logged in.');
+		else
+			return $this->respondErrors([], $message = "Forbidden | Invalid Login Credentials", self::HTTP_FORBIDDEN, $headers = []);
+
+	}
+
+
 
 	/* POST method to update the subscriber score and level */
 	public function update(Application $application, Subscriber $subscriber)

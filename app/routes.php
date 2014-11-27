@@ -30,10 +30,14 @@ Route::group(['prefix'=>'api/', 'before'=>'secure'], function()
 	//LeaderBoard
 	Route::get('app/{app}/leaderboard/{order}', ['as' => 'api.leaderboard', 'uses' => 'ApiLeaderboardController@index']);
 	Route::get('app/{app}/leaderboard/meta/{order}', ['as' => 'api.leaderboard.meta', 'uses' => 'ApiLeaderboardController@meta']);
-	//Subscribers authentication
+	//Logins
+	Route::post('app/{app}/subscribers/login-via-email', 'ApiSubscriberController@loginViaEmail');
+	Route::post('app/{app}/subscribers/login-via-facebook', 'ApiSubscriberController@loginViaFacebook');
+	//Subscribers
 	Route::get('app/{app}/subscribers', ['as' => 'api.subscribers', 'uses' => 'ApiSubscriberController@index']);
 	Route::get('app/{app}/subscribers/{subscribers}/show', ['as' => 'api.subscribers.show', 'uses' => 'ApiSubscriberController@show'])->before('subscriberAppRelation');
 	Route::get('app/{app}/subscribers/{subscribers}/game-info', ['as' => 'api.subscribers.game-info', 'uses' => 'ApiSubscriberController@gameInfo'])->before('subscriberAppRelation');
+	Route::post('app/{app}/subscribers/register', 'ApiSubscriberController@register');
 	Route::post('app/{app}/subscribers/create', 'ApiSubscriberController@store');
 	Route::post('app/{app}/subscribers/{subscribers}/create-profile', 'ApiSubscriberController@storeProfile')->before('subscriberAppRelation')->before('token');                                                                                                                                                                                                                                                                                                      
 	Route::post('app/{app}/subscribers/{subscribers}/add-device', 'ApiSubscriberController@storeDevice')->before('subscriberAppRelation')->before('token');                                                                                                                                                                                                                                                                                                      

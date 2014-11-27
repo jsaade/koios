@@ -52,6 +52,7 @@ class DbSubscriberRepository extends DbRepos
 		$output['id']			= $subscriber->id;
 		$output['email'] 		= $subscriber->email;
 		$output['username'] 	= $subscriber->username;
+		$output['facebook_id'] 	= $subscriber->facebook_id;
 		$output['is_verified']  = $subscriber->is_verified;
 		$output['application']  = $subscriber->application->name;
 
@@ -91,13 +92,16 @@ class DbSubscriberRepository extends DbRepos
 	 */
 	public function create($input)
 	{
-		$password =  (isset($input['password']))?Hash::make($input['password']):"";
-		$is_verified  = (isset($input['facebook_id']))?1:0;
+		$password    =  (isset($input['password']))?Hash::make($input['password']):"";
+		$facebook_id =  (isset($input['facebook_id']))?$input['facebook_id']:"";
+		//$is_verified  = (isset($input['facebook_id']))?1:0;
+		$is_verified  = 1;
 		$access_token =  ($is_verified==1)?md5($input['email'].uniqid()):"";
 		
 		$subscriber = Subscriber::create([
 			'username'    		 => $input['username'],
 			'email'       		 => $input['email'],
+			'facebook_id'        => $facebook_id,
 			'password' 	  		 => $password,
 			'is_verified' 		 => $is_verified,
 			'access_token'       => $access_token,
@@ -265,6 +269,45 @@ class DbSubscriberRepository extends DbRepos
 		}
 		$output['pages'] = $this->getApiPagerLinks($subscribers, 'api.subscribers', [$application->api_key]);
 		return $output;
+	}
+
+
+
+	/**
+	 * Get the subscriber by email and password
+	 * @param  [type] $email          [description]
+	 * @param  [type] $password       [description]
+	 * @param  [type] $application_id [description]
+	 * @return [type]                 [description]
+	 */
+	public function loginViaEmail($email, $password, $application_id)
+	{
+		$subscriber = Subscriber::whereEmail($email)
+							->whereApplicationId($application_id)
+							->first();
+		if(!$subscriber)
+			return null;
+
+		if(!Hash::check($password,$subscriber->password))
+			return null;
+
+		return $subscriber;
+	} 
+
+
+	/**
+	 * Get the subscriber by his facebook id
+	 * @param  [type] $facebook_id    [description]
+	 * @param  [type] $application_id [description]
+	 * @return [type]                 [description]
+	 */
+	public function loginViaFacebook($facebook_id, $application_id)
+	{
+		$subscriber = Subscriber::whereFacebookId($facebook_id)
+							->whereApplicationId($application_id)
+							->first();
+
+		return $subscriber;
 	}
 
 

@@ -2,7 +2,7 @@
 
 class Subscriber extends \Eloquent {
 	protected $table = 'subscriber';
-	protected $fillable = ['username', 'email', 'password', 'is_verified', 'verification_token', 'access_token','application_id'];
+	protected $fillable = ['username', 'email', 'password', 'facebook_id', 'is_verified', 'verification_token', 'access_token','application_id'];
 
 	/*****************
 	 * RELATIONSHIPS *

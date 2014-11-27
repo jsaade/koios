@@ -11,8 +11,11 @@ class SubscriberApiParser extends ApiParser
 		if(array_key_exists('email', $subscriber))
 	 		$output['email'] = $subscriber['email'];
 
-		if(array_key_exists('verified', $subscriber))
-	 		$output['verified'] = (bool) $subscriber['verified'];	 			 	
+	 	if(array_key_exists('facebook_id', $subscriber))
+	 		$output['facebook_id'] = (int)$subscriber['facebook_id'];
+
+		if(array_key_exists('is_verified', $subscriber))
+	 		$output['verified'] = (bool) $subscriber['is_verified'];	 			 	
 
 		if(array_key_exists('application', $subscriber))
 	 		$output['application'] = $subscriber['application'];
@@ -57,8 +60,7 @@ class SubscriberApiParser extends ApiParser
 			return [
 				'firstName'    => $profile['first_name'],
 				'lastName'     => $profile['last_name'], 
-				'image'   		=> $profile['image'], 
-				'facebookId'   => (int)$profile['facebook_id'], 
+				'image'   		=> $profile['image'] 
 			];
 		}, $profiles);
 	}

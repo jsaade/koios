@@ -33,7 +33,6 @@ Content-Type: application/json; charset=utf-8
 			<li>first_name <code class="tip">required</code></li>
 			<li>last_name <code class="tip">required</code></li>
 			<li>image</li>
-			<li>facebook_id</li>
 		</ul>
 		The request will return the <code class="tip">subscriberId</code> and the <code class="tip">subscriberProfileId</code>.
 	</p>
