@@ -1,6 +1,7 @@
 <?php
 namespace Acme\Repositories;
 use Question;
+use DB;
 
 class DbQuestionRepository extends DbRepos
 {
@@ -9,14 +10,21 @@ class DbQuestionRepository extends DbRepos
 	 * @param  Appliaction $application 
 	 * @return Array
 	 */
-	public function getAll($application, $limit, $page)
+	public function getAll($application, $limit, $page, $rand = 0)
 	{
 		$output = ['data' => [], 'pages' => []];
 		
 		if(!$limit) $limit = 25;
 		if(!$page) $page = 1;
 
-		$questions = $application->questions()->paginate($limit);
+		$questions = $application->questions();
+
+		if($rand == 1)
+			$questions = $questions->orderBy(DB::raw('RAND()'));
+		else
+			$questions = $questions->orderBy('created_at', 'desc');
+
+		$questions = $questions->paginate($limit);
 
 		foreach($questions as $question)
 		{

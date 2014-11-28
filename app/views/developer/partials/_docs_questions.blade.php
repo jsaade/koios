@@ -3,6 +3,7 @@
 
 		<!-- list questions -->
 	<p>Full list of questions of the application's quiz:</p>
+	<p>Note: adding the <strong>?rand=1</strong> query string will select random rows</p>
 <pre>
 <code class="http">GET /api/app/{api-key}/questions HTTP/1.1
 
