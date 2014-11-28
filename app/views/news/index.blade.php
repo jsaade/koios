@@ -40,6 +40,7 @@
 						<th>Title</th>
 						<th>Date</th>
 						<th>Category</th>
+						<th>Push Notification</th>
 						<th>Action</th>
 					</tr>
 					@foreach($news as $single_news)

@@ -27,6 +27,12 @@
 		{{ Form::file('image','',array('id'=>'','class'=>'')) }}
 	</li>
 
+	<p class="form-title">Push Notification</p>
+	<li>
+		{{ Form::checkbox('send_notification', 1, null, ['class' => 'field']) }}
+		Send this news as push notification 
+	</li>
+
 	<li>
 		<br/>{{ Form::submit('Save News', ['class' => 'btn btn-primary']) }}
 	</li>
