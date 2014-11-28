@@ -25,6 +25,15 @@
 	@else
 		<div class="row">
 			<div class="col-md-12">
+
+			{{ Form::hidden('news-url', $url, ['id' => 'news-url']) }}
+			{{ Form::select(
+				'news_category_filter', 
+				['0' => 'Filter by category'] + $cats, 
+				isset($category_id)?$category_id:0, 
+				['class' => 'form-control', 'id' => 'news_category_filter']
+			) }}
+
 				<table class="listing">
 					<tr>
 						<th>Thumb</th>

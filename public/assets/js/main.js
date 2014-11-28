@@ -9,9 +9,19 @@ $(document).ready(function(){
 	//docs api nav
 	if($(".sidebar-nav").length)
 	{
-		$(document).ready(function(){
-			$('body').scrollspy({ target: '.sidebar-nav' });
-
+		$('body').scrollspy({ target: '.sidebar-nav' });
+	}
+	//news category filter
+	if($("#news_category_filter").length)
+	{
+		$("#news_category_filter").change(function(){
+			var url;
+			if($(this).val() == "0")
+				url = $("#news-url").val();
+			else
+			    url = $("#news-url").val() + "?category=" + $(this).val();
+			
+			window.location.href=url;
 		})
 	}
 })

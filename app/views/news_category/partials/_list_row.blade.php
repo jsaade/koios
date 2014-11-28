@@ -1,6 +1,8 @@
 <tr>
 	<td>{{ $category->name }}</td>
-	<td>{{ $category->news->count() }}</td>
+	<td>
+	{{ HTML::linkAction('NewsController@index', $category->news->count(), [$application->slug, 'category' => $category->id]) }}
+	</td>
 	<td>
 		{{ HTML::linkAction('NewsCategoryController@edit', 'Edit', [$application->slug, $category->id], ['class' => 'btn btn-info btn-xs']) }}
 

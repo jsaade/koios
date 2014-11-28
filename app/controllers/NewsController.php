@@ -19,8 +19,10 @@ class NewsController extends \BaseController {
 		$limit = (Input::get('limit'))?Input::get('limit'):15;
 		$page = Input::get('page');
 		$category_id = (Input::get('category'))?Input::get('category'):null;
+		$cats = $application->newsCategories->lists('name', 'id');
 		$news = $this->newsRepos->getAll($application, $limit, $page, $category_id, "object");
-		return View::make('news.index')->withNews($news)->withApplication($application);
+		$url = route('application.{application}.news.index', [$application->api_key]);
+		return View::make('news.index')->withNews($news)->withApplication($application)->withCats($cats)->withCategoryId($category_id)->withUrl($url);
 	}
 
 
