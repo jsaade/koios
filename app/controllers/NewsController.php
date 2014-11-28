@@ -21,7 +21,7 @@ class NewsController extends \BaseController {
 		$category_id = (Input::get('category'))?Input::get('category'):null;
 		$cats = $application->newsCategories->lists('name', 'id');
 		$news = $this->newsRepos->getAll($application, $limit, $page, $category_id, "object");
-		$url = route('application.{application}.news.index', [$application->api_key]);
+		$url = route('application.{application}.news.index', [$application->slug]);
 		return View::make('news.index')->withNews($news)->withApplication($application)->withCats($cats)->withCategoryId($category_id)->withUrl($url);
 	}
 
