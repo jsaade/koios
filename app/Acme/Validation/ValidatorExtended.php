@@ -3,6 +3,7 @@
 namespace Acme\Validation;
 use Illuminate\Validation\Validator as IlluminateValidator;
 use Subscriber;
+use GameMeta;
 
 class ValidatorExtended extends IlluminateValidator 
 {
@@ -14,7 +15,9 @@ class ValidatorExtended extends IlluminateValidator
         //Subscriber Validation
         "username_unique_per_app" => "The username is already taken.",
         "email_unique_per_app" => "The email is already taken.",
-        "facebook_id_or_password_required" => "One of the password or facebook_id fields is required."
+        "facebook_id_or_password_required" => "One of the password or facebook_id fields is required.",
+        //subscriber Game Meta Keys 
+        "metakey_unique_per_subscriber" => "The meta key already exists for this subscriber"
     );
     protected $input = [];
  
@@ -97,6 +100,22 @@ class ValidatorExtended extends IlluminateValidator
     protected function validateFacebookIdOrPasswordRequired($attribute, $value)
     {
         if(!isset($this->input['password']) && !isset($this->input['facebook_id']))
+            return false;
+
+        return true;
+    }
+
+
+    /**
+     * subscribers meta key are unique per subscribers
+     * @param  [type] $attribute [description]
+     * @param  [type] $value     [description]
+     * @return [type]            [description]
+     */
+    protected function validateMetakeyUniquePerSubscriber($attribute, $value)
+    {
+        $meta = GameMeta::whereSubscriberId($this->input['subscriber_id'])->first();
+        if($meta)
             return false;
 
         return true;

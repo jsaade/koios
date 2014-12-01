@@ -17,7 +17,7 @@ class GameMeta extends \Eloquent {
 	 *******************/
 	public $errors;
 	public static $rules = [
-		'meta_key'      => 'required|alpha_dash',
+		'meta_key'      => 'required|alpha_dash|metakey_unique_per_subscriber',
 		'meta_value'    => 'required',
 	];
 
