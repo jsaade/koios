@@ -37,7 +37,7 @@ This status code provides information about the status of the request.
 			</tr>
 			<tr>
 				<td class='status-code'>400</td>
-				<td>Bad Request | the meta key doesn't exist.</td>
+				<td>Bad Request | a database object doesn't exist.</td>
 			</tr>
 			<tr>
 				<td class='status-code'>401</td>
