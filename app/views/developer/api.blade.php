@@ -13,6 +13,7 @@
 				<div class="col-md-8 api-docs">
 					@include('developer.partials._docs_authorization')
 					@include('developer.partials._docs_subscribers')
+					@include('developer.partials._docs_tokens')
 					@include('developer.partials._docs_news')
 					@include('developer.partials._docs_questions')
 					@include('developer.partials._docs_games')

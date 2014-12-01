@@ -1,6 +1,7 @@
 <div class="section no-mt" id="games">
 	<h3>Games</h3>
 
+	<h5>Update scode and level</h5>
 	<p>Every game application, have very common fields (level and fields), and maybe some other attributes that differs from a game to another one.</p>
 	<!-- Subscriber answering a question -->
 	<p>
@@ -22,6 +23,7 @@ Content-Type: application/json; charset=utf-8
 
 
 	<!-- Subscriber's add meta -->
+	<h5>create meta</h5>
 	<p>
 		Sometimes additioanl fields are needed in a specific game, for example, health, gold etc ...These fields are called meta(s).
 	</p>
@@ -44,6 +46,7 @@ Content-Type: application/json; charset=utf-8
 </pre>
 
 	<!-- update meta -->
+	<h5>Update meta</h5>
 	<p>
 		To update a subscriber's meta, submit a post request as follows:
 		<ul type="square">
@@ -61,6 +64,7 @@ Content-Type: application/json; charset=utf-8
 
 
 	<!-- delete meta -->
+	<h5>delete meta</h5>
 	<p>To remove a subscriber's meta, submit a post request as follows:</p>
 <pre>
 <code class="http">POST /api/app/{api-key}/subscribers/{subscriber-id}/delete-game-meta/{meta-key}?access_token={token} HTTP/1.1
@@ -73,6 +77,7 @@ Content-Type: application/json; charset=utf-8
 
 
 	<!-- Game info -->
+	<h5>list (subscriber) game info</h5>
 	<p>To get the subscriber's score, level and custom metas, submit a GET request as follows:</p>
 <pre>
 <code class="http">GET /api/app/{api-key}/subscribers/{subscriber-id}/game-info HTTP/1.1

@@ -3,6 +3,7 @@
 	 	<ul class="nav">
 	    	<li class="active"><a href="#auth">Auth</a></li>
 	        <li><a href="#subscribers">Subscribers</a></li> 
+	        <li><a href="#tokens">Access Token</a></li> 
 	        <li><a href="#news">News</a><li>
 	        <li><a href="#quiz">Quiz</a><li>
 	        <li><a href="#games">Games</a><li>

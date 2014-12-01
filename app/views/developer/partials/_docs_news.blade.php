@@ -2,6 +2,7 @@
 	<h3>News and Categories</h3>
 
 	<!-- list news -->
+	<h5>List all news</h5>
 	<p>Full list of the application's news:</p>
 <pre>
 <code class="http">GET /api/app/{api-key}/news HTTP/1.1
@@ -14,6 +15,7 @@ Content-Type: application/json; charset=utf-8
 
 
 	<!-- single news -->
+	<h5>List single news</h5>
 	<p>Displaying everything about one single news:</p>
 <pre>
 <code class="http">GET /api/app/{api-key}/news/{news-id}/show HTTP/1.1
@@ -26,7 +28,7 @@ Content-Type: application/json; charset=utf-8
 
 
 	<!-- news categories -->
-	<p>List the news categories available.</p>
+	<h5>List news categories</h5>
 <pre>
 <code class="http">GET /api/app/{api-key}/news-categories HTTP/1.1
 
@@ -38,7 +40,7 @@ Content-Type: application/json; charset=utf-8
 
 
 	<!-- news by category -->
-	<p>List the news of a specific category.</p>
+	<h5>list all news by category</h5>
 <pre>
 <code class="http">GET /api/app/{api-key}/news/category/{category-id} HTTP/1.1
 

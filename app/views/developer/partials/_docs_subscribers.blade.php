@@ -2,6 +2,7 @@
 	<h3>Subscribers</h3>
 	
 	<!-- create -->
+	<h5>Create</h5>
 	<p>
 		To create a subscriber, send a POST request with the following parameters:
 		<ul type="square">
@@ -21,8 +22,8 @@ Content-Type: application/json; charset=utf-8
 </code>
 </pre>
 
-
 	<!-- create-profile -->
+	<h5>Create profile</h5>
 	<p>
 		A subscriber profile represents all the additional info of a subscriber:<br/>
 		Weither it is a sign up form with first and last name, or a login via facebook with additional info such as profile picture, facebook id, likes ...
@@ -46,8 +47,30 @@ Content-Type: application/json; charset=utf-8
 </code>
 </pre>
 
+<!-- register -->
+<h5>Register</h5>
+<p>You can create a subscriber and its profile in one request, with the following paramters.</p>
+<ul type="square">
+	<li>first_name <code class="tip">required</code></li>
+	<li>last_name <code class="tip">required</code></li>
+	<li>username <code class="tip">required</code></li>
+	<li>email <code class="tip">required</code></li>
+	<li>password or facebook_id <code class="tip">required</code></li>
+</ul>
+<pre>
+<code class="http">POST /api/app/{api-key}/subscribers/register HTTP/1.1
+
+X-Auth-Token: {md5(api-secret-here)}
+Host: koios.mercury.me
+Content-Type: application/json; charset=utf-8
+</code>
+</pre>
+<p>The request will return the <code class="tip">subscriberId</code> and the <code class="tip">subscriberProfileId</code> and the 
+<code class="tip">access_token</code>.</p>
+
 
 	<!-- add-device -->
+	<h5>Add device</h5>
 	<p>
 		A subscriber can have mutliple devices: mobiles, tablets ...<br/>
 		To add a subscriber device, send a POST request with the following parameters:
@@ -71,6 +94,7 @@ Content-Type: application/json; charset=utf-8
 
 
 	<!-- list all the subscribers -->
+	<h5>List all subscribers</h5>
 	<p>List the (verified) subscribers of the application:</p>
 
 <pre>
@@ -84,6 +108,7 @@ Content-Type: application/json; charset=utf-8
 
 
 	<!-- single subscriber -->
+	<h5>list single subscriber</h5>
 	<p>Full info about a single subscriber (with profile and devices):</p>
 <pre>
 <code class="http">GET /api/app/{api-key}/subscribers/{subscriber-id}/show HTTP/1.1

@@ -3,11 +3,10 @@
 	<p>
 		Adding the <code class="tip">limit</code> will paginate any <code class="tip">GET</code> request.<br/>
 		By default, the limit is set to 25, and the response will have the next and prev links if applicable.
-		<pre class="html">
-<code>http://koios.mercury.me/api/app/{api-key}/news/{news-id}/show?limit=5</code>
-		</pre>
-		
-	</p>	
+	</p>
+<pre>
+<code class="http">GET /api/app/{api-key}/news?limit=5  HTTP/1.1</code>
+</pre>	
 </div>
 
 
