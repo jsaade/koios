@@ -1,16 +1,29 @@
 $(document).ready(function(){
+	
+	$(".main").fullPageHeight();
+	$(window).resize(function(){
+ 		$(".main").fullPageHeight();
+ 	});
+
 	initDeveloperConsole();
+	
 	//bind ajax forms
 	handleRemoteForms();
+
 	//application menu
 	$('#application-menu-btn').sidr({
 		source: '#application-side-menu-content'
 	});
+
 	//docs api nav
 	if($(".sidebar-nav").length)
 	{
 		$('body').scrollspy({ target: '.sidebar-nav' });
 	}
+
+	//news category nested sets 
+	initNestedNewsCategories();
+
 	//news category filter
 	if($("#news_category_filter").length)
 	{
@@ -24,6 +37,9 @@ $(document).ready(function(){
 			window.location.href=url;
 		})
 	}
+
+	//bootstrap tooltip 
+	$('[data-toggle="tooltip"]').tooltip({'placement': 'left'});
 })
 
 function handleRemoteForms()
@@ -51,6 +67,7 @@ function handleRemoteForms()
  * NEWS CATEGORIES MODULE *
  **************************/
 
+// add a category
 function updateNewsCategoriesList(response, form)
 {
 	if(response.errors)
@@ -65,11 +82,41 @@ function updateNewsCategoriesList(response, form)
 
 	$("#news-category-list").html(response.data);
 	$('input[name="name"]').val('');
+	initNestedNewsCategories();
 }
 
 function removeNewsCategory(response, form)
 {
-	$(form).closest('tr').fadeOut(750);
+	$(form).closest('li').fadeOut(750);
+}
+
+function initNestedNewsCategories()
+{
+	if($("#nestable").length)
+	{
+		$('#nestable').nestable({
+			'expandBtnHTML': '-',
+			'collapseBtnHTML': '+',
+			'group': 1,
+			'listNodeName': 'ul' 
+		})
+	    .on('change', sortCategories);
+	}	
+}
+
+function sortCategories(e)
+{
+   var str = window.JSON.stringify($('#nestable').nestable('serialize'));
+   var request_url = $("#sort-url").val();
+   console.log(str);
+   $.ajax({
+		url: request_url,
+		type: "POST",
+		data: { "json_string" : str},
+		success: function(data){
+			// ...
+		}
+	})
 }
 
 /***************
@@ -183,7 +230,19 @@ function getApiResponse(request_url, method)
 				 $("#response").JSONView(data);
 				 $("#response").removeClass('with-loader');
 			  }, 1000);
-
 		}
 	})
+}
+
+$.fn.fullPageHeight = function(){
+	
+	
+	_content_height = $("html").height(); 
+	_viewport_height = $(document).height();
+	_fill_height = _viewport_height - _content_height;
+
+	if(_fill_height > 0)
+	{
+		$(".main").height( ($(".main").height() + _fill_height) );
+	}
 }

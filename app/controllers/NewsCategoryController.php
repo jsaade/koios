@@ -12,8 +12,13 @@ class NewsCategoryController extends \BaseController {
 
 	public function index(Application $application)
 	{
-		$categories = $application->newsCategories;
-		return View::make('news_category.index')->withApplication($application)->withCategories($categories);
+		//$str = '[{"id":25,"children":[{"id":2,"children":[{"id":9},{"id":10}]},{"id":5,"children":[{"id":12}]},{"id":3,"children":[{"id":17}]},{"id":1}]}]';
+		//$array = json_decode($str, true);
+		//$array = NewsCategory::updateNestedSetOrder($array);
+		
+		$sortUrl = route('news-categories.sort', [$application->slug]);
+		$categories = NewsCategory::roots()->whereApplicationId($application->id)->get();
+		return View::make('news_category.index')->withApplication($application)->withCategories($categories)->withSortUrl($sortUrl);
 	}
 
 
@@ -26,7 +31,7 @@ class NewsCategoryController extends \BaseController {
 			if($this->news_category->isValid($input))
 			{
 				$this->news_category->create($input);
-				$categories = $application->newsCategories;
+				$categories = NewsCategory::roots()->whereApplicationId($application->id)->get();
 				$view = View::make('news_category.partials._list')->withCategories($categories)->withApplication($application);
 				$response = ['data' => $view->render()];
 				return Response::json($response);
@@ -59,12 +64,25 @@ class NewsCategoryController extends \BaseController {
 				->withErrors($this->news_category->errors);
 	}
 
+
 	public function destroy(Application $application, NewsCategory $news_category)
 	{
 		if(Request::ajax())
 		{
 			$news_category->delete();
 			$response = ['data' => "destroyed"];
+		}
+	}
+
+
+	public function sort(Application $application)
+	{
+		if(Request::ajax())
+		{
+			$input = Input::all();
+			$json = $input['json_string'];
+			$cats = json_decode($json, true);
+			NewsCategory::buildTree($cats);
 		}
 	}
 

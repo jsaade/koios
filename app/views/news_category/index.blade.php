@@ -15,8 +15,12 @@
 
 	<div class="row">
 		
-		<div class="col-md-6" id="news-category-list">
-			@include('news_category.partials._list')
+		<div class="col-md-6">
+			{{ Form::hidden('sort-url', $sort_url, ['id' => 'sort-url']) }}
+			<p>Drag and drop categories to change their hierarchy.</p>
+			<div id="news-category-list">
+				@include('news_category.partials._list')
+			</div>
 		</div>
 
 		<div class="col-md-4 pull-right">

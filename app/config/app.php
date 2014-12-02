@@ -123,7 +123,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
-		'Acme\Validation\ValidationExtensionServiceProvider'
+		'Acme\Validation\ValidationExtensionServiceProvider',
+		'Baum\BaumServiceProvider'
 	),
 
 	/*

@@ -74,6 +74,7 @@ Route::group(['before'=>'auth'], function()
 		Route::resource('contact-forms', 'ContactFormController');
 		Route::resource('news', 'NewsController');
 		Route::resource('news-categories', 'NewsCategoryController');
+		Route::post('news-categories/sort', [ 'as' => 'news-categories.sort' ,'uses' => 'NewsCategoryController@sort']);
 		Route::resource('questions', 'QuestionsController');
 	});
 
