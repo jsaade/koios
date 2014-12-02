@@ -31,6 +31,18 @@ class DbQuestionRepository extends DbRepos
 			$arr['id']          = $question->id;
 			$arr['description'] = $question->description;
 			$arr['thumb']       = $question->getImageThumbFullUrl();
+
+			$answers = $question->answers;
+			$arr['answers'] = [];
+			foreach($answers as $answer)
+			{
+				$tmp = [];
+				$tmp['id']			= $answer->id;
+				$tmp['description'] = $answer->description;
+				$tmp['is_correct']  = $answer->is_correct;
+				array_push($arr['answers'], $tmp);
+			}
+
 			$arr['api_url']     = route('api.questions.show', [$application->api_key, $question->id]);
 
 			array_push($output['data'], $arr);
