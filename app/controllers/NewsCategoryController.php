@@ -16,6 +16,7 @@ class NewsCategoryController extends \BaseController {
 		//$array = json_decode($str, true);
 		//$array = NewsCategory::updateNestedSetOrder($array);
 		
+		NewsCategory::rebuild();
 		$sortUrl = route('news-categories.sort', [$application->slug]);
 		$categories = NewsCategory::roots()->whereApplicationId($application->id)->get();
 		return View::make('news_category.index')->withApplication($application)->withCategories($categories)->withSortUrl($sortUrl);
