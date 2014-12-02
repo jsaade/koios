@@ -31,6 +31,7 @@ class DbQuestionRepository extends DbRepos
 			$arr['id']          = $question->id;
 			$arr['description'] = $question->description;
 			$arr['thumb']       = $question->getImageThumbFullUrl();
+			$arr['image'] 	    = $question->getImageFullUrl();
 
 			$answers = $question->answers;
 			$arr['answers'] = [];
