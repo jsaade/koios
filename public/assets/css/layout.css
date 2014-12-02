@@ -4,8 +4,7 @@ body
 	font-size: 13px;
 	/*background-color: #f7f7f7;*/
 	background-image: url(../images/tmp.jpg);
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
+	background-repeat: repeat;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 300;
 }
