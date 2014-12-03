@@ -9,12 +9,13 @@ class DbNewsRepository extends DbRepos
 	 * @param  Appliaction $application 
 	 * @return Array
 	 */
-	public function getAll($application, $limit, $page, $category_id = null, $return = "array")
+	public function getAll($application, $limit, $page, $category_id = null, $return = "array", $fields=null)
 	{
 		$output = ['data' => [], 'pages' => []];
-		
+	
 		if(!$limit) $limit = 25;
 		if(!$page) $page = 1;
+		if(!$fields) $fields='id,name,category,thumb,caption,created_at,api_url';
 
 		$news = News::with('newsCategory')->where('application_id', $application->id);
 		if($category_id)
@@ -28,13 +29,22 @@ class DbNewsRepository extends DbRepos
 
 		foreach($news as $n)
 		{
+			//get all fields from db 
 			$arr['id'] 		    = $n->id;
 			$arr['name'] 	    = $n->name;
 			$arr['category']    = $n->news_category->name;
-			$arr['thumb']       = $n->getImageThumbFullUrl();
 			$arr['caption'] 	= $n->caption;
+			$arr['description'] = $n->description;
+			$arr['thumb']       = $n->getImageThumbFullUrl();
+			$arr['image']       = $n->getImageFullUrl();
 			$arr['created_at']  = $n->created_at;
 			$arr['api_url']     = route('api.news.show', [$application->api_key, $n->id]);
+
+			//check with fields 
+			$fields_arr = explode(",", $fields);
+			$fields_arr = array_flip($fields_arr);
+			$arr = array_intersect_key($arr, $fields_arr);
+
 			array_push($output['data'], $arr);
 		}
 

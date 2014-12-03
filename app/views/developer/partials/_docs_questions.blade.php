@@ -13,6 +13,21 @@ Host: koios.mercury.me
 Content-Type: application/json; charset=utf-8
 </code>
 </pre>
+
+<p>
+	the returned fields can be filtered simply by passing <strong>?fields=</strong> query string.<br/>
+	For example, <strong>?fields=id,description,image</strong> will only return the 3 fields set.<br/>
+	The available options for the fields parameter are:
+	<ul>
+		<li>id</li>
+		<li>description</li>
+		<li>thumb</li>
+		<li>image</li>
+		<li>answers</li>
+		<li>api_url</li>
+	</ul>
+</p>
+
 <p>Note: Adding <strong>?rand=1</strong> will select random questions</p>
 
 	<!-- single question -->

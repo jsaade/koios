@@ -19,9 +19,11 @@ class ApiNewsController extends \ApiController {
 	// Gets the list of news
 	public function index(Application $application)
 	{
-		$limit = Input::get('limit');
-		$page = Input::get('page');
-		$news = $this->newsRepos->getAll($application, $limit, $page);
+		$limit  = Input::get('limit');
+		$page   = Input::get('page');
+		$fields = Input::get('fields');
+
+		$news = $this->newsRepos->getAll($application, $limit, $page, null, 'array', $fields);
 		return $this->respondOk($this->newsApiParser->parseCollection($news));
 	}
 
@@ -30,7 +32,9 @@ class ApiNewsController extends \ApiController {
 	{
 		$limit = Input::get('limit');
 		$page = Input::get('page');
-		$news = $this->newsRepos->getAll($application, $limit, $page, $newsCategory->id);
+		$fields = Input::get('fields');
+		
+		$news = $this->newsRepos->getAll($application, $limit, $page, $newsCategory->id, 'array', $fields);
 		return $this->respondOk($this->newsApiParser->parseCollection($news));
 	}
 

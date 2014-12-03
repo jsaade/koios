@@ -13,6 +13,22 @@ Content-Type: application/json; charset=utf-8
 </code>
 </pre>
 
+<p>
+	the returned fields can be filtered simply by passing <strong>?fields=</strong> query string.<br/>
+	For example, <strong>?fields=id,name,category</strong> will only return the 3 fields set.<br/>
+	The available options for the fields parameter are:
+	<ul>
+		<li>id</li>
+		<li>name</li>
+		<li>category</li>
+		<li>caption</li>
+		<li>description</li>
+		<li>thumb</li>
+		<li>image</li>
+		<li>created_at</li>
+		<li>api_url</li>
+	</ul>
+</p><br/>
 
 	<!-- single news -->
 	<h5>List single news</h5>

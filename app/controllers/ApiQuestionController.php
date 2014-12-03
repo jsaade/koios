@@ -22,7 +22,9 @@ class ApiQuestionController extends \ApiController {
 		$limit = Input::get('limit');
 		$page = Input::get('page');
 		$rand = Input::get('rand');
-		$questions = $this->questionRepos->getAll($application, $limit, $page, $rand);
+		$fields = Input::get('fields');
+
+		$questions = $this->questionRepos->getAll($application, $limit, $page, $rand, $fields);
 		return $this->respondOk($this->questionApiParser->parseCollection($questions));
 	}
 

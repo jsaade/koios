@@ -5,12 +5,16 @@ class QuestionApiParser extends ApiParser
 
 	public function parse($question)
 	{
-		//common fields between methods in the news repos
-		$output = [
-			'id'   => (int) $question['id'],
-			'description' => $question['description'],
-			'thumb' => $question['thumb']
-		];
+		$output = [];
+		
+		if(array_key_exists('id', $question))
+			 $output['id'] = (int) $question['id'];
+
+		if(array_key_exists('description', $question))
+			 $output['description'] = $question['description'];
+
+		if(array_key_exists('thumb', $question))
+			 $output['thumb'] = $question['thumb'];
 
 		if(array_key_exists('image', $question))
 			 $output['image'] = $question['image'];

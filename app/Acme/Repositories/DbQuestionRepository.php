@@ -10,12 +10,13 @@ class DbQuestionRepository extends DbRepos
 	 * @param  Appliaction $application 
 	 * @return Array
 	 */
-	public function getAll($application, $limit, $page, $rand = 0)
+	public function getAll($application, $limit, $page, $rand = 0, $fields = null)
 	{
 		$output = ['data' => [], 'pages' => []];
 		
-		if(!$limit) $limit = 25;
-		if(!$page) $page = 1;
+		if(!$limit)  $limit = 25;
+		if(!$page)   $page = 1;
+		if(!$fields) $fields = 'id,description,thumb,image,answers,api_url';
 
 		$questions = $application->questions();
 
@@ -43,8 +44,12 @@ class DbQuestionRepository extends DbRepos
 				$tmp['is_correct']  = $answer->is_correct;
 				array_push($arr['answers'], $tmp);
 			}
-
 			$arr['api_url']     = route('api.questions.show', [$application->api_key, $question->id]);
+
+			//check with fields 
+			$fields_arr = explode(",", $fields);
+			$fields_arr = array_flip($fields_arr);
+			$arr = array_intersect_key($arr, $fields_arr);
 
 			array_push($output['data'], $arr);
 		}
