@@ -14,7 +14,7 @@ class AddNestedFieldsToNewsCategoryTable extends Migration {
 	{
 		Schema::table('news_category', function(Blueprint $table)
 		{
-			$table->integer('parent_id')->nullable()->index()->before('created_at');
+			$table->integer('parent_id')->nullable()->index()->after('created_at');
 		    $table->integer('lft')->nullable()->index()->before('created_at');
 		    $table->integer('rgt')->nullable()->index()->before('created_at');
 		    $table->integer('depth')->nullable()->before('created_at');

@@ -2,10 +2,10 @@
 
 class NewsCategory extends Baum\Node {
 	protected $table = 'news_category';
-	protected $fillable = ['name', 'application_id'];
+	protected $fillable = ['name', 'application_id', 'order'];
 	//baum related 
 	protected $scoped = array('application_id');
-	//protected $orderColumn = "name";
+	protected $orderColumn = "order";
 
 	/*****************
 	 * RELATIONSHIPS *

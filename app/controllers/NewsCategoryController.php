@@ -12,10 +12,6 @@ class NewsCategoryController extends \BaseController {
 
 	public function index(Application $application)
 	{
-		//$str = '[{"id":25,"children":[{"id":2,"children":[{"id":9},{"id":10}]},{"id":5,"children":[{"id":12}]},{"id":3,"children":[{"id":17}]},{"id":1}]}]';
-		//$array = json_decode($str, true);
-		//$array = NewsCategory::updateNestedSetOrder($array);
-		
 		$sortUrl = route('news-categories.sort', [$application->slug]);
 		$categories = NewsCategory::roots()->whereApplicationId($application->id)->get();
 		return View::make('news_category.index')->withApplication($application)->withCategories($categories)->withSortUrl($sortUrl);
@@ -82,6 +78,18 @@ class NewsCategoryController extends \BaseController {
 			$input = Input::all();
 			$json = $input['json_string'];
 			$cats = json_decode($json, true);
+			
+			//buildTree() not working moving back a node as root (parent null)
+			//had to do it manually
+			foreach($cats as $key => $val)
+			{
+				$category = NewsCategory::findOrFail($val['id']);
+				$category->makeRoot();
+			}
+			
+			//update the sort order
+			$cats = NewsCategory::updateNestedSetOrder($cats);
+			//build tree
 			NewsCategory::buildTree($cats);
 		}
 	}

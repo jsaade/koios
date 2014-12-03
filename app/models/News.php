@@ -95,7 +95,7 @@ class News extends \Eloquent {
 			$image = Image::make($uploaded_image->getRealPath()); 
 			$filename = $uploaded_image->getClientOriginalName();
 			$image->save($this->getUploadsPath().$filename)
-				  ->resize(30, 30)
+				  ->resize(87, 115)
 				  ->save($this->getUploadsPath()."30-".$filename);
 
 			$this->update(['image' => $filename]);
