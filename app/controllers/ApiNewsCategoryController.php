@@ -14,7 +14,7 @@ class ApiNewsCategoryController extends \ApiController {
 	}
 
 
-	// Gets the list of news
+	// Gets the list of news categories
 	public function index(Application $application)
 	{
 		$limit = Input::get('limit');

@@ -9,7 +9,8 @@ class NewsCategoryApiParser extends ApiParser
 		$output = [
 			'id'   => (int) $newsCategory['id'],
 			'name' => $newsCategory['name'],
-			'totalNews' => $newsCategory['nb_news']
+			'totalNews' => $newsCategory['nb_news'],
+			'children' => $newsCategory['children']
 		];
 
 		return $output;

@@ -45,23 +45,23 @@ class NewsCategory extends Baum\Node {
 	/***************
 	 * NESTED SETS *
 	 ***************/
-	public function renderNode($node) 
+	public function renderNode($news_category) 
 	{
 	  $data = [];
-	  $data['category']    = $node;
-	  $data['id']    = $node->id;
-	  $data['name']  = $node->name;
-	  $data['count'] = $count = $node->news->count();
-	  $data['url']   = route('application.{application}.news.index', [$node->application->slug, 'category' => $node->id]);
+	  $data['category']    = $news_category;
+	  $data['id']    = $news_category->id;
+	  $data['name']  = $news_category->name;
+	  $data['count'] = $count = $news_category->news->count();
+	  $data['url']   = route('application.{application}.news.index', [$news_category->application->slug, 'category' => $news_category->id]);
 	  $data['title'] = "This category has {$count} news.";
 	 
-	  echo "<li class='dd-item dd3-item' data-id='{$node->id}'>";
+	  echo "<li class='dd-item dd3-item' data-id='{$news_category->id}'>";
 	  echo "<div class='dd-handle dd3-handle'>drag</div>";
-	  echo "<div class='dd3-content'>".View::make('news_category.partials._list_row')->withData($data)->withApplication($node->application)->render()."</div>";
+	  echo "<div class='dd3-content'>".View::make('news_category.partials._list_row')->withData($data)->withApplication($news_category->application)->render()."</div>";
 
-	  if ( $node->children()->count() > 0 ) {
+	  if ( !$news_category->isLeaf() > 0 ) {
 	    echo "<ul class='dd-list'>";
-	    	foreach($node->children as $child) $this->renderNode($child);
+	    	foreach($news_category->children as $child) $this->renderNode($child);
 	    echo "</ul>";
 	  }
 	  echo "</li>";
@@ -82,5 +82,21 @@ class NewsCategory extends Baum\Node {
 	}
 
 
+	/* used in the api news category */
+	public function getRecursiveDescendants()
+	{
+	    $output = [];
+	    $descendants = $this->getImmediateDescendants();
+
+		foreach($descendants as $descendant)
+		{
+			$arr['id'] = $descendant->id;
+			$arr['name'] = $descendant->name;
+			$arr['nb_news'] = $descendant->news->count();
+			$arr['children'] = $descendant->getRecursiveDescendants();
+			array_push($output, $arr);
+		}
+		return $output;
+	}
 
 }
