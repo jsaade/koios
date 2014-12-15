@@ -124,7 +124,8 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'Acme\Validation\ValidationExtensionServiceProvider',
-		'Baum\BaumServiceProvider'
+		'Baum\BaumServiceProvider',
+		'Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider'
 	),
 
 	/*
@@ -191,7 +192,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'Image'           => 'Intervention\Image\Facades\Image'
+		'Image'           => 'Intervention\Image\Facades\Image',
+		'PushNotification' => 'Davibennun\LaravelPushNotification\Facades\PushNotification'
 	),
 
 );
