@@ -46,7 +46,7 @@ class DbSubscriberRepository extends DbRepos
 	 */
 	public function find($id)
 	{
-		$subscriber = Subscriber::with('devices')->with('profile')->findOrFail($id);
+		$subscriber = Subscriber::with('devices')->with('profile')->with('game_metas')->findOrFail($id);
 		$output = [];
 
 		$output['id']			= $subscriber->id;
@@ -77,6 +77,21 @@ class DbSubscriberRepository extends DbRepos
 				$arr['token']     = $device->token;
 				array_push($output['devices'], $arr);
 			}
+		}
+
+		$output['game_info'] = [];
+		$output['game_info']['score']  = $subscriber->score;
+		$output['game_info']['level']  = $subscriber->level;
+
+		$output['game_info']['metas'] = [];
+		if(count($subscriber->game_metas))
+		{
+			$arr = [];
+			foreach($subscriber->game_metas as $meta)
+			{
+				$arr[$meta->meta_key] = $meta->meta_value;
+			}
+			array_push($output['game_info']['metas'], $arr);
 		}
 		
 

@@ -11,7 +11,7 @@ class Device extends \Eloquent {
 	public static $rules = [
 		'model'  => 'required',
 		'os'     => 'required',
-		'token'  => 'required',
+		'token'  => 'required|device_token_unique_per_subscriber',
 		'subscriber_id' => 'required|exists:subscriber,id'
 	];
 

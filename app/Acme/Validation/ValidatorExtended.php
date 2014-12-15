@@ -4,20 +4,22 @@ namespace Acme\Validation;
 use Illuminate\Validation\Validator as IlluminateValidator;
 use Subscriber;
 use GameMeta;
+use Device;
 
 class ValidatorExtended extends IlluminateValidator 
 {
 	
     protected $validation_messages = array(
         //Question Validation
-        "answers_required" => "The answers for this question are required.",
-        "correct_answer_required" => "One answer should be set as correct.",
+        "answers_required"                   => "The answers for this question are required.",
+        "correct_answer_required"            => "One answer should be set as correct.",
         //Subscriber Validation
-        "username_unique_per_app" => "The username is already taken.",
-        "email_unique_per_app" => "The email is already taken.",
-        "facebook_id_or_password_required" => "One of the password or facebook_id fields is required.",
+        "username_unique_per_app"            => "The username is already taken.",
+        "email_unique_per_app"               => "The email is already taken.",
+        "facebook_id_or_password_required"   => "One of the password or facebook_id fields is required.",
         //subscriber Game Meta Keys 
-        "metakey_unique_per_subscriber" => "The meta key already exists for this subscriber"
+        "metakey_unique_per_subscriber"      => "The meta key already exists for this subscriber",
+        "device_token_unique_per_subscriber" => "The device token already exists for this subscriber",
     );
     protected $input = [];
  
@@ -114,12 +116,32 @@ class ValidatorExtended extends IlluminateValidator
      */
     protected function validateMetakeyUniquePerSubscriber($attribute, $value)
     {
-        $meta = GameMeta::whereSubscriberId($this->input['subscriber_id'])->first();
+        $meta_key = $this->input['meta_key'];
+        $meta = GameMeta::whereSubscriberId($this->input['subscriber_id'])->whereMetaKey($meta_key)->first();
         if($meta)
             return false;
 
         return true;
     }
+
+
+    /**
+     * Validates that the device token is unique for this app
+     * @param  [type] $attribute [description]
+     * @param  [type] $value     [description]
+     * @return [type]            [description]
+     */
+    protected function validateDeviceTokenUniquePerSubscriber($attribute, $value)
+    {
+        $subscriber_id   = $this->input['subscriber_id'];
+        $token = $this->input['token'];
+
+        $device = Device::whereToken($token)->whereSubscriberId($subscriber_id)->first();
+        if($device)
+            return false;
+
+        return true;
+    }    
 }
 
 ?>

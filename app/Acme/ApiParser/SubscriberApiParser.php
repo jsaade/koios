@@ -41,6 +41,9 @@ class SubscriberApiParser extends ApiParser
 	 	if(array_key_exists('api_url', $subscriber))
 	 		$output['url'] = $subscriber['api_url'];
 
+	 	if(array_key_exists('game_info', $subscriber))
+	 		$output['game_info'] = $this->parseGameInfo( $subscriber['game_info'] );
+
 	
 
 		return $output;
@@ -76,6 +79,17 @@ class SubscriberApiParser extends ApiParser
 			];
 		}, $devices);
 	}
+
+
+	public function parseGameInfo($game_info)
+	{
+		return [ 
+			'score' => (int) $game_info['score'],
+			'level' => (int) $game_info['level'],
+			'metas' => $game_info['metas']
+		];
+	}
+
 
 }
 
