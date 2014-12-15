@@ -262,7 +262,7 @@ class DbSubscriberRepository extends DbRepos
 		$subscribers = DB::table('subscriber')
 					 ->join('game_meta', 'subscriber.id', '=', 'game_meta.subscriber_id')
 					 ->leftJoin('subscriber_profile', 'subscriber.id', '=', 'subscriber_profile.subscriber_id')
-                     ->select(DB::raw("subscriber.id, subscriber.username, subscriber_profile.first_name, subscriber_profile.last_name, subscriber_profile.image,subscriber_profile.facebook_id, CAST(meta_value AS ".$cast.") meta_value_cast"))
+                     ->select(DB::raw("subscriber.id, subscriber.username, subscriber_profile.first_name, subscriber_profile.last_name, subscriber_profile.image, CAST(meta_value AS ".$cast.") meta_value_cast"))
                      ->where('application_id', '=', $application->id)
                      ->where('meta_key', '=', $meta_key)
                      ->orderBy('meta_value_cast', $sort)
@@ -278,7 +278,6 @@ class DbSubscriberRepository extends DbRepos
 			$arr['profile']['first_name'] = $subscriber->first_name;
 			$arr['profile']['last_name'] = $subscriber->last_name;
 			$arr['profile']['image'] = $subscriber->image;
-			$arr['profile']['facebook_id'] = $subscriber->facebook_id;
 
 			array_push($output['data'], $arr);
 		}
