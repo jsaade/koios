@@ -1,6 +1,7 @@
 <?php
 namespace Acme\Repositories;
 use News;
+use newsCategory;
 
 class DbNewsRepository extends DbRepos
 {
@@ -12,14 +13,26 @@ class DbNewsRepository extends DbRepos
 	public function getAll($application, $limit, $page, $category_id = null, $return = "array", $fields=null)
 	{
 		$output = ['data' => [], 'pages' => []];
-	
+		$cat_ids = [];
+
 		if(!$limit) $limit = 25;
 		if(!$page) $page = 1;
 		if(!$fields) $fields='id,name,category,thumb,caption,created_at,api_url';
 
 		$news = News::with('newsCategory')->where('application_id', $application->id);
+		
 		if($category_id)
-			$news = $news->where('news_category_id', $category_id);
+		{
+			array_push($cat_ids, $category_id);
+			$news_category = NewsCategory::findOrFail($category_id);
+			$descendants = $news_category->getDescendants();
+			if($descendants->count())
+			{
+				foreach($descendants as $descendant)
+					array_push($cat_ids, $descendant->id);
+			}
+			$news = $news->whereIn('news_category_id',  $cat_ids);
+		}
 
 		$news = $news->orderBy('created_at', 'desc');
 		$news = $news->paginate($limit);
