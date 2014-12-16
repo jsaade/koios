@@ -2,7 +2,7 @@
 
 class Application extends \Eloquent {
 	protected $table = 'application';
-	protected $fillable = ['name', 'description', 'image', 'slug', 'api_key', 'api_secret', 'client_id'];
+	protected $fillable = ['name', 'description', 'image', 'slug', 'api_key', 'api_secret', 'client_id', 'ios_password', 'ios_certificate', 'android_api_key'];
 
 	/*****************
 	 * RELATIONSHIPS *
@@ -102,5 +102,35 @@ class Application extends \Eloquent {
 			return true;
 
 		return false;
+	}
+
+
+	/********************
+	 * Application Cert *
+	 ********************/
+	public function upload_certificate($uploaded_cert)
+	{
+		$destinationPath = $this->getUploadsPath();
+		$filename = $uploaded_cert->getClientOriginalName();
+		
+		$uploaded_cert->move($destinationPath, $filename);
+		return $filename;
+	}
+
+	public function getCertificateName()
+	{
+		$cert = explode("/", $this->ios_certificate);
+		return $cert[count($cert) - 1];
+	}
+	
+	public function updateCertificatesConfig()
+	{
+		//Config::set("laravel-push-notification::hello", 'allo');
+		//dd(Config::get("laravel-push-notification::hello"));
+		//update ios config
+		//Config::set("laravel-push-notification::".$this->slug."_IOS", [
+		//	 'environment' => 'production',
+		//	 'passPhrase'  =>  $this->ios_password
+		//]);
 	}
 }

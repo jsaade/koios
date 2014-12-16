@@ -40,13 +40,15 @@ h1
 	bottom: 0;
 	text-align: center;
 	z-index: 999999;
+	padding-top: 7px;
+	height: 40px;
 }
 #forge-footer a 
 {
 	text-transform: uppercase;
 	color: #666;
 	margin: 10px;
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 400;
 }
 
@@ -74,7 +76,7 @@ span.panel-heading-links i
 
 
 /** NAVBAR */
-.-brand img
+.navbar-brand img
 {
 	height: 55px;
 	padding: 15px;

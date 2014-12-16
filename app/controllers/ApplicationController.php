@@ -142,4 +142,26 @@ class ApplicationController extends \BaseController {
 		//
 	}
 
+	public function certificates(Application $application)
+	{
+		$this->application = $application;
+		$input = Input::all(); //post data
+		$uploaded_cert = Input::file('ios_certificate');
+
+		$this->application->update([
+			'ios_password' => $input['ios_password'],
+			'android_api_key' => $input['android_api_key'] 
+		]);
+
+		//upload the image if provided and save it in db
+		if($uploaded_cert)
+		{
+			$filename = $this->application->upload_certificate($uploaded_cert);
+			$this->application->update(['ios_certificate' => $this->application->getUploadsRelativeUrl().$filename]);
+		}	
+
+		$this->application->updateCertificatesConfig();
+		return Redirect::route('application.show', $this->application->slug);	
+	}
+
 }

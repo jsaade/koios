@@ -28,7 +28,7 @@
 				    	</a>
 				    </li>
 				    <li role="presentation">
-				    	<a href="#profile" aria-controls="scheduler" role="tab" data-toggle="tab">
+				    	<a href="#scheduler" aria-controls="scheduler" role="tab" data-toggle="tab">
 				    		<i class="icon-fixed-width  icon-time"></i>
 				    		Scheduler
 				    	</a>
@@ -44,7 +44,7 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 				    <div role="tabpanel" class="tab-pane active" id="certificates">
-				    	...
+				    	@include('application.partials._certificates_form')
 				    </div>
 				    <div role="tabpanel" class="tab-pane" id="scheduler">
 				    	...

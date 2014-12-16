@@ -75,11 +75,13 @@ Route::group(['before'=>'auth'], function()
 		Route::resource('news', 'NewsController');
 		Route::resource('news-categories', 'NewsCategoryController');
 		Route::post('news-categories/sort', [ 'as' => 'news-categories.sort' ,'uses' => 'NewsCategoryController@sort']);
+		Route::post('certificates', ['as' => 'application.certificates', 'uses' => 'ApplicationController@certificates']);
 		Route::resource('questions', 'QuestionsController');
 	});
 
     //Application routing
 	Route::resource('application', 'ApplicationController');
+
 	//Developer routing
 	Route::get('developer/api', 'DeveloperController@api');
 	Route::get('developer/console', 'DeveloperController@console');
