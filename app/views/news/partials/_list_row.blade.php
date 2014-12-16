@@ -11,7 +11,7 @@
 	<td>{{ $single_news->newsCategory->name }}</td>
 	<td align=center>
 		@if($single_news->send_notification)
-			<img src="{{ asset('assets/images/check.png') }}" />
+			<i class="icon-fixed-width  icon-check-sign"></i>
 		@endif 
 	</td>
 	<td>

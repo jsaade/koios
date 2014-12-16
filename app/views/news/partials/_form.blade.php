@@ -1,39 +1,59 @@
-<ul class="form-handler">
-	<p class="form-title no-mt">General Information</p>
-	{{ Form::hidden('application_id', $application->id ) }}
-	<li>
-		{{ Form::text('name', null, [ 'class' => 'form-control', 'placeholder' => 'Enter news title'] ) }}
-	</li>
+<div class="forge-heading">
+	<h5>General Information</h5>
+</div>
 
-	<li>
-		{{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'Enter news description']) }}
-	</li>
+{{ Form::hidden('application_id', $application->id ) }}
 
-	<li>
-		{{ Form::textarea('caption', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'Enter news small caption']) }}
-	</li>
 
-	<li>
+<div class="form-group">
+	<label class="col-sm-3 control-label" for="name">Title</label>
+	<div class="col-sm-6">
+		{{ Form::text('name', null, [ 'class' => 'form-control', 'id' => 'name'] ) }}
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-3 control-label" for="description">Description</label>
+	<div class="col-sm-6">
+		{{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => '3', 'id' => 'description']) }}
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-3 control-label" for="caption">Caption</label>
+	<div class="col-sm-6">
+		{{ Form::textarea('caption', null, ['class' => 'form-control', 'rows' => '3', 'id' => 'caption']) }}
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-3 control-label" for="news_category_id">Category</label>
+	<div class="col-sm-6">
 		{{ Form::select(
 			'news_category_id', 
 			['0' => 'Select news category'] + $news_categories, 
 			isset($news)?$news->news_category_id:null, 
-			['class' => 'form-control']
-		) }}
-	</li>
+			['class' => 'form-control', 'id' => 'news_category_id']
+		) }}	
+	</div>
+</div>
 
-	<p class="form-title">Upload news image:</p>
-	<li>
-		{{ Form::file('image','',array('id'=>'','class'=>'')) }}
-	</li>
 
-	<p class="form-title">Push Notification</p>
-	<li>
-		{{ Form::checkbox('send_notification', 1, null, ['class' => 'field']) }}
-		Send this news as push notification 
-	</li>
+<div class="form-group">
+	<label class="col-sm-3 control-label" for="image">Image</label>
+	<div class="col-sm-6">
+		{{ Form::file('image','',array('id'=>'image','class'=>'')) }}
+	</div>
+</div>
 
-	<li>
-		<br/>{{ Form::submit('Save News', ['class' => 'btn btn-primary']) }}
-	</li>
-</ul>
+<div class="form-group">
+	<label class="col-sm-3 control-label" for="send_notification">Send Push Notification</label>
+	<div class="col-sm-6">
+		{{ Form::checkbox('send_notification', 1, isset($news->send_notification)? true : null, ['class' => 'field', 'id' => 'send_notification']) }}
+	</div>
+</div>
+
+
+<div class="form-submit">
+	{{ Form::submit('Save News', ['class' => 'btn btn-primary']) }}
+</div>

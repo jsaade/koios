@@ -25,11 +25,16 @@ h1
 	font-size: 30px;
 	margin-top: 20px;
 }
+.centered
+{
+	text-align: center;
+}
 
 
 /** PANELS  */
 span.panel-heading-links,
-span.panel-heading-links a
+span.panel-heading-links a,
+span.panel-heading-links i
 {
 	color: #ddd;
 	display: block;
@@ -41,6 +46,10 @@ span.panel-heading-links a
 div.panel-body 
 {
 	padding-top: 0;
+}
+span.panel-heading-links i
+{
+	margin-left: 20px;
 }
 
 
@@ -122,4 +131,33 @@ div.form-submit
 {
 	width: 100%;
 	text-align: center;
+}
+
+
+/** TABLES */
+th.actions 
+{
+	
+}
+table td form 
+{
+	display: inline-block;
+}
+table td  img 
+{
+	height: 20px;
+}
+div.filter-news 
+{
+	margin-bottom: 20px;
+}
+td .btn-xs,
+div.dd3-content .btn-xs
+{
+	font-size: 11px;
+	margin-right: 10px;
+}
+table td 
+{
+	font-size: 13px;
 }

@@ -32,7 +32,7 @@
 			    <li class="divider"></li>
 			    <li>
 			    	<a href="{{ route('application.{application}.news-categories.index', $application->slug) }}">
-			    		<i class="i"></i> Manage Categories
+			    		<i class="icon-fixed-width  icon-paper-clip"></i> Manage Categories
 			    	</a>
 			    </li>
 			</ul>
