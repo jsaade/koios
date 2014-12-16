@@ -1,13 +1,12 @@
-<div class="container header-bar">
-	<div class="col-md-12">
-		<div class="col-md-3">
-			<a href='/' class="home"></a>
-		</div>
-		<div class="col-md-3 credentials pull-right">
-			@if($currentUser)
-				{{ $currentUser->first_name }} {{ $currentUser->last_name }} 
-				<a href="/logout">logout</a>
-			@endif
-		</div>
-	</div>
-</div>
+@if($currentUser)
+	<ul class="nav navbar-nav navbar-right">
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				{{ $currentUser->first_name }} {{ $currentUser->last_name }} <b class="caret"></b>
+				<ul class="dropdown-menu">
+					<li><a href="/logout"><i class="icon-signout"></i>Logout</a></li>
+				</ul>
+			</a>
+		</li>
+	</ul>
+@endif

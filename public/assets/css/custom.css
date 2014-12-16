@@ -1,0 +1,125 @@
+/** COMMON */
+body 
+{
+	font-family: Lato,Arial,sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #333;
+	background-color: #fff;
+	font-weight: 300;
+	height: 100%;
+}
+#bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	min-height: 100%;
+	z-index: -1000;
+}
+h1 
+{
+	color: #34495e;
+	font-weight: 300;
+	margin-bottom: 25px;
+	font-size: 30px;
+	margin-top: 20px;
+}
+
+
+/** PANELS  */
+span.panel-heading-links,
+span.panel-heading-links a
+{
+	color: #ddd;
+	display: block;
+	float: right;
+	font-size: 13px;
+	line-height: 53px;
+	text-transform: uppercase;
+}
+div.panel-body 
+{
+	padding-top: 0;
+}
+
+
+/** NAVBAR */
+.navbar-brand img
+{
+	height: 55px;
+	padding: 15px;
+	margin-top: 3px;
+}
+.application-menu
+{
+  margin-left: 20px;
+}
+.application-menu li img 
+{
+  height: 20px;
+}
+.dropdown-menu  li.application-name  a 
+{
+  color: #000;
+  font-weight: 400;
+}
+.dropdown-menu > li > a {
+  color:#777;
+  font-size: 12px;
+  font-weight: normal;
+}
+.dropdown i 
+{
+  margin-right: 3px;
+}
+
+
+/** Application Card */
+.application-card
+{
+	margin-bottom: 10px;
+	/*background-color: #f9f9f9;*/
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.application-card .app-title
+{
+	font-weight: 400;
+	color: #000;
+}
+.application-card span 
+{
+	color: #000;
+	font-size: 12px;
+}
+.application-card img 
+{
+	width: 100%;
+}
+.application-card .api code 
+{
+	color: green;
+}
+
+
+/** FORMS  */
+.form-checkbox-group
+{
+	margin-bottom: 10px;
+}
+.form-checkbox-group strong 
+{
+	font-weight: 400;
+	font-size: 13px;
+}
+.form-checkbox-group span.field-desc
+{
+	font-size: 12px;
+	font-weight: 300;
+}
+div.form-submit
+{
+	width: 100%;
+	text-align: center;
+}

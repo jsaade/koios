@@ -1,7 +1,6 @@
-<div class="{{ (isset($fullcard))?'col-md-12':'col-md-6' }}">
-	<div class="app-card">
-		{{ HTML::linkAction('ApplicationController@edit', '', [$application->slug], ['class' => 'app-card-edit pull-right']) }}
-		<div class="app-card-image {{ (isset($fullcard))?'col-md-2':'col-md-3' }}">
+<div class="col-sm-6 application-card">
+	<div class="row">
+		<div class="col-sm-3 ">
 			@if ($application->image)
 				<a href="{{ route('application.show', $application->slug) }}">
 					<img src="{{ asset($application->image) }}" />
@@ -12,21 +11,17 @@
 				</a>
 			@endif
 		</div>
-		<div class="app-card-info {{ (isset($fullcard))?'col-md-10':'col-md-9' }}">
-			<h5 class="app-title">
-				<a href="{{ route('application.show', $application->slug) }}">
-					{{ $application->name }}
-				</a>
-			</h5>
+		<div class="col-sm-9">
+			<a href="{{ route('application.show', $application->slug) }}" class="app-title">{{ $application->name }}</a>
 			<p><a href="{{ route('application.show', $application->slug) }}">{{ $application->description }}</a></p>
-			<p class="no-mb">
-				<strong>api key:</strong>
+			<span>
+				api key:
 				<div class="api"><code>{{ $application->api_key }}</code></div>
-			</p>
-			<p class="no-mb">
-				<strong>api secret:</strong>
+			</span>
+			<span>
+				api secret:
 				<div class="api"><code>{{ $application->api_secret }}</code></div>
-			</p>
+			</span>
 		</div>
 	</div>
 </div>

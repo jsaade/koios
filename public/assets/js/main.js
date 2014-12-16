@@ -1,9 +1,4 @@
 $(document).ready(function(){
-	
-	$(".main").fullPageHeight();
-	$(window).resize(function(){
- 		$(".main").fullPageHeight();
- 	});
 
 	initDeveloperConsole();
 	
@@ -234,15 +229,3 @@ function getApiResponse(request_url, method)
 	})
 }
 
-$.fn.fullPageHeight = function(){
-	
-	
-	_content_height = $("html").height(); 
-	_viewport_height = $(document).height();
-	_fill_height = _viewport_height - _content_height;
-
-	if(_fill_height > 0)
-	{
-		$(".main").height( ($(".main").height() + _fill_height) );
-	}
-}

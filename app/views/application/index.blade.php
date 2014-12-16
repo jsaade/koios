@@ -1,32 +1,32 @@
 @extends('layouts.default')
 
 @section('content')
-	<div class="row">
-		<div class="col-md-12">
-			<h1>
-				Applications List
-				{{ HTML::linkAction('ApplicationController@create', 'Create Application', [], ['class' => 'btn btn-primary pull-right']) }}
-			</h1>
-		</div>
-	</div>
+	<h1>
+		Applications List
+	</h1>
 
 	@if (!count($clients))
-		<div class="row">
-			<div class="col-md-12 centered">
-				<p class="unfortunate">You haven't created any application yet :(</p>
-				{{ HTML::linkAction('ApplicationController@create', 'Create One Now', [], ['class' => 'btn btn-primary centered']) }}
-			</div>
-		</div>
+		<p class="unfortunate">You haven't created any application yet :(</p>
+		{{ HTML::linkAction('ApplicationController@create', 'Create One Now', [], ['class' => 'btn btn-primary centered']) }}
 	@else
 		@foreach($clients as $client)
-			<div class="row">
-				<div class="col-md-12">
-					<h3>{{ $client->name }}</h3>
-				</div>
-				@foreach($client->applications as $application)
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="pull-left">{{ $client->name }}</div>
+					<div class="pull-right">
+						<span class="panel-heading-links">
+							<i class="icon-fixed-width  icon-plus-sign"></i>
+							{{ HTML::linkAction('ApplicationController@create', 'Create Application', [], ['class' => '']) }}
+						</span>
+					</div>
+					<div class="clearfix"></div>
+				</div> <!-- end heading -->
+				<div class="panel-body">
+					@foreach($client->applications as $application)
 						@include('application.partials._application_card')
-				@endforeach
+					@endforeach
+				</div> <!-- end body -->
 			</div>
-		@endforeach
+		@endforeach			
 	@endif
 @stop
