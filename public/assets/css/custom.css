@@ -29,6 +29,26 @@ h1
 {
 	text-align: center;
 }
+.main 
+{
+	padding-bottom: 40px;
+}
+#forge-footer
+{
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	text-align: center;
+	z-index: 999999;
+}
+#forge-footer a 
+{
+	text-transform: uppercase;
+	color: #666;
+	margin: 10px;
+	font-size: 13px;
+	font-weight: 400;
+}
 
 
 /** PANELS  */
@@ -82,6 +102,11 @@ span.panel-heading-links i
 {
   margin-right: 3px;
 }
+pre
+{
+	background-color: transparent;
+	border: none;
+}
 
 
 /** Application Card */
@@ -91,6 +116,8 @@ span.panel-heading-links i
 	/*background-color: #f9f9f9;*/
 	padding-top: 5px;
 	padding-bottom: 5px;
+	word-break: break-all;
+	word-wrap: break-word;
 }
 .application-card .app-title
 {
@@ -162,3 +189,156 @@ table td
 {
 	font-size: 13px;
 }
+
+
+/************
+ * API DOCS *
+ ************/
+span.hljs-request .hljs-string 
+{
+	color: #7f9f7f;
+	font-weight: 400;
+}
+.api-docs , .sidebar-nav
+{
+	margin-top: 20px;
+}
+.sidebar-nav ul li:hover a 
+{
+	background-color: transparent;
+}
+.sidebar-nav .navbar li a {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	margin-bottom: 2px;
+	margin-top: 2px;
+	font-size: 13px;
+	border-left: 2px solid #EEE;
+	color: #CCC;
+}
+.sidebar-nav .navbar li.active a,
+.sidebar-nav .navbar li a:hover
+{
+	font-weight: 400;
+	color: #000;
+	border-left: 2px solid #000;
+}
+.navbar.affix {
+	position: fixed;
+	top: 20px;
+}
+.section 
+{
+	font-size: 12px;
+	line-height: 14px;
+	font-weight: 400;
+	margin-bottom: 50px;
+}
+.section strong 
+{
+	font-weight: 600;
+}
+.section h3 
+{
+	font-size: 16px;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 15px;
+	color:#428bca;
+}
+.section h5 
+{
+	font-size: 12px;
+	text-transform: uppercase;
+	font-weight: 600;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 10px;
+	text-decoration: underline;
+}
+.section code.tip 
+{
+	color:green;
+}
+.section pre
+{
+	font-size: 11px;
+	border: none;
+	background-color: transparent;
+	margin: 0;
+	padding: 0;
+	height: auto;
+	white-space: pre !important;
+	border-radius: 0;
+	margin-top: 10px;
+	min-height: 26px;
+}
+
+.section td.status-code
+{
+	font-weight: 600;
+	font-size: 13px;
+	color:#666;
+}
+
+
+/*********************
+ * DEVELOPER CONSOLE *
+ *********************/
+ div.url-prefix
+ {
+ 	line-height: 34px;
+ 	text-align: right;
+ }
+
+ div#response
+ {
+ 	width: 100%;
+ 	height: 500px;
+ 	background-color:#f2f2f2;
+ 	border: 1px solid #ccc;
+ 	margin-top: 30px;
+ 	font-size: 10px;
+ 	font-weight: 300;
+ 	padding: 10px;
+ 	overflow: auto;
+ }
+
+  div#response.with-loader 
+  {
+  	background-image: url('../images/loader-xs.gif');
+	background-repeat: no-repeat;
+	background-position: center center;
+  }
+
+ div#post-params
+ {
+ 	margin-top: 20px;
+ 	border-top: 1px solid #f7f7f7;
+ 	padding-top: 10px;
+ 	display: none;
+ }
+
+ div#post-params input.form-control 
+ {	
+ 	height: 20px;
+ 	line-height: 20px;
+ 	font-size: 11px;
+ 	padding: 10px;
+ 	text-transform: lowercase;
+ }
+
+ a.remove-row
+ {
+ 	display: block;
+ 	width: 16px;
+ 	height: 16px;
+ 	margin-top: 2px;
+ 	background-image: url('../images/delete.png');
+	background-repeat: no-repeat;
+ }
+
+ div.params-container
+ {
+ 	margin-bottom: 10px;
+ }
