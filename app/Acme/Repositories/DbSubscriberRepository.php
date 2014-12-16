@@ -220,6 +220,7 @@ class DbSubscriberRepository extends DbRepos
 		{
 			$arr['id']			= $subscriber->id;
 			$arr['username'] 	= $subscriber->username;
+			$arr['facebook_id'] = $subscriber->facebook_id;
 			$arr['score']       = $subscriber->score;
 			$arr['level']       = $subscriber->level;
 
@@ -229,7 +230,6 @@ class DbSubscriberRepository extends DbRepos
 				$arr['profile']['first_name'] = $subscriber->profile->first_name;
 				$arr['profile']['last_name'] = $subscriber->profile->last_name;
 				$arr['profile']['image'] = $subscriber->profile->image;
-				$arr['profile']['facebook_id'] = $subscriber->profile->facebook_id;
 			}
 
 			array_push($output['data'], $arr);
@@ -262,7 +262,7 @@ class DbSubscriberRepository extends DbRepos
 		$subscribers = DB::table('subscriber')
 					 ->join('game_meta', 'subscriber.id', '=', 'game_meta.subscriber_id')
 					 ->leftJoin('subscriber_profile', 'subscriber.id', '=', 'subscriber_profile.subscriber_id')
-                     ->select(DB::raw("subscriber.id, subscriber.username, subscriber_profile.first_name, subscriber_profile.last_name, subscriber_profile.image, CAST(meta_value AS ".$cast.") meta_value_cast"))
+                     ->select(DB::raw("subscriber.id, subscriber.username, subscriber.facebook_id, subscriber_profile.first_name, subscriber_profile.last_name, subscriber_profile.image, CAST(meta_value AS ".$cast.") meta_value_cast"))
                      ->where('application_id', '=', $application->id)
                      ->where('meta_key', '=', $meta_key)
                      ->orderBy('meta_value_cast', $sort)
@@ -273,7 +273,7 @@ class DbSubscriberRepository extends DbRepos
 			$arr['id']			= $subscriber->id;
 			$arr['username'] 	= $subscriber->username;
 			$arr['meta_value']  = $subscriber->meta_value_cast;
-
+			$arr['facebook_id'] = $subscriber->facebook_id;
 			$arr['profile'] = [];
 			$arr['profile']['first_name'] = $subscriber->first_name;
 			$arr['profile']['last_name'] = $subscriber->last_name;
