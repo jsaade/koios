@@ -157,7 +157,7 @@ class ApplicationController extends \BaseController {
 		if($uploaded_cert)
 		{
 			$filename = $this->application->upload_certificate($uploaded_cert);
-			$this->application->update(['ios_certificate' => $this->application->getUploadsRelativeUrl().$filename]);
+			$this->application->update(['ios_certificate' => $filename]);
 		}	
 
 		$this->application->updateCertificatesConfig();

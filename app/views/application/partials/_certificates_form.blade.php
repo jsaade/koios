@@ -11,7 +11,7 @@
 			{{ Form::file('ios_certificate','',array('id'=>'ios_certificate','class'=>'')) }}
 			@if($application->ios_certificate)
 				<div style="color:green;font-size:12px;padding-top:5px">
-					<i class="icon-fixed-width  icon-ok"></i> Certificate uploaded ( {{ $application->getCertificateName() }})
+					<i class="icon-fixed-width  icon-ok"></i> Certificate uploaded ({{ $application->ios_certificate }})
 				</div>
 			@endif
 		</div>

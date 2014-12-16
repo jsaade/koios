@@ -116,21 +116,51 @@ class Application extends \Eloquent {
 		$uploaded_cert->move($destinationPath, $filename);
 		return $filename;
 	}
-
-	public function getCertificateName()
-	{
-		$cert = explode("/", $this->ios_certificate);
-		return $cert[count($cert) - 1];
-	}
 	
 	public function updateCertificatesConfig()
 	{
-		//Config::set("laravel-push-notification::hello", 'allo');
-		//dd(Config::get("laravel-push-notification::hello"));
-		//update ios config
-		//Config::set("laravel-push-notification::".$this->slug."_IOS", [
-		//	 'environment' => 'production',
-		//	 'passPhrase'  =>  $this->ios_password
-		//]);
+		$config_file = app_path() . "/config/packages/davibennun/laravel-push-notification/config.php";
+		$contents = File::get($config_file);
+		//skip the '<?php' and eval the array
+		$contents = substr($contents, 5);
+		$cf = eval($contents);
+		//update the ios config in the array
+		$cf[$this->slug."_IOS"] = [
+			'environment' => 'production',
+			'passPhrase'  => $this->ios_password,
+			'service'     =>'apns',
+			'certificate' => $this->getUploadsPath().$this->ios_certificate
+		];
+		//update the android config in the array 
+		$cf[$this->slug."_ANDROID"] = [
+			'environment' => 'production',
+			'apiKey'      => $this->android_api_key,
+			'service'     =>'gcm'
+		];
+		//convert the array to a writable string as we know the structure of the config file
+		$str = "<?php \r\n";
+		$str .= "	return array(\r\n";
+		$str .= "\r\n";
+		foreach($cf as $key => $val)
+		{
+			$str .= "		'".$key."' => array(\r\n";
+			foreach($val as $setting => $value)
+				$str .= "			'".$setting."' => '".$value."',\r\n";
+			//remove last comma inside the array
+			$str  = trim($str, "\r\n,");
+			$str .= "\r\n";	
+			$str.= "		),\r\n";
+			$str .= "\r\n";	
+		}
+		//remove last comma inside the array
+		$str  = trim($str, "\r\n,");
+		$str .= "\r\n";	
+		$str.= ");";
+			
+		$bytes_written = File::put($config_file, $str);
+		if ($bytes_written === false)
+		{
+		    die("Error writing to the config file");
+		}
 	}
 }
