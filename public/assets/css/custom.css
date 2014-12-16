@@ -113,7 +113,12 @@ span.panel-heading-links i
 
 
 /** FORMS  */
-.form-checkbox-group
+.forge-heading.forge-first
+{
+	margin-top:10px;
+}
+.form-checkbox-group,
+.form-radio-group
 {
 	margin-bottom: 10px;
 }
@@ -135,10 +140,6 @@ div.form-submit
 
 
 /** TABLES */
-th.actions 
-{
-	
-}
 table td form 
 {
 	display: inline-block;

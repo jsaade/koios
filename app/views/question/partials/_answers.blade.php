@@ -7,7 +7,7 @@
 	 @endif
 
     <tr>
-	    <td>
+	    <td style="width:30px;padding-top: 10px;padding-bottom:10px">
 	    	{{ Form::radio(
 	    		'answer.is_correct', 
 	    		$i, 

@@ -10,8 +10,8 @@
 			<div class="pull-left">{{ $application->name }}</div>
 			<div class="pull-right">
 				<span class="panel-heading-links">
-					<i class="icon-fixed-width  icon-edit"></i>&nbsp;
 					{{ HTML::linkAction('ApplicationController@edit', 'Edit', [$application->slug], ['class' => '']) }}
+					<i class="icon-fixed-width  icon-edit"></i>
 				</span>
 			</div>
 			<div class="clearfix"></div>

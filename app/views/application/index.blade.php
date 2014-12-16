@@ -15,8 +15,8 @@
 					<div class="pull-left">{{ $client->name }}</div>
 					<div class="pull-right">
 						<span class="panel-heading-links">
-							<i class="icon-fixed-width  icon-plus-sign"></i>
 							{{ HTML::linkAction('ApplicationController@create', 'Create Application', [], ['class' => '']) }}
+							<i class="icon-fixed-width  icon-plus-sign"></i>
 						</span>
 					</div>
 					<div class="clearfix"></div>

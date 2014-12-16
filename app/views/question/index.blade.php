@@ -6,26 +6,23 @@
 
 
 @section('content')
-	<div class="row">
-		<div class="col-md-12">
-			<h1>
-				{{ $application->name }} - Questions List
-				{{ HTML::linkAction('QuestionsController@create', 'Create Question', [$application->slug], ['class' => 'btn btn-primary pull-right']) }}
-			</h1>
-		</div>
-	</div>
-
 	@if (!count($questions))
-		<div class="row">
-			<div class="col-md-12 centered">
-				<p class="unfortunate">You haven't created any question yet :(</p>
-				{{ HTML::linkAction('QuestionsController@create', 'Create One Now', [$application->slug], ['class' => 'btn btn-primary centered']) }}
-			</div>
-		</div>
+		<p class="unfortunate">You haven't created any news yet :(</p>
+		{{ HTML::linkAction('QuestionsController@create', 'Create One Now', [$application->slug], ['class' => 'btn btn-primary centered']) }}
 	@else
-		<div class="row">
-			<div class="col-md-12">
-				<table class="listing">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="pull-left">Questions List</div>
+				<div class="pull-right">
+					<span class="panel-heading-links">
+						{{ HTML::linkAction('QuestionsController@create', 'Create Question', [$application->slug], []) }}
+						<i class="icon-fixed-width  icon-plus-sign"></i>
+					</span>
+				</div>
+				<div class="clearfix"></div>
+			</div> <!-- end heading -->
+			<div class="panel-body">
+				<table class="table table-striped">
 					<tr>
 						<th>Thumb</th>
 						<th>Question</th>

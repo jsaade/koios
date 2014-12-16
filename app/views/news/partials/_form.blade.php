@@ -1,4 +1,4 @@
-<div class="forge-heading">
+<div class="forge-heading forge-first">
 	<h5>General Information</h5>
 </div>
 

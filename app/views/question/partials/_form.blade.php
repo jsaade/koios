@@ -1,29 +1,34 @@
-<ul class="form-handler">
-	{{ Form::hidden('application_id', $application->id ) }}
+<div class="forge-heading forge-first">
+	<h5>General Information</h5>
+</div>
 
-	<p class="form-title no-mt">Question details</p>
-	<li>
-		{{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'Enter question...']) }}
-	</li>
+{{ Form::hidden('application_id', $application->id ) }}
 
-	<p class="form-title">Choose Image:</p>
-	<li>
-		{{ Form::file('image','',array('id'=>'','class'=>'')) }}
-	</li>
+<div class="form-group">
+	<label class="col-sm-3 control-label" for="description">Question</label>
+	<div class="col-sm-6">
+		{{ Form::textarea('description', null, ['class' => 'form-control', 'rows' => '3', 'id' => 'description']) }}
+	</div>
+</div>
 
-	<p class="form-title">Add answers:</p>
 
-	<li>
-		<table class="listing no-mt">
-			<tr>
-				<th>Is correct</th>
-				<th>Answer</th>
-			</tr>
+<div class="form-group">
+	<label class="col-sm-3 control-label" for="image">Image</label>
+	<div class="col-sm-6">
+		{{ Form::file('image','',array('id'=>'image','class'=>'')) }}
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-3 control-label">Answers</label>
+	<div class="col-sm-6">
+		<table>
 			@include('question.partials._answers')
 		</table>
-	</li>
+	</div>
+</div>
 
-	<li>
-		<br/>{{ Form::submit('Save Question', ['class' => 'btn btn-primary']) }}
-	</li>
-</ul>
+
+<div class="form-submit">
+	<br/>{{ Form::submit('Save Question', ['class' => 'btn btn-primary']) }}
+</div>

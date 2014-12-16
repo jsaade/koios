@@ -11,7 +11,6 @@
 		<p class="unfortunate">You haven't created any news yet :(</p>
 		{{ HTML::linkAction('NewsController@create', 'Create One Now', [$application->slug], ['class' => 'btn btn-primary centered']) }}
 	@else
-
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="pull-left">News List</div>
@@ -59,10 +58,5 @@
 				</div>
 			</div> <!-- end body -->
 		</div>
-
-		
-
-			
-	
 	@endif
 @stop
