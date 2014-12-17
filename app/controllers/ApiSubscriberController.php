@@ -237,7 +237,7 @@ class ApiSubscriberController extends \ApiController {
 
 		//remove the unique rule as we are updating
 		$rules = GameMeta::$rules;
-		$rules[$meta_key] = 'required|alpha_dash';
+		$rules['meta_key'] = 'alpha_dash';
 
 		if(!$game_meta->isValid($input, $rules))
 			return $this->respondErrors( $game_meta->errors, "Retry with valid parameters", self::HTTP_VALID_PARAMS);
