@@ -25,8 +25,8 @@ class GameMeta extends \Eloquent {
 	{
 		if(!$rules)
 			$rules = static::$rules;
-		
-		$validation = Validator::make($data, static::$rules);
+
+		$validation = Validator::make($data, $rules);
 		if($validation->passes())
 		{
 			return true;
