@@ -39,6 +39,12 @@
 				    		Settings
 				    	</a>
 				    </li>
+				    <li role="presentation">
+				    	<a href="#api" aria-controls="api" role="tab" data-toggle="tab">
+				    		<i class="icon-fixed-width  icon-code"></i>
+				    		API Keys
+				    	</a>
+				    </li>
 				</ul>
 
 				<!-- Tab panes -->
@@ -47,10 +53,22 @@
 				    	@include('application.partials._certificates_form')
 				    </div>
 				    <div role="tabpanel" class="tab-pane" id="scheduler">
-				    	...
+				    	schedule the crons for push notifications...
 				    </div>
 				    <div role="tabpanel" class="tab-pane" id="settings">
-				    	...
+				    	will include image sizes, date formats, default paginatino limits etc...
+				    </div>
+				      <div role="tabpanel" class="tab-pane" id="api">
+				    	<div class="api">
+				    		<p>
+				    			<strong>api key</strong><br/>
+				    			<code style="color:green">{{ $application->api_key }}</code>
+				    		</p>
+				    		<p>
+				    			<strong>api secret</strong><br/>
+				    			<code style="color:green">{{ $application->api_secret }}</code>
+				    		</p>
+				    	</div>
 				    </div>
 				</div>
 			</div>

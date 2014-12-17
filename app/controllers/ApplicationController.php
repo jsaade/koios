@@ -12,48 +12,6 @@ class ApplicationController extends \BaseController {
 
 	public function index()
 	{	
-	/*	
-		$token1 = strtolower('5EA48A318636BF011C8208ACC019697DE2C1BF238A73CE1F31F25D999EAFF865');
-		$token2 = strtolower('1622F17A6D3C3C7FEE4A0F3D0540E3BAB0A987883B6BC1C36F137287B4FD9485');
-		$token3 = strtolower('B202727B6F8944C7B50349E1B1143A5E454A4DE01ADD4F9B5B5DAF163CF0C400');
-		
-		
-		$devices = PushNotification::DeviceCollection(array(		    
-		    PushNotification::Device($token1),
-		    PushNotification::Device($token2),
-		    PushNotification::Device($token3)
-		));
-
-		$message = PushNotification::Message('Test Local',array(
-		    'badge' => 1,
-		    'locArgs' => array(
-		        'arg1',
-		        'arg2'
-		    ),
-		    'custom' => array('custom data' => array(
-		        'we' => 'want', 'send to app'
-		    ))
-		));
-
-		$message2 = PushNotification::Message('2 badges ?',array(
-		    'badge' => 2,
-		    'locArgs' => array(
-		        'arg1',
-		        'arg2'
-		    ),
-		    'custom' => array('custom data' => array(
-		        'we' => 'want', 'send to app'
-		    ))
-		));
-
-		PushNotification::app('547ed69a2ebd5_IOS')
-		                ->to($devices)
-		                ->send($message);
-
-		PushNotification::app('547ed69a2ebd5_IOS')
-		                ->to($devices)
-		                ->send($message2);
-		*/
 		$clients = Client::with('applications')->has('applications')->get();
 		return View::make('application.index')->with('clients' , $clients);
 	}
@@ -111,6 +69,40 @@ class ApplicationController extends \BaseController {
 	public function edit(Application $application)
 	{
 		$this->application = $application;
+
+		//tmp code
+		//get the device tokens of all teh subscribers of this app
+		$subscribers = $this->application->subscribers()->with('devices')->get();
+		$tokens_collected = [];
+		foreach($subscribers as $subscriber)
+			foreach($subscriber->devices as $device)
+				array_push($tokens_collected, strtolower($device->token));
+		//get the unique ones only
+		$tokens_collected = array_unique($tokens_collected);
+		// prepare the tokens to be pushed
+		$tokens = [];
+		foreach($tokens_collected as $t)
+			array_push( $tokens, PushNotification::Device($t) );
+		$devices = PushNotification::DeviceCollection( $tokens);
+
+		//get the queued news
+		$news = News::whereApplicationId($this->application->id)->wherePushStatus('pending')->get();
+
+		foreach($news as $n)
+		{
+			$badge = 1;
+			$message = PushNotification::Message( $n->name,array(
+			    'badge' => $badge,
+			    'locArgs' => array(
+			        'arg1',
+			        'arg2'
+			    )
+			));	
+			PushNotification::app( $this->application->slug.'_IOS')->to($devices)->send($message);
+			$badge += 1;
+			$n->update(['push_status' => 'sent']);
+		}
+		////end tmp code
 		$components = Component::all();
 		$clients = Client::lists('name', 'id');
 
