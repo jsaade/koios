@@ -12,7 +12,7 @@ class SubscriberApiParser extends ApiParser
 	 		$output['email'] = $subscriber['email'];
 
 	 	if(array_key_exists('facebook_id', $subscriber))
-	 		$output['facebook_id'] = (int)$subscriber['facebook_id'];
+	 		$output['facebook_id'] = $subscriber['facebook_id'];
 
 		if(array_key_exists('is_verified', $subscriber))
 	 		$output['verified'] = (bool) $subscriber['is_verified'];	 			 	
