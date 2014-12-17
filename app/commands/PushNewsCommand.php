@@ -77,7 +77,6 @@ class PushNewsCommand extends Command {
 			    'locArgs' => array( $n->id, $n->news_category_id)
 			));	
 			PushNotification::app($application->slug.'_IOS')->to($devices)->send($message);
-			$this->info("No device tokens found for this application.");
 			$n->update(['push_status' => 'sent']);
 		}
 		$this->info( $news->count()." news were pushed to ".count($tokens)." devices.");
