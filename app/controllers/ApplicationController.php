@@ -69,40 +69,6 @@ class ApplicationController extends \BaseController {
 	public function edit(Application $application)
 	{
 		$this->application = $application;
-
-		//tmp code
-		//get the device tokens of all teh subscribers of this app
-		$subscribers = $this->application->subscribers()->with('devices')->get();
-		$tokens_collected = [];
-		foreach($subscribers as $subscriber)
-			foreach($subscriber->devices as $device)
-				array_push($tokens_collected, strtolower($device->token));
-		//get the unique ones only
-		$tokens_collected = array_unique($tokens_collected);
-		// prepare the tokens to be pushed
-		$tokens = [];
-		foreach($tokens_collected as $t)
-			array_push( $tokens, PushNotification::Device($t) );
-		$devices = PushNotification::DeviceCollection( $tokens);
-
-		//get the queued news
-		$news = News::whereApplicationId($this->application->id)->wherePushStatus('pending')->get();
-
-		foreach($news as $n)
-		{
-			$badge = 1;
-			$message = PushNotification::Message( $n->name,array(
-			    'badge' => $badge,
-			    'locArgs' => array(
-			        'arg1',
-			        'arg2'
-			    )
-			));	
-			PushNotification::app( $this->application->slug.'_IOS')->to($devices)->send($message);
-			$badge += 1;
-			$n->update(['push_status' => 'sent']);
-		}
-		////end tmp code
 		$components = Component::all();
 		$clients = Client::lists('name', 'id');
 

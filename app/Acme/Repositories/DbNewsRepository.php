@@ -102,4 +102,15 @@ class DbNewsRepository extends DbRepos
 
 		return $arr;
 	}
+
+
+	/**
+	 * Gets the news to be pushed
+	 * @param  [type] $application [description]
+	 * @return [type]              [description]
+	 */
+	public function getPushNews($application)
+	{
+		return News::whereApplicationId($application->id)->wherePushStatus('pending')->get();
+	}
 }
