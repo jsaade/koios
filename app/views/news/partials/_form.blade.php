@@ -46,10 +46,19 @@
 	</div>
 </div>
 
+<div class="forge-heading">
+	<h5>Push Notification</h5>
+</div>
+
 <div class="form-group">
-	<label class="col-sm-3 control-label" for="send_notification">Send Push Notification</label>
+	<label class="col-sm-3 control-label" for="send_notification">Status</label>
 	<div class="col-sm-6">
-		{{ Form::checkbox('send_notification', 1, isset($news->send_notification)? true : null, ['class' => 'field', 'id' => 'send_notification']) }}
+		{{ Form::select(
+			'push_status', 
+			['idle' => 'Idle (Do nothing)', 'pending' => 'Pending (will be pushed in next sheduled queue)', 'sent' => 'Sent'], 
+			isset($news)?$news->push_status:null, 
+			['class' => 'form-control', 'id' => 'push_status']
+		) }}	
 	</div>
 </div>
 

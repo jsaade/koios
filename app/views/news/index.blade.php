@@ -49,7 +49,7 @@
 						<th class="actions">Action</th>
 					</tr>
 					@foreach($news as $single_news)
-						@include('news.partials._list_row')
+						@include('news.partials._list_row', $single_news)
 					@endforeach
 				</table>
 

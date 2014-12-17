@@ -11,33 +11,49 @@ class ApplicationController extends \BaseController {
 	}
 
 	public function index()
-	{		
-		/*$token1 = strtolower('5EA48A318636BF011C8208ACC019697DE2C1BF238A73CE1F31F25D999EAFF865');
+	{	
+	/*	
+		$token1 = strtolower('5EA48A318636BF011C8208ACC019697DE2C1BF238A73CE1F31F25D999EAFF865');
 		$token2 = strtolower('1622F17A6D3C3C7FEE4A0F3D0540E3BAB0A987883B6BC1C36F137287B4FD9485');
+		$token3 = strtolower('B202727B6F8944C7B50349E1B1143A5E454A4DE01ADD4F9B5B5DAF163CF0C400');
+		
 		
 		$devices = PushNotification::DeviceCollection(array(		    
 		    PushNotification::Device($token1),
-		    PushNotification::Device($token2)
+		    PushNotification::Device($token2),
+		    PushNotification::Device($token3)
 		));
 
-		$message = PushNotification::Message('Hi Zouzou',array(
+		$message = PushNotification::Message('Test Local',array(
 		    'badge' => 1,
-
-
 		    'locArgs' => array(
 		        'arg1',
 		        'arg2'
 		    ),
-
 		    'custom' => array('custom data' => array(
 		        'we' => 'want', 'send to app'
 		    ))
 		));
-		PushNotification::app('laf_IOS')
+
+		$message2 = PushNotification::Message('2 badges ?',array(
+		    'badge' => 2,
+		    'locArgs' => array(
+		        'arg1',
+		        'arg2'
+		    ),
+		    'custom' => array('custom data' => array(
+		        'we' => 'want', 'send to app'
+		    ))
+		));
+
+		PushNotification::app('547ed69a2ebd5_IOS')
 		                ->to($devices)
-		                ->send($message);*/
+		                ->send($message);
 
-
+		PushNotification::app('547ed69a2ebd5_IOS')
+		                ->to($devices)
+		                ->send($message2);
+		*/
 		$clients = Client::with('applications')->has('applications')->get();
 		return View::make('application.index')->with('clients' , $clients);
 	}

@@ -58,6 +58,7 @@ class DbNewsRepository extends DbRepos
 			$fields_arr = array_flip($fields_arr);
 			$arr = array_intersect_key($arr, $fields_arr);
 
+			dd($arr);
 			array_push($output['data'], $arr);
 		}
 

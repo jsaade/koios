@@ -2,7 +2,7 @@
 
 class News extends \Eloquent {
 	protected $table = 'news';
-	protected $fillable = ['name', 'description', 'caption', 'image', 'application_id', 'news_category_id', 'send_notification'];
+	protected $fillable = ['name', 'description', 'caption', 'image', 'application_id', 'news_category_id', 'push_status'];
 
 	/*****************
 	 * RELATIONSHIPS *
