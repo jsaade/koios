@@ -1,15 +1,20 @@
-<ul class="form-handler">
-	<p class="form-title no-mt">General Information</p>
-	{{ Form::hidden('application_id', $application->id ) }}
-	<li>
-		{{ Form::text('name', null, [ 'class' => 'form-control', 'placeholder' => 'Enter form name'] ) }}
-	</li>
 
-		<li>
-		{{ Form::text('email', null, [ 'class' => 'form-control', 'placeholder' => 'Enter contact email'] ) }}
-	</li>
+{{ Form::hidden('application_id', $application->id ) }}
 
-	<li>
-		<br/>{{ Form::submit('Save Form', ['class' => 'btn btn-primary']) }}
-	</li>
-</ul>
+<div class="form-group">
+	<label class="col-sm-3 control-label" for="name">Name</label>
+	<div class="col-sm-6">
+		{{ Form::text('name', null, [ 'class' => 'form-control', 'id' => 'name'] ) }}
+	</div>
+</div>
+
+<div class="form-group">
+	<label class="col-sm-3 control-label" for="email">Email</label>
+	<div class="col-sm-6">
+		{{ Form::text('email', null, [ 'class' => 'form-control', 'id' => 'email'] ) }}
+	</div>
+</div>
+
+<div class="form-submit">
+	{{ Form::submit('Save Form', ['class' => 'btn btn-primary']) }}
+</div>

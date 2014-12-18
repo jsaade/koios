@@ -1,4 +1,5 @@
 <tr>
+	<td>{{ $contact_form->id }}</td>
 	<td>{{ $contact_form->name }}</td>
 	<td>{{ $contact_form->email }}</td>
 	<td>{{ $contact_form->created_at->format('F j, Y') }}</td>

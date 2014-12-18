@@ -69,7 +69,7 @@ class Subscriber extends \Eloquent {
 		if($order == 'level')
 			$value = $this->level;
 
-		if(!$value)
+		if($value == 0)
 			return 0;
 
 		return (Subscriber::whereApplicationId($this->application_id)->where($order, $operator, $value)->count()) + 1;
@@ -94,7 +94,7 @@ class Subscriber extends \Eloquent {
 			if($metas['meta_key'] == $meta_key)
 				$meta_value = $metas['meta_value'];
 
-		if(!$meta_value)
+		if($meta_value == "0" || $meta_value == "")
 			return 0;
 
 		$subscriber = DB::select(
