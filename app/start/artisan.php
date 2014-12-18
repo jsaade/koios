@@ -12,3 +12,5 @@
 */
 
 Artisan::resolve('PushNewsCommand');
+
+Artisan::add( new TestCommand);
