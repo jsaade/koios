@@ -37,7 +37,7 @@ class TestCommand extends Command {
 	 */
 	public function fire()
 	{
-		$this->info('Cron is working, Fool!')
+		$this->info('Cron is working, Fool!');
 	}
 
 }
