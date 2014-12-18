@@ -44,9 +44,12 @@ class DbSubscriberRepository extends DbRepos
 	 * @param  Integer $id 
 	 * @return Array
 	 */
-	public function find($id)
+	public function find($id, $return = "array")
 	{
 		$subscriber = Subscriber::with('devices')->with('profile')->with('game_metas')->findOrFail($id);
+		if($return == "object")
+			return $subscriber;
+		
 		$output = [];
 
 		$output['id']			= $subscriber->id;
@@ -223,7 +226,7 @@ class DbSubscriberRepository extends DbRepos
 			$arr['facebook_id'] = $subscriber->facebook_id;
 			$arr['score']       = $subscriber->score;
 			$arr['level']       = $subscriber->level;
-
+ 
 			$arr['profile'] = [];
 			if($subscriber->profile)
 			{

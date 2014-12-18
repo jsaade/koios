@@ -52,4 +52,61 @@ class Subscriber extends \Eloquent {
 		$this->errors = $validation->messages();
 		return false;
 	}
+
+	/**
+	 * Leaderboard Rank for score, level 
+	 * @param  [type] $order [description]
+	 * @param  [type] $sort  [description]
+	 * @return [type]        [description]
+	 */
+	public function getRank($order, $sort)
+	{
+		$operator = '<';
+		if($sort == 'DESC')
+			$operator = '>';
+
+		$value = $this->score;
+		if($order == 'level')
+			$value = $this->level;
+
+		return (Subscriber::whereApplicationId($this->application_id)->where($order, $operator, $value)->count()) + 1;
+	}
+
+	/**
+	 * Leaderboard Rank for metas 
+	 * @param  [type] $order [description]
+	 * @param  [type] $sort  [description]
+	 * @return [type]        [description]
+	 */
+	public function getRankByMeta($meta_key, $sort, $cast = 'SIGNED INTEGER')
+	{
+		$operator = '<';
+		$meta_value = '';
+
+		if($sort == 'DESC')
+			$operator = '>';
+		
+		$subscriber_metas = $this->game_metas->toArray();
+		foreach($subscriber_metas as $metas)
+			if($metas['meta_key'] == $meta_key)
+				$meta_value = $metas['meta_value'];
+
+
+		$subscriber = DB::select(
+			DB::RAW("
+				SELECT COUNT(*) as rank
+				FROM (
+					SELECT subscriber.id, subscriber.username, game_meta.meta_key, game_meta.meta_value, CAST(meta_value AS SIGNED INTEGER) meta_value_cast 
+					FROM subscriber 
+					LEFT JOIN game_meta on subscriber.id = game_meta.subscriber_id 
+					WHERE application_id = ".$this->application_id." 
+					AND meta_key = '".$meta_key."' 
+					ORDER BY meta_value_cast DESC 
+				) AS T
+				WHERE T.meta_value_cast ".$operator." ".$meta_value
+				)
+		);
+
+        return ($subscriber[0]->rank + 1);
+	}
 }
