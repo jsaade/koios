@@ -12,6 +12,11 @@ class ContactValues extends \Eloquent {
 		return $this->belongsTo('ContactForm');
 	}
 
+	public function contactAttachments()
+	{
+		return $this->hasMany('ContactAttachments');
+	}
+
 	/*******************
 	 * FORM VALIDATION *
 	 *******************/

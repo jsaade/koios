@@ -29,7 +29,7 @@ Route::group(['prefix'=>'api/', 'before'=>'secure'], function()
 {
 	//Contact Form
 	Route::post('app/{app}/contact-forms/{contact_forms}/create', 'ApiContactFormController@storeValues')->before('contactFormAppRelation');;
-	Route::post('app/{app}/contact-forms/{contact_forms}/add-attachements', 'ApiContactFormController@storeAttachements')->before('contactFormAppRelation');;
+	Route::post('app/{app}/contact-forms/{contact_forms}/add-attachements/{contact_values}', 'ApiContactFormController@storeAttachements')->before('contactFormAppRelation');;
 	//LeaderBoard
 	Route::get('app/{app}/leaderboard/{order}', ['as' => 'api.leaderboard', 'uses' => 'ApiLeaderboardController@index']);
 	Route::get('app/{app}/leaderboard/meta/{order}', ['as' => 'api.leaderboard.meta', 'uses' => 'ApiLeaderboardController@meta']);

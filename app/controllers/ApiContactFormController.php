@@ -11,14 +11,14 @@ class ApiContactFormController extends \ApiController {
 
 		if($contactValues->isValid($input))
 		{
-			ContactValues::create($input);
-			 return $this->respondOk([],'Contact values were created successfully.', self::HTTP_CREATED);
+			 $contact_value = ContactValues::create($input);
+			 return $this->respondOk(['contactValueId' => $contact_value->id],'Contact values were created successfully.', self::HTTP_CREATED);
 		}
 		return $this->respondErrors( $contactValues->errors, "Retry with valid parameters", self::HTTP_VALID_PARAMS);
 	}
 
 
-	public function storeAttachements(Application $application, ContactForm $contact_form)
+	public function storeAttachements(Application $application, ContactForm $contact_form, $contact_values_id)
 	{
 		$uploaded_images = Input::file('attachment');
 		if(!count($uploaded_images))
@@ -27,7 +27,9 @@ class ApiContactFormController extends \ApiController {
 		foreach($uploaded_images as $uploaded_image)
 		{
 			$type = $uploaded_image->getMimeType();
-			$contact_attachment = ContactAttachments::create(['contact_form_id' => $contact_form->id]);
+			$contact_attachment = ContactAttachments::create(
+				['contact_form_id' => $contact_form->id, 'contact_values_id' => $contact_values_id]
+			);
 			//uplaod the file 
 			$filename = $contact_attachment->upload_attachment($uploaded_image);
 			//update the database
