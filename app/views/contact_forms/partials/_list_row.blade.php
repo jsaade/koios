@@ -6,7 +6,7 @@
 	<td>
 		{{ HTML::linkAction('ContactFormController@edit', 'Edit', [$application->slug, $contact_form->id], ['class' => 'btn btn-info btn-xs']) }}
 		
-		{{ HTML::linkAction('ContactFormController@edit', 'Responses', [$application->slug, $contact_form->id], ['class' => 'btn btn-success btn-xs']) }}
+		{{ HTML::linkAction('ContactFormController@show', 'Responses', [$application->slug, $contact_form->id], ['class' => 'btn btn-success btn-xs']) }}
 
 		{{ Form::model($contact_form, ['data-remote' => true, 'data-callback' => 'removeContactForm', 'method' => 'DELETE','route' => ['application.{application}.contact-forms.destroy', $application->slug, $contact_form->id]]) }}
 			{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) }}

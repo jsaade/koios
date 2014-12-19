@@ -39,9 +39,9 @@ class ContactFormController extends \BaseController {
 	}
 
 	
-	public function show($id)
+	public function show(Application $application, ContactForm $contact_form)
 	{
-		//
+		return View::make('contact_forms.show')->withApplication($application)->withContactForm($contact_form)->withcontactValues($contact_form->contactValues);
 	}
 
 	
