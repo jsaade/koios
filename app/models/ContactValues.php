@@ -21,10 +21,8 @@ class ContactValues extends \Eloquent {
 	 * FORM VALIDATION *
 	 *******************/
 	public $errors;
-	public static $rules = [
-		'name'    => 'required', 
-		'message' => 'required',
-		'email'   => 'required|email',
+	public static $rules = [ 
+		'message' => 'required'
 	];
 
 	public function isValid($data)
