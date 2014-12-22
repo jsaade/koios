@@ -81,5 +81,3 @@ App::down(function()
 require app_path().'/filters.php';
 require app_path().'/helpers.php';
 require app_path().'/macros.php';
-
-ini_set('upload_max_filesize', '8M');
