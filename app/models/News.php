@@ -95,8 +95,10 @@ class News extends \Eloquent {
 			$image = Image::make($uploaded_image->getRealPath()); 
 			$filename = $uploaded_image->getClientOriginalName();
 			$image->save($this->getUploadsPath().$filename)
-				  ->resize(87, 115)
-				  ->save($this->getUploadsPath()."30-".$filename);
+				  ->resize(null, 115, function ($constraint) {
+			    		$constraint->aspectRatio();
+					});
+			$image->crop(87,115)->save($this->getUploadsPath()."30-".$filename);
 
 			$this->update(['image' => $filename]);
 		}
