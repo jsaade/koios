@@ -11,12 +11,7 @@ class ApplicationController extends \BaseController {
 	}
 
 	public function index()
-	{	
-		Mail::send('emails.activation', array('link' => 'http://koios.mercury.me'), function($message)
-		{
-		    $message->to('elie.a@mercury.me', 'elie andraos')->subject('Welcome!');
-		});
-		
+	{			
 		$clients = Client::with('applications')->has('applications')->get();
 		return View::make('application.index')->with('clients' , $clients);
 	}

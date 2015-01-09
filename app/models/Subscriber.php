@@ -123,4 +123,13 @@ class Subscriber extends \Eloquent {
 	{
 		return route('activate.email', ['code' => $this->verification_token]);  
 	}
+
+	public function sendActivationMail()
+	{
+		Mail::send('emails.activation', [ 'link' => $this->getActivationLink() ], function($message)
+		{
+		    $message->to($this->email, $this->email)
+		    		->subject( $this->subscriber->application->name." | Activate account" );
+		});
+	}
 }

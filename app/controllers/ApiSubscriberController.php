@@ -42,6 +42,7 @@ class ApiSubscriberController extends \ApiController {
 		if($this->subscriber->isValid($input))
 		{
 			$this->subscriber = $this->subscriberRepos->create($input);
+			$this->subscriber->sendVerificationMail();
 			return $this->respondOk(
 				[
 					'subscriberId' 		=> $this->subscriber->id, 
@@ -98,6 +99,7 @@ class ApiSubscriberController extends \ApiController {
 			$input['subscriber_id'] = $subscriber_id;
 			$subscriberProfile = $this->subscriberRepos->createProfile($input);
 
+			$this->subscriber->sendVerificationMail();
 			return $this->respondOk(
 				[
 					'subscriberId' 			=> $subscriber_id, 
