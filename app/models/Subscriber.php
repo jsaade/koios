@@ -129,7 +129,7 @@ class Subscriber extends \Eloquent {
 		Mail::send('emails.activation', [ 'link' => $this->getActivationLink() ], function($message)
 		{
 		    $message->to($this->email, $this->email)
-		    		->subject( $this->subscriber->application->name." | Activate account" );
+		    		->subject( $this->application->name." | Activate account" );
 		});
 	}
 }
