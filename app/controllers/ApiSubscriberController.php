@@ -43,7 +43,11 @@ class ApiSubscriberController extends \ApiController {
 		{
 			$this->subscriber = $this->subscriberRepos->create($input);
 			return $this->respondOk(
-				['subscriberId' => $this->subscriber->id, 'access_token' => $this->subscriber->access_token],
+				[
+					'subscriberId' 		=> $this->subscriber->id, 
+					'access_token' 		=> $this->subscriber->access_token,
+					'activation_link' 	=> $this->subscriber->getActivationLink()
+				],
 				'Subscriber was created successfully.',
 				self::HTTP_CREATED
 			);
@@ -95,7 +99,12 @@ class ApiSubscriberController extends \ApiController {
 			$subscriberProfile = $this->subscriberRepos->createProfile($input);
 
 			return $this->respondOk(
-				['subscriberId' => $subscriber_id, 'subscriberProfileId' => $subscriberProfile->id, 'access_token' => $this->subscriber->access_token ], 
+				[
+					'subscriberId' 			=> $subscriber_id, 
+				 	'subscriberProfileId' 	=> $subscriberProfile->id, 
+				 	'access_token' 			=> $this->subscriber->access_token,
+				 	'activation_link' 		=> $this->subscriber->getActivationLink()
+				 ], 
 				'Subscriber and his profile was created successfully.',
 				self::HTTP_CREATED
 			);

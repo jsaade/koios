@@ -114,4 +114,13 @@ class Subscriber extends \Eloquent {
 
         return ($subscriber[0]->rank + 1);
 	}
+
+	/**
+	 * Returns activation link upon signup
+	 * @return [type] [description]
+	 */
+	public function getActivationLink()
+	{
+		return route('activate.email', ['code' => $this->verification_token]);  
+	}
 }

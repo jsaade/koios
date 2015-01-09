@@ -112,8 +112,7 @@ class DbSubscriberRepository extends DbRepos
 	{
 		$password    =  (isset($input['password']))?Hash::make($input['password']):"";
 		$facebook_id =  (isset($input['facebook_id']))?$input['facebook_id']:"";
-		//$is_verified  = (isset($input['facebook_id']))?1:0;
-		$is_verified  = 1;
+		$is_verified  = ($facebook_id)?1:0;
 		$access_token =  ($is_verified==1)?md5($input['email'].uniqid()):"";
 		
 		$subscriber = Subscriber::create([
@@ -123,7 +122,7 @@ class DbSubscriberRepository extends DbRepos
 			'password' 	  		 => $password,
 			'is_verified' 		 => $is_verified,
 			'access_token'       => $access_token,
-			'verification_token' => hash('sha256', substr($input['username'],0,9), false),
+			'verification_token' => hash('sha256', $input['username'].uniqid(), false),
 			'application_id'     => $input['application_id']
 		]);
 

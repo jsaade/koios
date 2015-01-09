@@ -28,4 +28,26 @@ class SessionsController extends \BaseController {
 		return Redirect::home();
 	}
 
+	/**
+	 * Activate the subscriber of the app upon signup
+	 * @return [type] [description]
+	 */
+	public function activate()
+	{
+		$input =  Input::all();
+		$code  =  $input['code'];
+		$subscriber = Subscriber::where('verification_token' , $code)->first();
+		
+		if(!$subscriber)
+			return Response::make(['message' => 'Invalid activation link']);
+
+		$subscriber->update(['access_token' => md5($subscriber->email.uniqid()), 'is_verified' => 1]);
+		return Response::make(['message' => 'Your account is now activated.']);
+	}
+
+	public function forgotPassword()
+	{
+		
+	}
+
 }
