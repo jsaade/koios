@@ -39,7 +39,7 @@ class SessionsController extends \BaseController {
 		$subscriber = Subscriber::where('verification_token' , $code)->first();
 		
 		if(!$subscriber)
-			return Response::make(['message' => 'Invalid activation link']);
+			return Response::make(['message' => 'Invalid code.']);
 
 		$subscriber->update(['access_token' => md5($subscriber->email.uniqid()), 'is_verified' => 1]);
 		return Response::make(['message' => 'Your account is now activated.']);
@@ -47,7 +47,15 @@ class SessionsController extends \BaseController {
 
 	public function forgotPassword()
 	{
+		$input =  Input::all();
+		$code  =  $input['code'];
+		$subscriber = Subscriber::where('verification_token' , $code)->first();
 		
+		if(!$subscriber)
+			return Response::make(['message' => 'Invalid code.']);
+
+	return View::make('sessions.forgot_password')->withSubscriber($subscriber);
+
 	}
 
 }

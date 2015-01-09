@@ -53,12 +53,10 @@ class Subscriber extends \Eloquent {
 		return false;
 	}
 
-	/**
-	 * Leaderboard Rank for score, level 
-	 * @param  [type] $order [description]
-	 * @param  [type] $sort  [description]
-	 * @return [type]        [description]
-	 */
+
+	/***************
+	 * LEADERBOARD *
+	 ***************/
 	public function getRank($order, $sort)
 	{
 		$operator = '<';
@@ -75,12 +73,7 @@ class Subscriber extends \Eloquent {
 		return (Subscriber::whereApplicationId($this->application_id)->where($order, $operator, $value)->count()) + 1;
 	}
 
-	/**
-	 * Leaderboard Rank for metas 
-	 * @param  [type] $order [description]
-	 * @param  [type] $sort  [description]
-	 * @return [type]        [description]
-	 */
+
 	public function getRankByMeta($meta_key, $sort, $cast = 'SIGNED INTEGER')
 	{
 		$operator = '<';
@@ -115,10 +108,9 @@ class Subscriber extends \Eloquent {
         return ($subscriber[0]->rank + 1);
 	}
 
-	/**
-	 * Returns activation link upon signup
-	 * @return [type] [description]
-	 */
+	/**********************************
+	 * ACTIVATION AND FORGOT PASSWORD *
+	 **********************************/
 	public function getActivationLink()
 	{
 		return route('activate.email', ['code' => $this->verification_token]);  
@@ -128,8 +120,14 @@ class Subscriber extends \Eloquent {
 	{
 		Mail::send('emails.activation', [ 'link' => $this->getActivationLink() ], function($message)
 		{
+			// $message->from('us@example.com', 'Laravel');
 		    $message->to($this->email, $this->email)
 		    		->subject( $this->application->name." | Activate account" );
 		});
+	}
+
+	public function getForgotPasswordLink()
+	{
+		return route('reset.password', ['code' => $this->verification_token]); 
 	}
 }

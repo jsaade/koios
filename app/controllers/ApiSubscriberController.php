@@ -46,8 +46,7 @@ class ApiSubscriberController extends \ApiController {
 			return $this->respondOk(
 				[
 					'subscriberId' 		=> $this->subscriber->id, 
-					'access_token' 		=> $this->subscriber->access_token,
-					'activation_link' 	=> $this->subscriber->getActivationLink()
+					'access_token' 		=> $this->subscriber->access_token				
 				],
 				'Subscriber was created successfully.',
 				self::HTTP_CREATED
@@ -158,7 +157,9 @@ class ApiSubscriberController extends \ApiController {
 		{
 			$subscriber = $this->subscriberRepos->loginViaEmail($input['email'], $input['password'], $application->id);
 			
-			if($subscriber)
+			if($subscriber && !$subscriber->is_verified)
+				return $this->respondErrors([], $message = "Forbidden | The subscriber is not verified", self::HTTP_FORBIDDEN, $headers = []);
+			elseif($subscriber && $subscriber->is_verified)
 				return $this->respondOk( ['subscriberId' => $subscriber->id, 'access_token' => $subscriber->access_token ], 'Subscriber was logged in.');
 			else
 				return $this->respondErrors([], $message = "Forbidden | Invalid Login Credentials", self::HTTP_FORBIDDEN, $headers = []);
