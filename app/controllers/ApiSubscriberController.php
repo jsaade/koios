@@ -356,6 +356,9 @@ class ApiSubscriberController extends \ApiController {
 
 	public function sendForgotPasswordEmail(Application $application)
 	{
+		$input = Input::all();
+		$errors = [];
+		
 		if(!isset($input['email']))
 			$errors['email'] = 'The email field is required';
 		if(count($errors))
