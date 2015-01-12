@@ -30,7 +30,15 @@ Content-Type: application/json; charset=utf-8
 </code>
 </pre>
 </p>
- 		
+
+
+<p>
+	Also, for password recovery, the subscriber will receive an email with a link to update his password by requesting:
+<pre>
+<code class="http">POST /api/app/{api-key}/send-password-email?email=example@domain.com HTTP/1.1
+</code>
+</pre>
+</p> 		
 	<!-- create-profile -->
 	<h5>Create profile</h5>
 	<p>
