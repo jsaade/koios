@@ -63,8 +63,7 @@ class SessionsController extends \BaseController {
 		if(!$subscriber)
 			return Response::make(['message' => 'Invalid code.']);
 
-	return View::make('sessions.forgot_password')->withSubscriber($subscriber);
-
+		return View::make('sessions.forgot_password')->withSubscriber($subscriber);
 	}
 
 }

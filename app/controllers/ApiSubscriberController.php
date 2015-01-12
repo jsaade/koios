@@ -103,8 +103,7 @@ class ApiSubscriberController extends \ApiController {
 				[
 					'subscriberId' 			=> $subscriber_id, 
 				 	'subscriberProfileId' 	=> $subscriberProfile->id, 
-				 	'access_token' 			=> $this->subscriber->access_token,
-				 	'activation_link' 		=> $this->subscriber->getActivationLink()
+				 	'access_token' 			=> $this->subscriber->access_token
 				 ], 
 				'Subscriber and his profile was created successfully.',
 				self::HTTP_CREATED
@@ -351,5 +350,25 @@ class ApiSubscriberController extends \ApiController {
 
 		$subscriber->sendActivationMail();
 		return $this->respondOk([], 'Activation email sent successfully.', self::HTTP_NO_CONTENT);
+	}
+
+
+
+	public function sendForgotPasswordEmail(Application $application)
+	{
+		if(!isset($input['email']))
+			$errors['email'] = 'The email field is required';
+		if(count($errors))
+			return $this->respondErrors( $errors, "Retry with valid parameters", self::HTTP_VALID_PARAMS);
+
+		$subscriber = $this->subscriberRepos->findByEmail($input['email'], $application->id);
+		if(!$subscriber)
+			$errors['email'] = 'Subscriber with this email does not exist.';
+
+		if(count($errors))
+			return $this->respondErrors( $errors, "No content", self::HTTP_NO_CONTENT);
+
+		$subscriber->sendForgotPasswordMail();
+		return $this->respondOk([], 'Forgot password email sent successfully.', self::HTTP_NO_CONTENT);
 	}
 }
