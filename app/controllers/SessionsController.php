@@ -46,7 +46,7 @@ class SessionsController extends \BaseController {
 			return Response::make(['message' => 'Invalid code.']);
 
 		$subscriber->update(['access_token' => md5($subscriber->email.uniqid()), 'is_verified' => 1]);
-		return Response::make(['message' => 'Your account is now activated.']);
+		return View::make('emails.activation_ok')->withSubscriber($subscriber);
 	}
 
 	/**

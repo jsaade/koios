@@ -10,7 +10,7 @@
 			<li>email <code class="tip">required</code></li>
 			<li>password Or facebook_id <code class="tip">required</code></li>
 		</ul>
-		The request will return the subscriber's<code class="tip">access_token</code> and the <code class="tip">subscriberId</code>.		
+		The request will return the subscriber's<code class="tip">access_token</code> and the <code class="tip">subscriberId</code>.
 	<p>
 
 <pre>
@@ -22,6 +22,15 @@ Content-Type: application/json; charset=utf-8
 </code>
 </pre>
 
+<p>
+	If the password is passed instead of the facebook id, the subscriber will recieve an activation link to be verified.<br/>
+		To resend the activation link again:
+<pre>
+<code class="http">POST /api/app/{api-key}/resend-activation-email?email=example@domain.com HTTP/1.1
+</code>
+</pre>
+</p>
+ 		
 	<!-- create-profile -->
 	<h5>Create profile</h5>
 	<p>
