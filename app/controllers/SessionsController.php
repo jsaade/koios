@@ -59,11 +59,28 @@ class SessionsController extends \BaseController {
 		$code  =  $input['code'];
 		$subscriber = Subscriber::where('verification_token' , $code)->first();
 		
-		dd($subscriber->email);
 		if(!$subscriber)
 			return Response::make(['message' => 'Invalid code.']);
 
-		return View::make('sessions.forgot_password')->withSubscriber($subscriber);
+		return View::make('emails.password')->withSubscriber($subscriber);
+	}
+
+	/**
+	 * Stores the new password of the subscriber
+	 * @return [type] [description]
+	 */
+	public function storePassword()
+	{
+		$input =  Input::all();
+		$code  =  $input['code'];
+		$password  =  $input['password'];
+		$subscriber = Subscriber::where('verification_token' , $code)->first();
+
+		if(!$password)
+			return Redirect::route('reset.password', ['code' => $subscriber->verification_token]);
+
+		$subscriber->update(['password' => Hash::make($password) ]);
+		return View::make('emails.password_ok');
 	}
 
 }

@@ -101,4 +101,5 @@ Route::get('login', 'SessionsController@create');
 Route::get('logout', 'SessionsController@destroy');
 Route::get('activate-email', ['as' => 'activate.email', 'uses' => 'SessionsController@activate']);
 Route::get('forgot-password', ['as' => 'reset.password', 'uses' => 'SessionsController@forgotPassword']);
+Route::post('store-password', ['as' => 'store.password', 'uses' => 'SessionsController@storePassword']);
 Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);
