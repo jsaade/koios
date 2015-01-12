@@ -22,6 +22,10 @@ class SessionsController extends \BaseController {
 		return Redirect::back()->withInput()->withErrors("Invalid login credentials.");
 	}
 
+	/**
+	 * Logout User
+	 * @return [type] [description]
+	 */
 	public function destroy()
 	{
 		Auth::logout();
@@ -45,12 +49,17 @@ class SessionsController extends \BaseController {
 		return Response::make(['message' => 'Your account is now activated.']);
 	}
 
+	/**
+	 * Let's the subscriber update this password
+	 * @return [type] [description]
+	 */
 	public function forgotPassword()
 	{
 		$input =  Input::all();
 		$code  =  $input['code'];
 		$subscriber = Subscriber::where('verification_token' , $code)->first();
 		
+		dd($subscriber->email);
 		if(!$subscriber)
 			return Response::make(['message' => 'Invalid code.']);
 

@@ -102,6 +102,16 @@ class DbSubscriberRepository extends DbRepos
 	}
 
 
+	/**
+	 * Finds a subsriber (for a specific app) by email
+	 * @param  [type] $email          [description]
+	 * @param  [type] $application_id [description]
+	 * @return [type]                 [description]
+	 */
+	public function findByEmail($email, $application_id)
+	{
+		return Subscriber::whereEmail($email)->whereApplicationId($application_id)->first();
+	}
 
 	/**
 	 * Creates a subscriber

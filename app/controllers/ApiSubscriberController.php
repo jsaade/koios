@@ -329,4 +329,27 @@ class ApiSubscriberController extends \ApiController {
 		}
 		return $this->respondOk($output);
 	}
+
+
+
+	public function resendActivationEmail(Application $application)
+	{
+		$input = Input::all();
+		$errors = [];
+		
+		if(!isset($input['email']))
+			$errors['email'] = 'The email field is required';
+		if(count($errors))
+			return $this->respondErrors( $errors, "Retry with valid parameters", self::HTTP_VALID_PARAMS);
+
+		$subscriber = $this->subscriberRepos->findByEmail($input['email'], $application->id);
+		if(!$subscriber)
+			$errors['email'] = 'Subscriber with this email does not exist.';
+
+		if(count($errors))
+			return $this->respondErrors( $errors, "No content", self::HTTP_NO_CONTENT);
+
+		$subscriber->sendActivationMail();
+		return $this->respondOk([], 'Activation email sent successfully.', self::HTTP_NO_CONTENT);
+	}
 }
