@@ -122,7 +122,7 @@ class Subscriber extends \Eloquent {
 		{
 			$message->from($this->application->email_value, $this->application->email_from);
 		    $message->to($this->email, $this->email)
-		    		->subject( $this->application->name." | Activate account" );
+		    		->subject( $this->application->email_from." | Activate account" );
 		});
 	}
 
@@ -137,7 +137,7 @@ class Subscriber extends \Eloquent {
 		{
 			$message->from($this->application->email_value, $this->application->email_from);
 		    $message->to($this->email, $this->email)
-		    		->subject( $this->application->name." | Password Recovery" );
+		    		->subject( $this->application->email_from." | Password Recovery" );
 		});
 	}
 }
