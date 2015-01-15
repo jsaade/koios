@@ -7,11 +7,11 @@ class ApiContactFormController extends \ApiController {
 	{
 		$input = Input::all();
 		$input['contact_form_id'] = $contact_form->id;
+		$input['ip'] = $_SERVER['REMOTE_ADDR'];
 		$contactValues = new ContactValues();
 
 		if($contactValues->isValid($input))
 		{
-			 $input['ip'] = $_SERVER['REMOTE_ADDR'];
 			 $contact_value = ContactValues::create($input);
 			 return $this->respondOk(['contactValueId' => $contact_value->id],'Contact values were created successfully.', self::HTTP_CREATED);
 		}

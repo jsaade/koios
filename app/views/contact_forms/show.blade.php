@@ -26,6 +26,7 @@
 						<th>Email</th>
 						<th>Phone</th>
 						<th>Message</th>
+						<th>IP</th>
 						<th>Date Created</th>
 						<th class="actions">Action</th>
 					</tr>

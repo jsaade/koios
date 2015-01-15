@@ -2,7 +2,7 @@
 
 class ContactValues extends \Eloquent {
 	protected $table = 'contact_values';
-	protected $fillable = ['name', 'email', 'phone', 'message', 'contact_form_id'];
+	protected $fillable = ['name', 'email', 'phone', 'message', 'contact_form_id', 'ip'];
 
 	/*****************
 	 * RELATIONSHIPS *

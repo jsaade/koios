@@ -27,7 +27,7 @@ class AddIpToContactValuesTable extends Migration {
 	{
 		Schema::table('contact_values', function(Blueprint $table)
 		{
-			//
+			$table->dropColumn('ip');
 		});
 	}
 
