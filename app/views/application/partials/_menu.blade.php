@@ -82,4 +82,25 @@
 	</li>
 	@endif
 
+	<!-- Contact Forms -->
+	@if ($application->hasComponent('Assets Library'))
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			 	<i class="icon-file-text-alt"></i> Assets Library <b class="caret"></b>
+			</a>
+		  	<ul class="dropdown-menu">
+			    <li>
+			    	<a href="{{ route('application.{application}.assets.index', $application->slug) }}">
+			    		<i class="icon-fixed-width  icon-copy"></i> View All
+			    	</a>
+			    </li>
+			    <li>
+			    	<a href="{{ route('application.{application}.assets.create', $application->slug) }}">
+			    		<i class="icon-fixed-width icon-save"></i> Create Asset
+			    	</a>
+			    </li>
+			</ul>
+	</li>
+	@endif
+
 </ul>

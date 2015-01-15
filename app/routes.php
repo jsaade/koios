@@ -7,6 +7,7 @@ Route::bind('application', function($value, $route){
     return Application::where('slug', $value)->first();
 });
 
+Route::model('assets', 'Asset');
 Route::model('contact_forms', 'ContactForm');
 Route::model('subscribers', 'Subscriber');
 Route::model('news', 'News');
@@ -77,6 +78,7 @@ Route::group(['before'=>'auth'], function()
 {
 	Route::group(['prefix' => 'application/{application}'], function()
 	{
+		Route::resource('assets', 'AssetController');
 		Route::resource('contact-forms', 'ContactFormController');
 		Route::resource('news', 'NewsController');
 		Route::resource('news-categories', 'NewsCategoryController');

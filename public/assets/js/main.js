@@ -137,6 +137,15 @@ function sortCategories(e)
 	$(form).closest('tr').fadeOut(750);
 }
 
+/*****************
+ * ASSETS MODULE *
+ *****************/
+
+ function removeAsset(response, form)
+{
+	$(form).closest('tr').fadeOut(750);
+}
+
 /*********************
  * DEVELOPER CONSOLE *
  *********************/

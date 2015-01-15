@@ -37,6 +37,11 @@ class Application extends \Eloquent {
 		return $this->hasMany('ContactForm');
 	}
 
+	public function assets()
+	{
+		return $this->hasMany('Asset');
+	}
+
 	/*******************
 	 * FORM VALIDATION *
 	 *******************/
