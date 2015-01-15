@@ -26,7 +26,7 @@ Content-Type: application/json; charset=utf-8
 	If the password is passed instead of the facebook id, the subscriber will recieve an activation link to be verified.<br/>
 		To resend the activation link again:
 <pre>
-<code class="http">POST /api/app/{api-key}/resend-activation-email?email=example@domain.com HTTP/1.1
+<code class="http">GET /api/app/{api-key}/resend-activation-email?email=example@domain.com HTTP/1.1
 </code>
 </pre>
 </p>
@@ -35,7 +35,7 @@ Content-Type: application/json; charset=utf-8
 <p>
 	Also, for password recovery, the subscriber will receive an email with a link to update his password by requesting:
 <pre>
-<code class="http">POST /api/app/{api-key}/send-password-email?email=example@domain.com HTTP/1.1
+<code class="http">GET /api/app/{api-key}/send-password-email?email=example@domain.com HTTP/1.1
 </code>
 </pre>
 </p> 		

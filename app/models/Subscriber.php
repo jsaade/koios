@@ -133,7 +133,7 @@ class Subscriber extends \Eloquent {
 
 	public function sendForgotPasswordMail()
 	{
-		Mail::send('emails.password', [ 'link' => $this->getForgotPasswordLink() ], function($message)
+		Mail::send('emails.password', [ 'link' => $this->getForgotPasswordLink(), 'subscriber' => $this ], function($message)
 		{
 			// $message->from('us@example.com', 'Laravel');
 		    $message->to($this->email, $this->email)

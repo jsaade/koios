@@ -11,6 +11,7 @@ class ApiContactFormController extends \ApiController {
 
 		if($contactValues->isValid($input))
 		{
+			 $input['ip'] = $_SERVER['REMOTE_ADDR'];
 			 $contact_value = ContactValues::create($input);
 			 return $this->respondOk(['contactValueId' => $contact_value->id],'Contact values were created successfully.', self::HTTP_CREATED);
 		}
