@@ -82,6 +82,7 @@ Route::group(['before'=>'auth'], function()
 		Route::resource('news-categories', 'NewsCategoryController');
 		Route::post('news-categories/sort', [ 'as' => 'news-categories.sort' ,'uses' => 'NewsCategoryController@sort']);
 		Route::post('certificates', ['as' => 'application.certificates', 'uses' => 'ApplicationController@certificates']);
+		Route::post('settings', ['as' => 'application.settings', 'uses' => 'ApplicationController@settings']);
 		Route::resource('questions', 'QuestionsController');
 	});
 

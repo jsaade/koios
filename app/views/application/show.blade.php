@@ -56,7 +56,7 @@
 				    	schedule the crons for push notifications...
 				    </div>
 				    <div role="tabpanel" class="tab-pane" id="settings">
-				    	will include image sizes, date formats, default paginatino limits etc...
+				    	@include('application.partials._settings_form')
 				    </div>
 				      <div role="tabpanel" class="tab-pane" id="api">
 				    	<div class="api">

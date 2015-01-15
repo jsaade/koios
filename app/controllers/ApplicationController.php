@@ -63,7 +63,7 @@ class ApplicationController extends \BaseController {
 	public function show(Application $application)
 	{
 		View::share('showAppMenu',true);
-		return View::make('application.show')->withApplication($application)->withFullcard(true);
+		return View::make('application.show')->withApplication($application);
 	}
 
 	public function edit(Application $application)
@@ -135,6 +135,19 @@ class ApplicationController extends \BaseController {
 		}	
 
 		$this->application->updateCertificatesConfig();
+		return Redirect::route('application.show', $this->application->slug);	
+	}
+
+	public function settings(Application $application)
+	{
+		$this->application = $application;
+		$input = Input::all(); 
+
+		$this->application->update([
+			'email_from' => $input['email_from'],
+			'email_value' => $input['email_value'] 
+		]);
+		
 		return Redirect::route('application.show', $this->application->slug);	
 	}
 

@@ -2,7 +2,7 @@
 
 class Application extends \Eloquent {
 	protected $table = 'application';
-	protected $fillable = ['name', 'description', 'image', 'slug', 'api_key', 'api_secret', 'client_id', 'ios_password', 'ios_certificate', 'android_api_key'];
+	protected $fillable = ['name', 'description', 'image', 'slug', 'api_key', 'api_secret', 'client_id', 'ios_password', 'ios_certificate', 'android_api_key', 'email_from', 'email_value'];
 
 	/*****************
 	 * RELATIONSHIPS *
