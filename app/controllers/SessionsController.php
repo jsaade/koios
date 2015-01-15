@@ -62,7 +62,7 @@ class SessionsController extends \BaseController {
 		if(!$subscriber)
 			return Response::make(['message' => 'Invalid code.']);
 
-		return View::make('emails.password')->withSubscriber($subscriber);
+		return View::make('emails.password_form')->withSubscriber($subscriber);
 	}
 
 	/**

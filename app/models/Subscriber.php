@@ -120,7 +120,7 @@ class Subscriber extends \Eloquent {
 	{
 		Mail::send('emails.activation', [ 'link' => $this->getActivationLink() ], function($message)
 		{
-			// $message->from('us@example.com', 'Laravel');
+			$message->from('eply@koiosclientlaf.com', 'LAF Order Battle');
 		    $message->to($this->email, $this->email)
 		    		->subject( $this->application->name." | Activate account" );
 		});
@@ -135,7 +135,7 @@ class Subscriber extends \Eloquent {
 	{
 		Mail::send('emails.password', [ 'link' => $this->getForgotPasswordLink(), 'subscriber' => $this ], function($message)
 		{
-			// $message->from('us@example.com', 'Laravel');
+			$message->from('noreply@koiosclientlaf.com', 'LAF Order Battle');
 		    $message->to($this->email, $this->email)
 		    		->subject( $this->application->name." | Password Recovery" );
 		});
