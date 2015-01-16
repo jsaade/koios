@@ -78,8 +78,10 @@ class PushNewsCommand extends Command {
 			    'badge' => 1,
 			    'locArgs' => array( $n->id, $n->news_category_id)
 			));	
-			$push = PushNotification::app($application->slug.'_IOS')->to($devices)->send($message);
-			dd($push->getFeedback());
+			
+				$push = PushNotification::app($application->slug.'_IOS')->to($devices)->send($message);	
+				dd($push->getFeedback());	
+			
 			$n->update(['push_status' => 'sent']);
 		}
 		$this->info( $application->name." | ".$news->count()." news were pushed to ".count($tokens)." devices.");
