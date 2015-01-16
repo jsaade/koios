@@ -70,8 +70,6 @@ class PushNewsCommand extends Command {
 		foreach($device_tokens as $t)
 			array_push( $tokens, PushNotification::Device($t));
 		$devices = PushNotification::DeviceCollection($tokens);
-		var_dump($devices);
-		die();
 		//Push the news and update database
 		foreach($news as $n)
 		{
@@ -88,7 +86,7 @@ class PushNewsCommand extends Command {
 			catch(Exception $e) {
 				var_dump($app->pushManager->getFeedback($app->adapter)); 
 			}
-				
+			die();
 			$n->update(['push_status' => 'sent']);
 		}
 		$this->info( $application->name." | ".$news->count()." news were pushed to ".count($tokens)." devices.");
