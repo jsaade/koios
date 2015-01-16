@@ -88,15 +88,8 @@ class PushNewsCommand extends Command {
 			    'locArgs' => array( $n->id, $n->news_category_id)
 			));	
 			
-			//get the feedback
-			$pushManager = PushNotification::PushManager('prod');
-			$appIosConfig = Config::get( 'laravel-push-notification::'.$application->slug.'_IOS');
-			$apnsAdapter =  PushNotification::ApnsAdapter( ['certificate' => $appIosConfig['certificate'] ]);
-			$feedback = $pushManager->getFeedback($apnsAdapter); 
-			
-			$app_ios->to($devices)->send($message);
-			var_dump($feedback);
-			die('sent');
+			$push = $app_ios->to($devices)->send($message);
+			dd($push->getFeedback());
 			$n->update(['push_status' => 'sent']);
 		}
 		$this->info( $application->name." | ".$news->count()." news were pushed to ".count($tokens)." devices.");
