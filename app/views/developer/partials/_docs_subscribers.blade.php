@@ -109,6 +109,21 @@ Content-Type: application/json; charset=utf-8
 </code>
 </pre>
 
+	<!-- delete device -->
+	<h5>remove device</h5>
+	<p>To remove a subscriber's device, submit a post request with the following parameters:</p>
+	<ul type="square">
+		<li>token <code class="tip">required</code></li>
+	</ul>
+<pre>
+<code class="http">POST /api/app/{api-key}/subscribers/{subscriber-id}/remove-device?access_token={token} HTTP/1.1
+
+X-Auth-Token: {md5(api-secret-here)}
+Host: koios.mercury.me
+Content-Type: application/json; charset=utf-8
+</code>
+</pre>
+
 
 	<!-- list all the subscribers -->
 	<h5>List all subscribers</h5>

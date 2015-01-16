@@ -43,7 +43,6 @@ class PushNewsCommand extends Command {
 	public function fire()
 	{
 		$slug = $value = $this->argument('application');
-		var_dump($slug);
 		$application = Application::whereSlug($slug)->first();
 
 		//validate the application
@@ -84,10 +83,9 @@ class PushNewsCommand extends Command {
 				$push = $app->to($devices)->send($message);	
 			}	
 			catch(Exception $e) {
-				dd($app->pushManager->getFeedback($app->adapter)); 
+				//dd($app->pushManager->getFeedback($app->adapter)); 
 			}
 				
-			
 			$n->update(['push_status' => 'sent']);
 		}
 		$this->info( $application->name." | ".$news->count()." news were pushed to ".count($tokens)." devices.");

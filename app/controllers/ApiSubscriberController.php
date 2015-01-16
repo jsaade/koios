@@ -270,11 +270,28 @@ class ApiSubscriberController extends \ApiController {
 			return $this->respondErrors( "The meta key does not exist.", "Bad request.", self::HTTP_BAD_REQUEST);
 
 		$game_meta->delete();
-		return $this->respondOk(
-				['subscriberId' => $subscriber->id ], 
-				'No content | Game meta deleted.',
-				self::HTTP_NO_CONTENT
-			);
+		return $this->respondOk(['subscriberId' => $subscriber->id ],  'No content | Game meta deleted.', self::HTTP_NO_CONTENT );
+	}
+
+
+	/* POST method to delete subscriber device */
+	public function destroyDevice(Application $application, Subscriber $subscriber)
+	{
+		$input = Input::all();
+		$device = new Device();
+
+		$rules =['token' => 'required'];
+		
+		if(!$device->isValid($input, $rules))
+			return $this->respondErrors( $device->errors, "Retry with valid parameters", self::HTTP_VALID_PARAMS);
+
+		$device = Device::whereToken($input['token'])->whereSubscriberId($subscriber->id)->first();
+		if(!$device)
+			return $this->respondErrors( "The device token does not exist.", "Bad request.", self::HTTP_BAD_REQUEST);
+
+
+		$device->delete();
+		return $this->respondOk(['subscriberId' => $subscriber->id ],  'No content | Device deleted.', self::HTTP_NO_CONTENT );
 	}
 
 

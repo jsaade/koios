@@ -15,9 +15,12 @@ class Device extends \Eloquent {
 		'subscriber_id' => 'required|exists:subscriber,id'
 	];
 
-	public function isValid($data)
+	public function isValid($data, $rules = null)
 	{
-		$validation = Validator::make($data, static::$rules);
+		if(!$rules)
+			$rules = static::$rules;
+
+		$validation = Validator::make($data, $rules );
 		if($validation->passes())
 		{
 			return true;

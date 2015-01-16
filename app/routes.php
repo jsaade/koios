@@ -45,6 +45,7 @@ Route::group(['prefix'=>'api/', 'before'=>'secure'], function()
 	Route::post('app/{app}/subscribers/create', 'ApiSubscriberController@store');
 	Route::post('app/{app}/subscribers/{subscribers}/create-profile', 'ApiSubscriberController@storeProfile')->before('subscriberAppRelation')->before('token');                                                                                                                                                                                                                                                                                                      
 	Route::post('app/{app}/subscribers/{subscribers}/add-device', 'ApiSubscriberController@storeDevice')->before('subscriberAppRelation')->before('token');                                                                                                                                                                                                                                                                                                      
+	Route::post('app/{app}/subscribers/{subscribers}/remove-device', 'ApiSubscriberController@destroyDevice')->before('token');
 	//Email Subscribers
 	Route::get('app/{app}/resend-activation-email', ['as' => 'activate.email', 'uses' => 'ApiSubscriberController@resendActivationEmail']);
 	Route::get('app/{app}/send-password-email', ['as' => 'password.email', 'uses' => 'ApiSubscriberController@sendForgotPasswordEmail']);
