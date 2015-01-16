@@ -43,7 +43,9 @@ class PushNewsCommand extends Command {
 	public function fire()
 	{
 		$slug = $value = $this->argument('application');
+		var_dump($slug);
 		$application = Application::whereSlug($slug)->first();
+
 		//validate the application
 		if(!$application)
 		{
