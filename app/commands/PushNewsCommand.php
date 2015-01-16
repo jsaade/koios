@@ -89,7 +89,7 @@ class PushNewsCommand extends Command {
 			));	
 			
 			$push = $app_ios->to($devices)->send($message);
-			dd($push->getFeedback());
+			dd($push->pushManager->getFeedback());
 			$n->update(['push_status' => 'sent']);
 		}
 		$this->info( $application->name." | ".$news->count()." news were pushed to ".count($tokens)." devices.");
