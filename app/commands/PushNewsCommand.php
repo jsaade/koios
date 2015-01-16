@@ -89,7 +89,7 @@ class PushNewsCommand extends Command {
 			));	
 			$push = $app_ios->to($devices)->send($message);
 			
-			var_dump($push->getFeedback($push->getAdapter())); 
+			var_dump($push->getFeedback($app_ios->adapter)); 
 			
 			die('sent');
 			$n->update(['push_status' => 'sent']);
