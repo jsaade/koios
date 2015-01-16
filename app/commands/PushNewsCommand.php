@@ -79,8 +79,13 @@ class PushNewsCommand extends Command {
 			    'locArgs' => array( $n->id, $n->news_category_id)
 			));	
 			
+			try{
 				$push = PushNotification::app($application->slug.'_IOS')->to($devices)->send($message);	
-				dd($push->getFeedback());	
+			}	
+			catch(){
+				dd($push);	
+			}
+				
 			
 			$n->update(['push_status' => 'sent']);
 		}
