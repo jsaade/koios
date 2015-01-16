@@ -83,8 +83,7 @@ class PushNewsCommand extends Command {
 				$push = PushNotification::app($application->slug.'_IOS')->to($devices)->send($message);	
 			}	
 			catch(Exception $e) {
-				var_dump($e); 
-				dd($push);	
+				dd($e); 
 			}
 				
 			
