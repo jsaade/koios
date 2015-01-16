@@ -87,7 +87,6 @@ class PushNewsCommand extends Command {
 			    'badge' => 1,
 			    'locArgs' => array( $n->id, $n->news_category_id)
 			));	
-			$app_ios->to($devices)->send($message);
 			
 			//get the feedback
 			$pushManager = PushNotification::PushManager('prod');
@@ -95,6 +94,7 @@ class PushNewsCommand extends Command {
 			$apnsAdapter =  PushNotification::ApnsAdapter( ['certificate' => $appIosConfig['certificate'] ]);
 			$feedback = $pushManager->getFeedback($apnsAdapter); 
 			
+			$app_ios->to($devices)->send($message);
 			var_dump($feedback);
 			die('sent');
 			$n->update(['push_status' => 'sent']);
