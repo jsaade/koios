@@ -81,7 +81,7 @@ class PushNewsCommand extends Command {
 		$devices = PushNotification::DeviceCollection($tokens);
 
 		$pushManager = PushNotification::PushManager('prod');
-		$appIosConfig = Config::get($application->slug.'_IOS');
+		$appIosConfig = Config::get( 'laravel-push-notification::'.$application->slug.'_IOS');
 		dd($appIosConfig );
 		$apnsAdapter =  PushNotification::ApnsAdapter( ['certificate' => $appIosConfig['certificate'] ]);
 		var_dump($pushManager, $apnsAdapter);
