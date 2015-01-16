@@ -80,7 +80,7 @@ class PushNewsCommand extends Command {
 		}
 		$devices = PushNotification::DeviceCollection($tokens);
 
-		$pushManager = PushNotification::PushManager(PushManager::ENVIRONMENT_PRODUCTION);
+		$pushManager = PushNotification::PushManager('prod');
 		var_dump($pushManager);
 		die;
 		/* PUSH THE NEWS TO THE DEVICES AND UPDATE DATABASE */
