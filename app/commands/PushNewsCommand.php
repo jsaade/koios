@@ -45,20 +45,22 @@ class PushNewsCommand extends Command {
 		$slug = $value = $this->argument('application');
 		$application = Application::whereSlug($slug)->first();
 
-		//validate the application
+		/* VALIDATE THE APPLICATION */
 		if(!$application)
 		{
 			$this->error("The application provided does not exist.");
 			return;
 		}
-		//get the news
+		
+		/* GET HTE NEWS TO BE PUSHED */
 		$news = $this->newsRepos->getPushNews($application);
 		if(!$news->count())
 		{
 			$this->info($application->name." | There is no pending news to be pushed.");
 			return;
 		}
-		//get the application's devices
+		
+		/* GET THE DEVICES */ 
 		$device_tokens = $this->subscriberRepos->getApplicationDeviceTokens($application, "iphone");
 		if(!count($device_tokens))
 		{
@@ -66,7 +68,7 @@ class PushNewsCommand extends Command {
 			return;
 		}
 		
-		//all is well, prepare tokens to be pushed
+		/* ALL IS WELL, PREPARE DEVICE TOKENS TO BE PUSHED */
 		$app_ios = PushNotification::app($application->slug.'_IOS');
 		$tokens = [];
 		foreach($device_tokens as $t)
@@ -76,10 +78,9 @@ class PushNewsCommand extends Command {
 				array_push( $tokens, PushNotification::Device($t));
 			//else : remove the device
 		}
-		
-		dd($tokens);
 		$devices = PushNotification::DeviceCollection($tokens);
-		//Push the news and update database
+
+		/* PUSH THE NEWS TO THE DEVICES AND UPDATE DATABASE */
 		foreach($news as $n)
 		{
 			$message = PushNotification::Message( $n->name, array(
