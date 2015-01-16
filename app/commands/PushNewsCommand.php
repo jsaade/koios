@@ -84,7 +84,7 @@ class PushNewsCommand extends Command {
 				$this->info($app->pushManager->getFeedback($app->adapter));
 			}	
 			catch(Exception $e) {
-				var_dump($application->name." | ".$app->pushManager->getFeedback($app->adapter)); 
+				var_dump($app->pushManager->getFeedback($app->adapter)); 
 			}
 				
 			$n->update(['push_status' => 'sent']);
