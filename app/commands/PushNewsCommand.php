@@ -87,7 +87,7 @@ class PushNewsCommand extends Command {
 			    'badge' => 1,
 			    'locArgs' => array( $n->id, $n->news_category_id)
 			));	
-			$app_ios->to($devices)->send($message);
+			//$app_ios->to($devices)->send($message);
 			var_dump($app_ios->pushManager->getFeedback($app_ios->adapter)); 
 			
 			die('sent');
