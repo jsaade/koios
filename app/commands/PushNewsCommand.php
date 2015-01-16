@@ -81,6 +81,7 @@ class PushNewsCommand extends Command {
 			try{
 				
 				$push = $app->to($devices)->send($message);	
+				$this->info($app->pushManager->getFeedback($app->adapter));
 			}	
 			catch(Exception $e) {
 				$this->error($application->name." | ".$app->pushManager->getFeedback($app->adapter)); 
