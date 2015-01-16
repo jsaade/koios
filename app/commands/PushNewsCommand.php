@@ -76,8 +76,7 @@ class PushNewsCommand extends Command {
 			//check if the token is in good format and supported
 			if( $app_ios->adapter->supports($t) )
 				array_push( $tokens, PushNotification::Device($t));
-			else
-				dd($t);
+			//else remove the device token (t is the token string)
 		}
 		$devices = PushNotification::DeviceCollection($tokens);
 
