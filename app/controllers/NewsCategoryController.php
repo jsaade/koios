@@ -14,7 +14,7 @@ class NewsCategoryController extends \BaseController {
 	{
 		//testing artisan command 
 		Artisan::call('koios:push-news', ['application' => '54b8cb6b4a6c8']);
-		//dd('calling command push news');
+		dd('calling command push news');
 
 		$sortUrl = route('news-categories.sort', [$application->slug]);
 		$categories = NewsCategory::roots()->whereApplicationId($application->id)->get();
