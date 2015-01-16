@@ -65,8 +65,7 @@ class PushNewsCommand extends Command {
 		{
 			$this->info($application->name." | No tokens (devices) found.");
 			return;
-		}
-		dd( $device_tokens );
+		}		
 		//all is well, prepare tokens to be pushed
 		$tokens = [];
 		foreach($device_tokens as $t)
@@ -79,7 +78,8 @@ class PushNewsCommand extends Command {
 			    'badge' => 1,
 			    'locArgs' => array( $n->id, $n->news_category_id)
 			));	
-			PushNotification::app($application->slug.'_IOS')->to($devices)->send($message);
+			$push = PushNotification::app($application->slug.'_IOS')->to($devices)->send($message);
+			dd($push);
 			$n->update(['push_status' => 'sent']);
 		}
 		$this->info( $application->name." | ".$news->count()." news were pushed to ".count($tokens)." devices.");
