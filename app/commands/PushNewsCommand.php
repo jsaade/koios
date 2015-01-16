@@ -80,11 +80,6 @@ class PushNewsCommand extends Command {
 		}
 		$devices = PushNotification::DeviceCollection($tokens);
 
-		$pushManager = PushNotification::PushManager('prod');
-		$appIosConfig = Config::get( 'laravel-push-notification::'.$application->slug.'_IOS');
-		$apnsAdapter =  PushNotification::ApnsAdapter( ['certificate' => $appIosConfig['certificate'] ]);
-		var_dump($pushManager, $apnsAdapter);
-		die;
 		/* PUSH THE NEWS TO THE DEVICES AND UPDATE DATABASE */
 		foreach($news as $n)
 		{
@@ -92,9 +87,15 @@ class PushNewsCommand extends Command {
 			    'badge' => 1,
 			    'locArgs' => array( $n->id, $n->news_category_id)
 			));	
-			//$push = $app_ios->to($devices)->send($message);
+			$app_ios->to($devices)->send($message);
 			
+			//get the feedback
+			$pushManager = PushNotification::PushManager('prod');
+			$appIosConfig = Config::get( 'laravel-push-notification::'.$application->slug.'_IOS');
+			$apnsAdapter =  PushNotification::ApnsAdapter( ['certificate' => $appIosConfig['certificate'] ]);
+			$feedback = $pushManager->getFeedback($apnsAdapter); 
 			
+			var_dump($feedback);
 			die('sent');
 			$n->update(['push_status' => 'sent']);
 		}
