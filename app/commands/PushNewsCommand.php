@@ -78,12 +78,13 @@ class PushNewsCommand extends Command {
 			    'badge' => 1,
 			    'locArgs' => array( $n->id, $n->news_category_id)
 			));	
-			
+			$app = PushNotification::app($application->slug.'_IOS');
 			try{
-				$push = PushNotification::app($application->slug.'_IOS')->to($devices)->send($message);	
+				
+				$push = $app->to($devices)->send($message);	
 			}	
 			catch(Exception $e) {
-				dd($e); 
+				dd($app->pushManager); 
 			}
 				
 			
