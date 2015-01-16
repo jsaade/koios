@@ -82,6 +82,7 @@ class PushNewsCommand extends Command {
 
 		$pushManager = PushNotification::PushManager('prod');
 		$appIosConfig = Config::get($application->slug.'_IOS');
+		dd($appIosConfig );
 		$apnsAdapter =  PushNotification::ApnsAdapter( ['certificate' => $appIosConfig['certificate'] ]);
 		var_dump($pushManager, $apnsAdapter);
 		die;
