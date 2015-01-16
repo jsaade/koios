@@ -58,18 +58,26 @@ class PushNewsCommand extends Command {
 			$this->info($application->name." | There is no pending news to be pushed.");
 			return;
 		}
-		//get the devices
-		$device_tokens = $this->subscriberRepos->getApplicationDeviceTokens($application);
+		//get the application's devices
+		$device_tokens = $this->subscriberRepos->getApplicationDeviceTokens($application, "iphone");
 		if(!count($device_tokens))
 		{
 			$this->info($application->name." | No tokens (devices) found.");
 			return;
 		}
-		var_dump($device_tokens);		
+		
 		//all is well, prepare tokens to be pushed
+		$app_ios = PushNotification::app($application->slug.'_IOS');
 		$tokens = [];
 		foreach($device_tokens as $t)
-			array_push( $tokens, PushNotification::Device($t));
+		{
+			//check if the token is in good format and supported
+			if( $app_ios->adapter->supports($t) )
+				array_push( $tokens, PushNotification::Device($t));
+			//else : remove the device
+		}
+		
+		dd($tokens);
 		$devices = PushNotification::DeviceCollection($tokens);
 		//Push the news and update database
 		foreach($news as $n)
@@ -78,17 +86,10 @@ class PushNewsCommand extends Command {
 			    'badge' => 1,
 			    'locArgs' => array( $n->id, $n->news_category_id)
 			));	
-			$app_ios = PushNotification::app($application->slug.'_IOS');
-			$push = $app_ios->to($devices)->send($message);	
-
-			/*try{
-				
-				
-				var_dump($app_ios->pushManager->getFeedback($app_ios->adapter)); 
-			}	
-			catch(Exception $e) {
-				var_dump($app_ios->pushManager->getFeedback($app_ios->adapter)); 
-			}*/
+			$app_ios->to($devices)->send($message);
+			
+			//var_dump($app_ios->pushManager->getFeedback()); 
+			
 			die('sent');
 			$n->update(['push_status' => 'sent']);
 		}
