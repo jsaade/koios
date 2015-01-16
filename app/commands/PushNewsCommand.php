@@ -64,7 +64,8 @@ class PushNewsCommand extends Command {
 		{
 			$this->info($application->name." | No tokens (devices) found.");
 			return;
-		}		
+		}
+		var_dump($device_tokens);		
 		//all is well, prepare tokens to be pushed
 		$tokens = [];
 		foreach($device_tokens as $t)
@@ -86,7 +87,7 @@ class PushNewsCommand extends Command {
 			catch(Exception $e) {
 				var_dump($app->pushManager->getFeedback($app->adapter)); 
 			}
-			die();
+			die('sent');
 			$n->update(['push_status' => 'sent']);
 		}
 		$this->info( $application->name." | ".$news->count()." news were pushed to ".count($tokens)." devices.");
