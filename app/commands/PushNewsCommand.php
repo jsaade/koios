@@ -66,7 +66,7 @@ class PushNewsCommand extends Command {
 			$this->info($application->name." | No tokens (devices) found.");
 			return;
 		}
-		var_dump( $device_tokens );
+		dd( $device_tokens );
 		//all is well, prepare tokens to be pushed
 		$tokens = [];
 		foreach($device_tokens as $t)
