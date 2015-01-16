@@ -54,14 +54,14 @@ class PushNewsCommand extends Command {
 		$news = $this->newsRepos->getPushNews($application);
 		if(!$news->count())
 		{
-			$this->info("there is no pending news to be pushed.");
+			$this->info($application->name." | There is no pending news to be pushed.");
 			return;
 		}
 		//get the devices
 		$device_tokens = $this->subscriberRepos->getApplicationDeviceTokens($application);
 		if(!count($device_tokens))
 		{
-			$this->info("No device tokens found for this application.");
+			$this->info($application->name." | No tokens (devices) found.");
 			return;
 		}
 		//all is well, prepare tokens to be pushed
@@ -79,7 +79,7 @@ class PushNewsCommand extends Command {
 			PushNotification::app($application->slug.'_IOS')->to($devices)->send($message);
 			$n->update(['push_status' => 'sent']);
 		}
-		$this->info( $news->count()." news were pushed to ".count($tokens)." devices.");
+		$this->info( $application->name." | ".$news->count()." news were pushed to ".count($tokens)." devices.");
 	}
 
 	/**
