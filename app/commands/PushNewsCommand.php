@@ -42,6 +42,7 @@ class PushNewsCommand extends Command {
 	 */
 	public function fire()
 	{
+		var_dump('loggin in broswer');
 		$slug = $value = $this->argument('application');
 		$application = Application::whereSlug($slug)->first();
 		//validate the application
