@@ -78,15 +78,17 @@ class PushNewsCommand extends Command {
 			    'badge' => 1,
 			    'locArgs' => array( $n->id, $n->news_category_id)
 			));	
-			$app = PushNotification::app($application->slug.'_IOS');
-			try{
+			$app_ios = PushNotification::app($application->slug.'_IOS');
+			$push = $app_ios->to($devices)->send($message);	
+
+			/*try{
 				
-				$push = $app->to($devices)->send($message);	
-				var_dump($app->pushManager->getFeedback($app->adapter)); 
+				
+				var_dump($app_ios->pushManager->getFeedback($app_ios->adapter)); 
 			}	
 			catch(Exception $e) {
-				var_dump($app->pushManager->getFeedback($app->adapter)); 
-			}
+				var_dump($app_ios->pushManager->getFeedback($app_ios->adapter)); 
+			}*/
 			die('sent');
 			$n->update(['push_status' => 'sent']);
 		}
