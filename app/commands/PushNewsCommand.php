@@ -80,8 +80,8 @@ class PushNewsCommand extends Command {
 		}
 		$devices = PushNotification::DeviceCollection($tokens);
 
-		$feedback = $app_ios->pushManager($app_ios->adapter);
-		var_dump($feedback);
+		$pushManager = PushNotification::PushManager(PushManager::ENVIRONMENT_PRODUCTION);
+		var_dump($pushManager);
 		die;
 		/* PUSH THE NEWS TO THE DEVICES AND UPDATE DATABASE */
 		foreach($news as $n)
