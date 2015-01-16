@@ -70,6 +70,7 @@ class PushNewsCommand extends Command {
 		foreach($device_tokens as $t)
 			array_push( $tokens, PushNotification::Device($t));
 		$devices = PushNotification::DeviceCollection($tokens);
+		var_dump($devices);
 		//Push the news and update database
 		foreach($news as $n)
 		{
