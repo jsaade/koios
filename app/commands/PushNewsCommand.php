@@ -81,7 +81,9 @@ class PushNewsCommand extends Command {
 		$devices = PushNotification::DeviceCollection($tokens);
 
 		$pushManager = PushNotification::PushManager('prod');
-		var_dump($pushManager);
+		$appIosConfig = Config::get($application->slug.'_IOS');
+		$apnsAdapter =  PushNotification::ApnsAdapter( ['certificate' => $appIosConfig['certificate'] ]);
+		var_dump($pushManager, $apnsAdapter);
 		die;
 		/* PUSH THE NEWS TO THE DEVICES AND UPDATE DATABASE */
 		foreach($news as $n)
