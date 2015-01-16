@@ -88,7 +88,7 @@ class PushNewsCommand extends Command {
 			    'locArgs' => array( $n->id, $n->news_category_id)
 			));	
 			$push = $app_ios->to($devices)->send($message);
-			var_dump($push);
+			echo "<pre>".print_r($push, true)."</pre>";
 			die();
 			var_dump($push->getFeedback($app_ios->adapter)); 
 			
