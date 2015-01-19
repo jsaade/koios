@@ -84,8 +84,8 @@ class PushNewsCommand extends Command {
 			$message = PushNotification::Message( 'message sample' , [
 				'badge' => 1, 
 				'tickerText' => $application->name,
-				'contentTitle' => $n->name,
-				'contentText' => 'body text',
+				'contentTitle' => $application->name,
+				'contentText' => $n->name,
 				'parameters' => [
 					'news_id' => $n->id, 
 					'category_id' => $n->news_category_id
