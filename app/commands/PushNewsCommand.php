@@ -83,7 +83,7 @@ class PushNewsCommand extends Command {
 			//push to android
 			$message = PushNotification::Message( 'message sample' , [
 				'badge' => 1, 
-				'tickerText' => $application->name,
+				'tickerText' => $n->name,
 				'contentTitle' => $application->name,
 				'contentText' => $n->name,
 				'parameters' => [
