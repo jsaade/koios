@@ -136,26 +136,25 @@ class Application extends \Eloquent {
 	}
 
 	/**
-	 * Validates the good device tokens with ios apns adapter and deletes the wrong ones
-	 * @param  PushNotification $ios_app [description]
+	 * Validates the good device tokens with apns/android adapter and deletes the wrong ones
+	 * @param  PushNotification $app [description]
 	 * @return [type]          [description]
 	 */
-	public function prepareIosPushDevices($ios_app, $ios_device_tokens)
+	public function preparePushDevices($app, $device_tokens)
 	{
-		$ios_app = PushNotification::app($this->slug.'_IOS');
-		$ios_tokens = [];
-		foreach($ios_device_tokens as $t)
+		$tokens = [];
+		foreach($device_tokens as $t)
 		{
-			if( $ios_app->adapter->supports($t) )
-				array_push( $ios_tokens, PushNotification::Device($t));
+			if( $app->adapter->supports($t) )
+				array_push( $tokens, PushNotification::Device($t));
 			else
 			{
 				$device = Device::whereToken($t)->whereApplicationId($this->id);
 				$device->delete();
 			}
 		}
-		$ios_devices = PushNotification::DeviceCollection($ios_tokens);
-		return $ios_devices;
+		$devices = PushNotification::DeviceCollection($tokens);
+		return $devices;
 	}
 
 

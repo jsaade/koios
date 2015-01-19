@@ -63,16 +63,37 @@ class PushNewsCommand extends Command {
 		//get the ios devices 
 		$ios_app = PushNotification::app($application->slug.'_IOS');
 		$ios_device_tokens = $application->getApplicationDeviceTokens("iphone");
-		$ios_devices = $application->prepareIosPushDevices($ios_app, $ios_device_tokens);
+		$ios_devices = $application->preparePushDevices($ios_app, $ios_device_tokens);
+
+		//get the android devices
+		$android_app = PushNotification::app($application->slug.'_ANDROID');
+		$android_device_tokens = $application->getApplicationDeviceTokens("android");
+		$android_devices = $application->preparePushDevices($android_app, $android_device_tokens);
+
 
 		//push the news
 		foreach($news as $n)
 		{
+			//push to ios
 			$title = $n->name;
 			$args = [$n->id, $n->news_category_id];
 			$message = PushNotification::Message( $title , ['badge' => 1, 'locArgs' =>$args]);	
-			
 			$ios_app->to($ios_devices)->send($message);
+
+			//push to android
+			$arr = [ 'data' => [
+				'parameters' => [
+					'news_id' => $n->id, 
+					'category_id' => $n->news_category_id
+				],
+				'tickerText' => $application->name,
+				'contentTitle' => $n->name,
+				'contentText' => ''
+			]];
+			$title = json_encode($arr);
+			$message = PushNotification::Message( $title , ['badge' => 1, 'locArgs' =>$args]);	
+			$android_app->to($android_devices)->send($message);
+
 			$n->update(['push_status' => 'sent']);
 		}
 		//$this->info( $application->name." | ".$news->count()." news were pushed to ".count($ios_tokens)." ios devices.");
