@@ -142,7 +142,7 @@ class Application extends \Eloquent {
 	 */
 	public function prepareIosPushDevices($ios_app, $ios_device_tokens)
 	{
-		$ios_app = PushNotification::app($application->slug.'_IOS');
+		$ios_app = PushNotification::app($this->slug.'_IOS');
 		$ios_tokens = [];
 		foreach($ios_device_tokens as $t)
 		{
@@ -150,7 +150,7 @@ class Application extends \Eloquent {
 				array_push( $ios_tokens, PushNotification::Device($t));
 			else
 			{
-				$device = Device::whereToken($t)->whereApplicationId($application->id);
+				$device = Device::whereToken($t)->whereApplicationId($this->id);
 				$device->delete();
 			}
 		}
