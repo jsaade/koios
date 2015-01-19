@@ -60,7 +60,7 @@ class PushNewsCommand extends Command {
 			return;
 		}
 		
-		//get the devices 
+		//get the ios devices 
 		$ios_app = PushNotification::app($application->slug.'_IOS');
 		$ios_device_tokens = $application->getApplicationDeviceTokens("iphone");
 		$ios_devices = $application->prepareIosPushDevices($ios_app, $ios_device_tokens);
@@ -75,7 +75,7 @@ class PushNewsCommand extends Command {
 			$ios_app->to($ios_devices)->send($message);
 			$n->update(['push_status' => 'sent']);
 		}
-		$this->info( $application->name." | ".$news->count()." news were pushed to ".count($ios_tokens)." ios devices.");
+		//$this->info( $application->name." | ".$news->count()." news were pushed to ".count($ios_tokens)." ios devices.");
 	}
 
 	/**

@@ -116,9 +116,9 @@ class Application extends \Eloquent {
 	public function getDevices($model = null)
 	{
 		if($model)
-			return Device::whereApplicationId($this->id)->whereModel($model);
+			return Device::whereApplicationId($this->id)->whereModel($model)->get();
 
-		return Device::whereApplicationId($this->id);
+		return Device::whereApplicationId($this->id)->get();
 	}
 
 	public function getApplicationDeviceTokens($model = "iphone")
