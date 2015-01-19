@@ -81,17 +81,16 @@ class PushNewsCommand extends Command {
 			$ios_app->to($ios_devices)->send($message);
 
 			//push to android
-			$arr = [ 'data' => [
+			$message = PushNotification::Message( 'message sample' , [
+				'badge' => 1, 
+				'tickerText' => $application->name,
+				'contentTitle' => $n->name,
+				'contentText' => 'body text',
 				'parameters' => [
 					'news_id' => $n->id, 
 					'category_id' => $n->news_category_id
-				],
-				'tickerText' => $application->name,
-				'contentTitle' => $n->name,
-				'contentText' => ''
-			]];
-			$title = json_encode($arr);
-			$message = PushNotification::Message( $title , ['badge' => 1, 'locArgs' => '']);	
+				]
+			]);	
 			$android_app->to($android_devices)->send($message);
 
 			$n->update(['push_status' => 'sent']);
