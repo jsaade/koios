@@ -91,7 +91,7 @@ class PushNewsCommand extends Command {
 				'contentText' => ''
 			]];
 			$title = json_encode($arr);
-			$message = PushNotification::Message( $title , ['badge' => 1, 'locArgs' =>$args]);	
+			$message = PushNotification::Message( $title , ['badge' => 1, 'locArgs' => '']);	
 			$android_app->to($android_devices)->send($message);
 
 			$n->update(['push_status' => 'sent']);

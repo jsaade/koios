@@ -45,6 +45,12 @@
 				    		API Keys
 				    	</a>
 				    </li>
+				    <li role="presentation">
+				    	<a href="#app-stats" aria-controls="app-stats" role="tab" data-toggle="tab">
+							<i class="icon-fixed-width  icon-bolt"></i>
+				    		Quick Stats
+				    	</a>
+				    </li>
 				</ul>
 
 				<!-- Tab panes -->
@@ -58,7 +64,7 @@
 				    <div role="tabpanel" class="tab-pane" id="settings">
 				    	@include('application.partials._settings_form')
 				    </div>
-				      <div role="tabpanel" class="tab-pane" id="api">
+				    <div role="tabpanel" class="tab-pane" id="api">
 				    	<div class="api">
 				    		<p>
 				    			<strong>api key</strong><br/>
@@ -70,6 +76,10 @@
 				    		</p>
 				    	</div>
 				    </div>
+				    <div role="tabpanel" class="tab-pane" id="app-stats">
+						{{ $application->getDevices('iphone')->count() }}
+				    	{{ $application->subscribers->count() }}
+					</div>
 				</div>
 			</div>
 

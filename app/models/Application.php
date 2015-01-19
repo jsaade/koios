@@ -128,7 +128,11 @@ class Application extends \Eloquent {
 		foreach($devices as $device)
 		{
 			if($device->model == $model)
-				array_push($tokens_collected, strtolower($device->token));
+			{
+				$token = ($model == "iphone")?strtolower($device->token):$device->token;
+				array_push($tokens_collected, $token);	
+			}
+				
 		}			
 		//get the unique ones only
 		$tokens_collected = array_unique($tokens_collected);
