@@ -335,22 +335,4 @@ class DbSubscriberRepository extends DbRepos
 
 		return $subscriber;
 	}
-
-
-	public function getApplicationDeviceTokens($application, $model = "iphone")
-	{
-		$subscribers = $application->subscribers()->with('devices')->get();
-		$tokens_collected = [];
-		foreach($subscribers as $subscriber)
-			foreach($subscriber->devices as $device)
-			{
-				if($device->model == $model)
-					array_push($tokens_collected, strtolower($device->token));
-			}
-		//get the unique ones only
-		$tokens_collected = array_unique($tokens_collected);
-		return $tokens_collected;
-	}
-
-
 }

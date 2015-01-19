@@ -2,7 +2,7 @@
 
 class Device extends \Eloquent {
 	protected $table = 'device';
-	protected $fillable = ['model', 'os', 'version', 'token', 'subscriber_id'];
+	protected $fillable = ['model', 'os', 'version', 'token', 'subscriber_id', 'application_id'];
 
 	/*******************
 	 * FORM VALIDATION *

@@ -118,7 +118,8 @@ class ApiSubscriberController extends \ApiController {
 	public function storeDevice(Application $application, Subscriber $subscriber)
 	{
 		$input = Input::all();
-		$input['subscriber_id'] = $subscriber->id;
+		$input['subscriber_id']  = $subscriber->id;
+		$input['application_id'] = $application->id;
 		$device = new Device();
 
 		if($device->isValid($input))

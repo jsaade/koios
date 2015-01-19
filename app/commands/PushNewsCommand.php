@@ -45,14 +45,14 @@ class PushNewsCommand extends Command {
 		$slug = $value = $this->argument('application');
 		$application = Application::whereSlug($slug)->first();
 
-		/* VALIDATE THE APPLICATION */
+		//validate the application
 		if(!$application)
 		{
 			$this->error("The application provided does not exist.");
 			return;
 		}
 		
-		/* GET HTE NEWS TO BE PUSHED */
+		//get the news to be pushed
 		$news = $this->newsRepos->getPushNews($application);
 		if(!$news->count())
 		{
@@ -60,39 +60,22 @@ class PushNewsCommand extends Command {
 			return;
 		}
 		
-		/* GET THE DEVICES */ 
-		$device_tokens = $this->subscriberRepos->getApplicationDeviceTokens($application, "iphone");
-		if(!count($device_tokens))
-		{
-			$this->info($application->name." | No tokens (devices) found.");
-			return;
-		}
-		
-		/* ALL IS WELL, PREPARE DEVICE TOKENS TO BE PUSHED */
-		$app_ios = PushNotification::app($application->slug.'_IOS');
-		$tokens = [];
-		foreach($device_tokens as $t)
-		{
-			//check if the token is in good format and supported
-			//if( $app_ios->adapter->supports($t) )
-			//	array_push( $tokens, PushNotification::Device($t));
-			//else remove the device token (t is the token string)
-		}
-		$devices = PushNotification::DeviceCollection($tokens);
+		//get the devices 
+		$ios_app = PushNotification::app($application->slug.'_IOS');
+		$ios_device_tokens = $application->getApplicationDeviceTokens("iphone");
+		$ios_devices = $application->prepareIosPushDevices($ios_app, $ios_device_tokens);
 
-		/* PUSH THE NEWS TO THE DEVICES AND UPDATE DATABASE */
+		//push the news
 		foreach($news as $n)
 		{
-			$message = PushNotification::Message( $n->name, array(
-			    'badge' => 1,
-			    'locArgs' => array( $n->id, $n->news_category_id)
-			));	
+			$title = $n->name;
+			$args = [$n->id, $n->news_category_id];
+			$message = PushNotification::Message( $title , ['badge' => 1, 'locArgs' =>$args]);	
 			
-			$push = $app_ios->to($devices)->send($message);
-			dd($push->pushManager->getFeedback( $app_ios->adapter ));
+			$ios_app->to($ios_devices)->send($message);
 			$n->update(['push_status' => 'sent']);
 		}
-		$this->info( $application->name." | ".$news->count()." news were pushed to ".count($tokens)." devices.");
+		$this->info( $application->name." | ".$news->count()." news were pushed to ".count($ios_tokens)." ios devices.");
 	}
 
 	/**

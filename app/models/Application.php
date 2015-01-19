@@ -110,6 +110,55 @@ class Application extends \Eloquent {
 	}
 
 
+	/****************************************************
+	 * APP DEVICE METHODS RELATED TO PUSH NOTIFICATIONS *
+	 ****************************************************/
+	public function getDevices($model = null)
+	{
+		if($model)
+			return Device::whereApplicationId($this->id)->whereModel($model);
+
+		return Device::whereApplicationId($this->id);
+	}
+
+	public function getApplicationDeviceTokens($model = "iphone")
+	{
+		$devices = $this->getDevices($model);
+		$tokens_collected = [];
+		foreach($devices as $device)
+		{
+			if($device->model == $model)
+				array_push($tokens_collected, strtolower($device->token));
+		}			
+		//get the unique ones only
+		$tokens_collected = array_unique($tokens_collected);
+		return $tokens_collected;
+	}
+
+	/**
+	 * Validates the good device tokens with ios apns adapter and deletes the wrong ones
+	 * @param  PushNotification $ios_app [description]
+	 * @return [type]          [description]
+	 */
+	public function prepareIosPushDevices($ios_app, $ios_device_tokens)
+	{
+		$ios_app = PushNotification::app($application->slug.'_IOS');
+		$ios_tokens = [];
+		foreach($ios_device_tokens as $t)
+		{
+			if( $ios_app->adapter->supports($t) )
+				array_push( $ios_tokens, PushNotification::Device($t));
+			else
+			{
+				$device = Device::whereToken($t)->whereApplicationId($application->id);
+				$device->delete();
+			}
+		}
+		$ios_devices = PushNotification::DeviceCollection($ios_tokens);
+		return $ios_devices;
+	}
+
+
 	/********************
 	 * Application Cert *
 	 ********************/
