@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/davibennun/laravel-push-notification.git",
-                "reference": "241bc222e29e719489ba5508dea0cf63fe99694c"
+                "reference": "2dba86dd4de708b4182cba588ea81055d8b655c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davibennun/laravel-push-notification/zipball/241bc222e29e719489ba5508dea0cf63fe99694c",
-                "reference": "241bc222e29e719489ba5508dea0cf63fe99694c",
+                "url": "https://api.github.com/repos/davibennun/laravel-push-notification/zipball/2dba86dd4de708b4182cba588ea81055d8b655c0",
+                "reference": "2dba86dd4de708b4182cba588ea81055d8b655c0",
                 "shasum": ""
             },
             "require": {
@@ -180,7 +180,7 @@
                 "notification",
                 "push"
             ],
-            "time": "2014-11-01 18:59:17"
+            "time": "2015-01-19 14:07:56"
         },
         {
             "name": "doctrine/inflector",
@@ -365,12 +365,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "b91b0d63488f9a295815af082f987e4773d2843c"
+                "reference": "666475912cbff93d707ddbded9570b23e42cc6f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/b91b0d63488f9a295815af082f987e4773d2843c",
-                "reference": "b91b0d63488f9a295815af082f987e4773d2843c",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/666475912cbff93d707ddbded9570b23e42cc6f4",
+                "reference": "666475912cbff93d707ddbded9570b23e42cc6f4",
                 "shasum": ""
             },
             "require": {
@@ -413,7 +413,7 @@
                 "thumbnail",
                 "watermark"
             ],
-            "time": "2014-12-29 11:58:35"
+            "time": "2015-01-14 15:57:44"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -2019,17 +2019,17 @@
         },
         {
             "name": "zendframework/zend-escaper",
-            "version": "2.3.3",
+            "version": "2.3.4",
             "target-dir": "Zend/Escaper",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/Component_ZendEscaper.git",
-                "reference": "c24949840766a544489bfc303714e1f332341010"
+                "reference": "67c8f76ff6d899a5619a4ab27c3b46ed3ae743fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/Component_ZendEscaper/zipball/c24949840766a544489bfc303714e1f332341010",
-                "reference": "c24949840766a544489bfc303714e1f332341010",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendEscaper/zipball/67c8f76ff6d899a5619a4ab27c3b46ed3ae743fc",
+                "reference": "67c8f76ff6d899a5619a4ab27c3b46ed3ae743fc",
                 "shasum": ""
             },
             "require": {
@@ -2056,21 +2056,21 @@
                 "escaper",
                 "zf2"
             ],
-            "time": "2014-09-16 22:58:11"
+            "time": "2015-01-14 16:44:17"
         },
         {
             "name": "zendframework/zend-http",
-            "version": "2.3.3",
+            "version": "2.3.4",
             "target-dir": "Zend/Http",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/Component_ZendHttp.git",
-                "reference": "00bc1e563e3da53825c423e5d889961a9fb58fe9"
+                "reference": "1758f768120fdd173e22ed45230a8e49b6155766"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/Component_ZendHttp/zipball/00bc1e563e3da53825c423e5d889961a9fb58fe9",
-                "reference": "00bc1e563e3da53825c423e5d889961a9fb58fe9",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendHttp/zipball/1758f768120fdd173e22ed45230a8e49b6155766",
+                "reference": "1758f768120fdd173e22ed45230a8e49b6155766",
                 "shasum": ""
             },
             "require": {
@@ -2102,21 +2102,21 @@
                 "http",
                 "zf2"
             ],
-            "time": "2014-09-16 22:58:11"
+            "time": "2015-01-14 16:44:17"
         },
         {
             "name": "zendframework/zend-json",
-            "version": "2.3.3",
+            "version": "2.3.4",
             "target-dir": "Zend/Json",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/Component_ZendJson.git",
-                "reference": "4093e5a0a166a5d02532bac6e5671a7b21d203b5"
+                "reference": "24b072788f42a025e479901e0c6e5c0bf0dcd960"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/Component_ZendJson/zipball/4093e5a0a166a5d02532bac6e5671a7b21d203b5",
-                "reference": "4093e5a0a166a5d02532bac6e5671a7b21d203b5",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendJson/zipball/24b072788f42a025e479901e0c6e5c0bf0dcd960",
+                "reference": "24b072788f42a025e479901e0c6e5c0bf0dcd960",
                 "shasum": ""
             },
             "require": {
@@ -2129,7 +2129,8 @@
             },
             "suggest": {
                 "zendframework/zend-http": "Zend\\Http component",
-                "zendframework/zend-server": "Zend\\Server component"
+                "zendframework/zend-server": "Zend\\Server component",
+                "zendframework/zendxml": "To support Zend\\Json\\Json::fromXml() usage"
             },
             "type": "library",
             "extra": {
@@ -2153,21 +2154,21 @@
                 "json",
                 "zf2"
             ],
-            "time": "2014-09-16 22:58:11"
+            "time": "2015-01-14 16:44:17"
         },
         {
             "name": "zendframework/zend-loader",
-            "version": "2.3.3",
+            "version": "2.3.4",
             "target-dir": "Zend/Loader",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/Component_ZendLoader.git",
-                "reference": "74b982c0fc89fd1eb3350ccab130243f9bfe2654"
+                "reference": "521ba8650f70d512f9790921153d39eedcabed43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/Component_ZendLoader/zipball/74b982c0fc89fd1eb3350ccab130243f9bfe2654",
-                "reference": "74b982c0fc89fd1eb3350ccab130243f9bfe2654",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendLoader/zipball/521ba8650f70d512f9790921153d39eedcabed43",
+                "reference": "521ba8650f70d512f9790921153d39eedcabed43",
                 "shasum": ""
             },
             "require": {
@@ -2194,21 +2195,21 @@
                 "loader",
                 "zf2"
             ],
-            "time": "2014-09-16 22:58:11"
+            "time": "2015-01-14 16:44:17"
         },
         {
             "name": "zendframework/zend-stdlib",
-            "version": "2.3.3",
+            "version": "2.3.4",
             "target-dir": "Zend/Stdlib",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/Component_ZendStdlib.git",
-                "reference": "fa33e6647f830d0d2a1cb451efcdfe1bb9a66c33"
+                "reference": "280e4ee6a8fea96b3de00a39174758b4002a7358"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/Component_ZendStdlib/zipball/fa33e6647f830d0d2a1cb451efcdfe1bb9a66c33",
-                "reference": "fa33e6647f830d0d2a1cb451efcdfe1bb9a66c33",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendStdlib/zipball/280e4ee6a8fea96b3de00a39174758b4002a7358",
+                "reference": "280e4ee6a8fea96b3de00a39174758b4002a7358",
                 "shasum": ""
             },
             "require": {
@@ -2216,11 +2217,13 @@
             },
             "require-dev": {
                 "zendframework/zend-eventmanager": "self.version",
+                "zendframework/zend-filter": "self.version",
                 "zendframework/zend-serializer": "self.version",
                 "zendframework/zend-servicemanager": "self.version"
             },
             "suggest": {
                 "zendframework/zend-eventmanager": "To support aggregate hydrator usage",
+                "zendframework/zend-filter": "To support naming strategy hydrator usage",
                 "zendframework/zend-serializer": "Zend\\Serializer component",
                 "zendframework/zend-servicemanager": "To support hydrator plugin manager usage"
             },
@@ -2245,21 +2248,21 @@
                 "stdlib",
                 "zf2"
             ],
-            "time": "2014-09-16 22:58:11"
+            "time": "2015-01-14 16:44:17"
         },
         {
             "name": "zendframework/zend-uri",
-            "version": "2.3.3",
+            "version": "2.3.4",
             "target-dir": "Zend/Uri",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/Component_ZendUri.git",
-                "reference": "2a62a92888d7cbae1177fa5f58b0bfcf717aea53"
+                "reference": "72c7e6b146b6d16e71c5529bfcdb45a7148adc33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/Component_ZendUri/zipball/2a62a92888d7cbae1177fa5f58b0bfcf717aea53",
-                "reference": "2a62a92888d7cbae1177fa5f58b0bfcf717aea53",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendUri/zipball/72c7e6b146b6d16e71c5529bfcdb45a7148adc33",
+                "reference": "72c7e6b146b6d16e71c5529bfcdb45a7148adc33",
                 "shasum": ""
             },
             "require": {
@@ -2289,21 +2292,21 @@
                 "uri",
                 "zf2"
             ],
-            "time": "2014-09-16 22:58:11"
+            "time": "2015-01-14 16:44:17"
         },
         {
             "name": "zendframework/zend-validator",
-            "version": "2.3.3",
+            "version": "2.3.4",
             "target-dir": "Zend/Validator",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/Component_ZendValidator.git",
-                "reference": "2881dfaff8452d8cbdaa8ad8a9faccce9843fc6a"
+                "reference": "f048d85d523c9bb2b16f0660412560efd9d257c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/Component_ZendValidator/zipball/2881dfaff8452d8cbdaa8ad8a9faccce9843fc6a",
-                "reference": "2881dfaff8452d8cbdaa8ad8a9faccce9843fc6a",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendValidator/zipball/f048d85d523c9bb2b16f0660412560efd9d257c1",
+                "reference": "f048d85d523c9bb2b16f0660412560efd9d257c1",
                 "shasum": ""
             },
             "require": {
@@ -2351,7 +2354,7 @@
                 "validator",
                 "zf2"
             ],
-            "time": "2014-09-16 22:58:11"
+            "time": "2015-01-14 16:44:17"
         },
         {
             "name": "zendframework/zendservice-apple-apns",
