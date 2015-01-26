@@ -44,6 +44,8 @@ class NewsController extends \BaseController {
 			$this->news = News::create($input);
 			if($uploaded_image)
 				$this->news->uploadImage($uploaded_image);
+
+			Flash::success('News was created successfully.');
 			return Redirect::route('application.{application}.news.index', $application->slug);
 		}
 
@@ -71,6 +73,8 @@ class NewsController extends \BaseController {
 			unset($input['image']);
 			$this->news->update($input);
 			$this->news->uploadImage($uploaded_image);
+
+			Flash::success('News was updated successfully.');
 			return Redirect::route('application.{application}.news.index', $application->slug);
 		}
 

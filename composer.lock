@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5da7df8c200487de752ff62ace59da83",
+    "hash": "44cef6a472c4eb6058f4c7fce5f9eb61",
     "packages": [
         {
             "name": "baum/baum",
@@ -146,12 +146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/davibennun/laravel-push-notification.git",
-                "reference": "2dba86dd4de708b4182cba588ea81055d8b655c0"
+                "reference": "3104fa2ac029ca68449447b2a9b334019dd7e745"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/davibennun/laravel-push-notification/zipball/2dba86dd4de708b4182cba588ea81055d8b655c0",
-                "reference": "2dba86dd4de708b4182cba588ea81055d8b655c0",
+                "url": "https://api.github.com/repos/davibennun/laravel-push-notification/zipball/3104fa2ac029ca68449447b2a9b334019dd7e745",
+                "reference": "3104fa2ac029ca68449447b2a9b334019dd7e745",
                 "shasum": ""
             },
             "require": {
@@ -180,7 +180,7 @@
                 "notification",
                 "push"
             ],
-            "time": "2015-01-19 14:07:56"
+            "time": "2015-01-25 15:48:54"
         },
         {
             "name": "doctrine/inflector",
@@ -313,12 +313,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "7ba61fa08c27a9704d6f88b8f90c56215bbba3b3"
+                "reference": "b1167d9c67a3325a3f4099eb7d848c6c30cc87c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/7ba61fa08c27a9704d6f88b8f90c56215bbba3b3",
-                "reference": "7ba61fa08c27a9704d6f88b8f90c56215bbba3b3",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/b1167d9c67a3325a3f4099eb7d848c6c30cc87c2",
+                "reference": "b1167d9c67a3325a3f4099eb7d848c6c30cc87c2",
                 "shasum": ""
             },
             "require": {
@@ -357,7 +357,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2015-01-20 16:08:19"
+            "time": "2015-01-22 11:03:34"
         },
         {
             "name": "intervention/image",
@@ -504,6 +504,46 @@
                 "tokenizer"
             ],
             "time": "2015-01-10 01:09:28"
+        },
+        {
+            "name": "laracasts/flash",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laracasts/flash.git",
+                "reference": "0c59bfde34e460ec4136f0cbe26715e7de4c7f64"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laracasts/flash/zipball/0c59bfde34e460ec4136f0cbe26715e7de4c7f64",
+                "reference": "0c59bfde34e460ec4136f0cbe26715e7de4c7f64",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~4.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Laracasts\\Flash": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeffrey Way",
+                    "email": "jeffrey@laracasts.com"
+                }
+            ],
+            "description": "Easy flash notifications",
+            "time": "2014-08-04 21:10:40"
         },
         {
             "name": "laravel/framework",

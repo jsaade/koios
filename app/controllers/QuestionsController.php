@@ -39,6 +39,8 @@ class QuestionsController extends \BaseController {
 			$this->question = Question::create($input);
 			$this->question->uploadImage($uploaded_image);
 			$this->question->createOrUpdateAnswers($input);
+
+			Flash::success('Question was created successfully.');
 			return Redirect::route('application.{application}.questions.index', $application->slug);
 		}
 
@@ -64,6 +66,8 @@ class QuestionsController extends \BaseController {
 			$this->question->update(['description' => $input['description']]);
 			$this->question->uploadImage($uploaded_image);
 			$this->question->createOrUpdateAnswers($input);
+
+			Flash::success('Question was updated successfully.');
 			return Redirect::route('application.{application}.questions.index', $application->slug);
 		}
 

@@ -12,5 +12,18 @@
 			'environment' => 'production',
 			'apiKey' => 'my-android-key-here',
 			'service' => 'gcm'
+		),
+
+		'54bfa4898a8a4_IOS' => array(
+			'environment' => 'production',
+			'passPhrase' => '',
+			'service' => 'apns',
+			'certificate' => '/Users/elie.andraos/Desktop/www/koios/public/uploads/54bfa4898a8a4/'
+		),
+
+		'54bfa4898a8a4_ANDROID' => array(
+			'environment' => 'production',
+			'apiKey' => '',
+			'service' => 'gcm'
 		)
 );

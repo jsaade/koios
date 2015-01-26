@@ -125,7 +125,8 @@ return array(
 		'Intervention\Image\ImageServiceProvider',
 		'Acme\Validation\ValidationExtensionServiceProvider',
 		'Baum\BaumServiceProvider',
-		'Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider'
+		'Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider',
+		'Laracasts\Flash\FlashServiceProvider'
 	),
 
 	/*
@@ -187,13 +188,14 @@ return array(
 		'Seeder'          => 'Illuminate\Database\Seeder',
 		'Session'         => 'Illuminate\Support\Facades\Session',
 		'SoftDeletingTrait' => 'Illuminate\Database\Eloquent\SoftDeletingTrait',
-		'SSH'             => 'Illuminate\Support\Facades\SSH',
-		'Str'             => 'Illuminate\Support\Str',
-		'URL'             => 'Illuminate\Support\Facades\URL',
-		'Validator'       => 'Illuminate\Support\Facades\Validator',
-		'View'            => 'Illuminate\Support\Facades\View',
-		'Image'           => 'Intervention\Image\Facades\Image',
-		'PushNotification' => 'Davibennun\LaravelPushNotification\Facades\PushNotification'
+		'SSH'               => 'Illuminate\Support\Facades\SSH',
+		'Str'               => 'Illuminate\Support\Str',
+		'URL'               => 'Illuminate\Support\Facades\URL',
+		'Validator'         => 'Illuminate\Support\Facades\Validator',
+		'View'              => 'Illuminate\Support\Facades\View',
+		'Image'             => 'Intervention\Image\Facades\Image',
+		'PushNotification'  => 'Davibennun\LaravelPushNotification\Facades\PushNotification',
+		'Flash' 		    => 'Laracasts\Flash\Flash'
 	),
 
 );

@@ -37,6 +37,8 @@ class AssetController extends \BaseController {
 			$filename = $this->asset->upload_file($uploaded_file);
 			$url     = $this->asset->getUploadsRelativeUrl().$filename;
 			$this->asset->update(['url' => $url]);
+
+			Flash::success('Asset was created successfully.');
 			return Redirect::route('application.{application}.assets.index', $application->slug);
 		}
 

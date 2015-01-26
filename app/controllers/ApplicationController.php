@@ -54,6 +54,7 @@ class ApplicationController extends \BaseController {
 			if(isset($input['component']))
 				$this->application->components()->attach($input['component']);
 			
+			Flash::success('Application was created successfully.');
 			return Redirect::route('application.index');
 		}
 
@@ -106,6 +107,7 @@ class ApplicationController extends \BaseController {
 			if(isset($input['component']))
 				$this->application->components()->attach($input['component']);
 
+			Flash::success('Application was updated successfully.');
 			return Redirect::route('application.index');
 		}
 		return Redirect::route('application.edit', $application->slug)->withInput()->withErrors($this->application->errors);
@@ -134,6 +136,7 @@ class ApplicationController extends \BaseController {
 			$this->application->update(['ios_certificate' => $filename]);
 		}	
 
+		Flash::success('Application certficates were uploaded successfully.');
 		$this->application->updateCertificatesConfig();
 		return Redirect::route('application.show', $this->application->slug);	
 	}
@@ -149,6 +152,7 @@ class ApplicationController extends \BaseController {
 			'pagination_per_page' => $input['pagination_per_page'] 
 		]);
 		
+		Flash::success('Application settings were saved successfully.');
 		return Redirect::route('application.show', $this->application->slug);	
 	}
 

@@ -30,6 +30,8 @@ class ContactFormController extends \BaseController {
 		if($this->contact_form->isValid($input))
 		{
 			$this->contact_form = ContactForm::create($input);
+
+			Flash::success('Contact form was created successfully.');
 			return Redirect::route('application.{application}.contact-forms.index', $application->slug);
 		}
 

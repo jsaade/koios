@@ -10,11 +10,13 @@
 	{{ HTML::style('assets/css/font-awesome.min.css') }}
 	{{ HTML::style('assets/css/jquery.jsonview.css') }}
 	{{ HTML::style('assets/css/nestable.css') }}
+	{{ HTML::style('assets/css/animate.css') }}
 	{{ HTML::style('assets/css/custom.css') }}
 </head>
 <body>
 
 	<img src="{{ asset('assets/images/background.jpg') }}" id="bg" /> 
+	@include('common.flash')
 
 	<!--Naviagtion -->
 	<nav class="navbar navbar-default" role="navigation">
@@ -49,6 +51,7 @@
 	{{ HTML::script('assets/js/placeholders.min.js') }}
 	{{ HTML::script('assets/js/jquery.jsonview.js') }}
 	{{ HTML::script('assets/js/jquery.nestable.js') }}
+	{{ HTML::script('assets/js/bootstrap-growl.min.js') }}
 	{{ HTML::script('assets/js/main.js') }}
 
 	<!-- syntax highlighter for api docs -->
