@@ -16,7 +16,7 @@ class NewsController extends \BaseController {
 
 	public function index(Application $application)
 	{
-		$limit = (Input::get('limit'))?Input::get('limit'):15;
+		$limit = (Input::get('limit'))?Input::get('limit'):$application->pagination_per_page;
 		$page = Input::get('page');
 		$category_id = (Input::get('category'))?Input::get('category'):null;
 		

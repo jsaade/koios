@@ -10,7 +10,11 @@ class AssetController extends \BaseController {
 
 	public function index(Application $application)
 	{
-		return View::make('asset.index')->withAssets($application->assets)->withApplication($application);
+		$limit = (Input::get('limit'))?Input::get('limit'):$application->pagination_per_page;
+		$page = Input::get('page');
+
+		$assets  = Asset::where('application_id', $application->id)->orderBy('created_at', 'desc')->paginate($limit);
+		return View::make('asset.index')->withAssets($assets)->withApplication($application);
 	}
 
 

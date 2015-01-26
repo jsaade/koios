@@ -145,7 +145,8 @@ class ApplicationController extends \BaseController {
 
 		$this->application->update([
 			'email_from' => $input['email_from'],
-			'email_value' => $input['email_value'] 
+			'email_value' => $input['email_value'],
+			'pagination_per_page' => $input['pagination_per_page'] 
 		]);
 		
 		return Redirect::route('application.show', $this->application->slug);	

@@ -1,18 +1,24 @@
 <?php
+use \Acme\Repositories\DbQuestionRepository;
 
 class QuestionsController extends \BaseController {
 
 	protected $question;
 
-	public function __construct(Question $question)
+	public function __construct(Question $question, DbQuestionRepository $questionRepos)
 	{
 		$this->question = $question;
+		$this->questionRepos = $questionRepos;
 		View::share('showAppMenu',true);
 	}
 
 	public function index(Application $application)
 	{
-		$questions = $application->questions;
+		
+		$limit = (Input::get('limit'))?Input::get('limit'):$application->pagination_per_page;
+		$page = Input::get('page');
+
+		$questions = $this->questionRepos->getAll($application, $limit, $page, 0, null, "object");
 		return View::make('question.index')->withApplication($application)->withQuestions($questions);
 	}
 

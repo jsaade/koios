@@ -36,6 +36,9 @@
 						@include('asset.partials._list_row', $single_asset)
 					@endforeach
 				</table>
+				<div class="centered">
+					{{ $assets->appends(Request::except('page'))->links() }}
+				</div>
 			</div> <!-- end body -->
 		</div>
 	@endif

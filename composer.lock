@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3b7cc921b86549466e42ca05ba920240",
+    "hash": "5da7df8c200487de752ff62ace59da83",
     "packages": [
         {
             "name": "baum/baum",
@@ -313,12 +313,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "1dc843aaf1b6032a78082145cc2abe41f0ce0ec2"
+                "reference": "7ba61fa08c27a9704d6f88b8f90c56215bbba3b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/1dc843aaf1b6032a78082145cc2abe41f0ce0ec2",
-                "reference": "1dc843aaf1b6032a78082145cc2abe41f0ce0ec2",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/7ba61fa08c27a9704d6f88b8f90c56215bbba3b3",
+                "reference": "7ba61fa08c27a9704d6f88b8f90c56215bbba3b3",
                 "shasum": ""
             },
             "require": {
@@ -357,7 +357,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2015-01-12 09:54:32"
+            "time": "2015-01-20 16:08:19"
         },
         {
             "name": "intervention/image",
@@ -365,12 +365,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "666475912cbff93d707ddbded9570b23e42cc6f4"
+                "reference": "6554d8165e048972b470a7d56ab5f4d6fd6c6367"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/666475912cbff93d707ddbded9570b23e42cc6f4",
-                "reference": "666475912cbff93d707ddbded9570b23e42cc6f4",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/6554d8165e048972b470a7d56ab5f4d6fd6c6367",
+                "reference": "6554d8165e048972b470a7d56ab5f4d6fd6c6367",
                 "shasum": ""
             },
             "require": {
@@ -413,7 +413,7 @@
                 "thumbnail",
                 "watermark"
             ],
-            "time": "2015-01-14 15:57:44"
+            "time": "2015-01-20 17:10:23"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -2502,6 +2502,7 @@
         "davibennun/laravel-push-notification": 20
     },
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": [],
     "platform-dev": []
 }

@@ -23,6 +23,7 @@ Route::bind('app', function($value, $route){
 });
 
 
+
 /**************
  * API ROUTES *
  **************/

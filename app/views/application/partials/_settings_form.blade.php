@@ -19,6 +19,17 @@
 		</div>
 	</div>
 
+	<div class="forge-heading forge-first">
+		<h5>Pagination</h5>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-3 control-label" for="pagination_per_page">Nb. Items (Per Page)</label>
+		<div class="col-sm-6">
+			{{ Form::text('pagination_per_page', null, [ 'class' => 'form-control', 'id' => 'pagination_per_page'] ) }}
+		</div>
+	</div>
+
 	<div class="form-submit">
 		{{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
 	</div>

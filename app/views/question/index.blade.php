@@ -32,7 +32,11 @@
 						@include('question.partials._list_row')
 					@endforeach
 				</table>
+				<div class="centered">
+					{{ $questions->appends(Request::except('page'))->links() }}
+				</div>
 			</div>
 		</div>
+
 	@endif
 @stop

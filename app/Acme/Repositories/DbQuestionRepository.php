@@ -10,7 +10,7 @@ class DbQuestionRepository extends DbRepos
 	 * @param  Appliaction $application 
 	 * @return Array
 	 */
-	public function getAll($application, $limit, $page, $rand = 0, $fields = null)
+	public function getAll($application, $limit, $page, $rand = 0, $fields = null, $return = "array")
 	{
 		$output = ['data' => [], 'pages' => []];
 		
@@ -26,6 +26,10 @@ class DbQuestionRepository extends DbRepos
 			$questions = $questions->orderBy('created_at', 'desc');
 
 		$questions = $questions->paginate($limit);
+
+		
+		if($return == "object")
+			return $questions;
 
 		foreach($questions as $question)
 		{
@@ -65,9 +69,14 @@ class DbQuestionRepository extends DbRepos
 	 * @param  Integer $id 
 	 * @return Array
 	 */
-	public function find($id)
+	public function find($id, $return = "array")
 	{
 		$question = Question::findOrFail($id);
+
+		
+		if($return == "object")
+			return $question;
+
 		$output = [];
 
 		$output['id'] 			= $question->id;
