@@ -5,12 +5,6 @@ $(document).ready(function(){
 	//bind ajax forms
 	handleRemoteForms();
 
-	//docs api nav
-	if($(".sidebar-nav").length)
-	{
-		$('body').scrollspy({ target: '.sidebar-nav' });
-	}
-
 	//news category nested sets 
 	initNestedNewsCategories();
 

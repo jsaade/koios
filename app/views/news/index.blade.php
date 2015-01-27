@@ -41,7 +41,6 @@
 
 					<table class="table table-striped">
 					<tr>
-						<th>Thumb</th>
 						<th>Title</th>
 						<th>Date</th>
 						<th>Category</th>

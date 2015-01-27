@@ -16,6 +16,10 @@
 	<label class="col-sm-3 control-label" for="image">Image</label>
 	<div class="col-sm-6">
 		{{ Form::file('image','',array('id'=>'image','class'=>'')) }}
+		@if(isset($question) && $question->image)
+			<div class="image-preview"><img src="{{ asset($question->getImageThumbRelativeUrl()) }}" /></div>
+			<div class="image-removal">{{ Form::checkbox('remove_image', $question->id, null) }} remove image</div>
+		@endif
 	</div>
 </div>
 

@@ -62,21 +62,26 @@ class Question extends \Eloquent {
 		return uploads_relative_url().$this->application->slug."/questions/".$this->id."/";
 	}
 
-	public function getImageThumbRelativeUrl()
-	{
-		return $this->getUploadsRelativeUrl()."30-".$this->image;
-	}
+
+	/** Relative URLs **/
 
 	public function getImageRelativeUrl()
 	{
 		return $this->getUploadsRelativeUrl().$this->image;
 	}
 
+	public function getImageThumbRelativeUrl()
+	{
+		return $this->getUploadsRelativeUrl()."thumb-".$this->image;
+	}
+
+
+	/** Relative Full URLs **/
 
 	public function getImageThumbFullUrl()
 	{
 		if($this->image)
-			return url($this->getUploadsRelativeUrl()."30-".$this->image);
+			return url($this->getUploadsRelativeUrl()."thumb-".$this->image);
 
 		return null;
 	}
@@ -90,22 +95,41 @@ class Question extends \Eloquent {
 	}
 
 
+	/** Upload Image **/
+
 	public function uploadImage($uploaded_image)
 	{
 		
 		$filename = NULL;
 		if($uploaded_image)
 		{
+			$application = $this->application;
 			$image = Image::make($uploaded_image->getRealPath()); 
 			$filename = $uploaded_image->getClientOriginalName();
-			$image->save($this->getUploadsPath().$filename)
-				  ->resize(30, 30)
-				  ->save($this->getUploadsPath()."30-".$filename);
+			$image->save($this->getUploadsPath().$filename);
+
+			//resize tumb
+			if($application->question_resize_width || $application->question_resize_height)
+			{
+				$image->resize($application->question_resize_width, $application->question_resize_height, function ($constraint) {
+			    	$constraint->aspectRatio();
+				});
+			}
+			//crop thumb
+			if($application->question_crop_width || $application->question_crop_height)
+			{
+				$image->crop($application->question_crop_width ,$application->question_crop_height);
+			}
+			//save thumb	  
+			$image->save($this->getUploadsPath()."thumb-".$filename);
+			
 
 			$this->update(['image' => $filename]);
 		}
 		return $filename;
 	}
+
+	
 
 	/******************
 	 * CREATE ANSWERS *

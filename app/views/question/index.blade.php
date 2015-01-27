@@ -24,7 +24,6 @@
 			<div class="panel-body">
 				<table class="table table-striped">
 					<tr>
-						<th>Thumb</th>
 						<th>Question</th>
 						<th>Action</th>
 					</tr>

@@ -1,6 +1,8 @@
 @include('common.form_error_messages', array('errors' => $errors))
 	{{ Form::model($application, ['method' => 'POST','route' => ['application.certificates', $application->slug], 'files' => true, 'class' => 'form-horizontal']) }}
 	
+	<p>Upload the certificates details for both apple (ios) and android.</p>
+
 	<div class="forge-heading forge-first">
 		<h5>Apple IOS</h5>
 	</div>

@@ -173,6 +173,28 @@ div.form-submit
 	text-align: center;
 	margin-top: 40px;
 }
+div.image-preview
+{
+	margin-top: 5px;
+}
+div.image-preview img 
+{
+	height: 40px;
+}
+div.image-removal
+{
+	color:#999;
+	margin-top: 3px;
+	font-style: italic;
+	font-family: helvetica;
+	font-size: 11px;
+}
+input.thumb-input
+{
+	width:140px;
+	float: left;
+	margin-right: 10px;
+}
 
 
 /** TABLES */

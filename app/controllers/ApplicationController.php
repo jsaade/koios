@@ -145,12 +145,7 @@ class ApplicationController extends \BaseController {
 	{
 		$this->application = $application;
 		$input = Input::all(); 
-
-		$this->application->update([
-			'email_from' => $input['email_from'],
-			'email_value' => $input['email_value'],
-			'pagination_per_page' => $input['pagination_per_page'] 
-		]);
+		$this->application->update($input);
 		
 		Flash::success('Application settings were saved successfully.');
 		return Redirect::route('application.show', $this->application->slug);	

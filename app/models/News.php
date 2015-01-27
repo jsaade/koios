@@ -53,13 +53,8 @@ class News extends \Eloquent {
 		return uploads_relative_url().$this->newsCategory->application->slug."/news/".$this->id."/";
 	}
 
-	public function getImageThumbRelativeUrl()
-	{
-		if($this->image)
-		 	return $this->getUploadsRelativeUrl()."30-".$this->image;
-		
-		return null;
-	}
+
+	/** Relative URLs **/
 
 	public function getImageRelativeUrl()
 	{
@@ -69,13 +64,16 @@ class News extends \Eloquent {
 		return null;
 	}
 
-	public function getImageThumbFullUrl()
+	public function getImageThumbRelativeUrl()
 	{
 		if($this->image)
-		 	return url($this->getUploadsRelativeUrl()."30-".$this->image);
+		 	return $this->getUploadsRelativeUrl()."thumb-".$this->image;
 		
 		return null;
 	}
+
+
+	/** Full URLs **/
 
 	public function getImageFullUrl()
 	{
@@ -86,19 +84,41 @@ class News extends \Eloquent {
 	}
 
 
+	public function getImageThumbFullUrl()
+	{
+		if($this->image)
+		 	return url($this->getUploadsRelativeUrl()."thumb-".$this->image);
+		
+		return null;
+	}
+
+
+	/** Upload Image **/
+
 	public function uploadImage($uploaded_image)
 	{
 		
 		$filename = NULL;
 		if($uploaded_image)
 		{
+			$application = $this->newsCategory->application;
 			$image = Image::make($uploaded_image->getRealPath()); 
 			$filename = $uploaded_image->getClientOriginalName();
-			$image->save($this->getUploadsPath().$filename)
-				  ->resize(null, 115, function ($constraint) {
-			    		$constraint->aspectRatio();
-					});
-			$image->crop(87,115)->save($this->getUploadsPath()."30-".$filename);
+			$image->save($this->getUploadsPath().$filename);
+			//resize tumb
+			if($application->news_resize_width || $application->news_resize_height)
+			{
+				$image->resize($application->news_resize_width, $application->news_resize_height, function ($constraint) {
+			    	$constraint->aspectRatio();
+				});
+			}
+			//crop thumb
+			if($application->news_crop_width || $application->news_crop_height)
+			{
+				$image->crop($application->news_crop_width ,$application->news_crop_height);
+			}
+			//save thumb	  
+			$image->save($this->getUploadsPath()."thumb-".$filename);
 
 			$this->update(['image' => $filename]);
 		}
