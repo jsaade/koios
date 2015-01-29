@@ -72,6 +72,10 @@ class NewsController extends \BaseController {
 		{
 			unset($input['image']);
 			$this->news->update($input);
+
+			if(isset($input['remove_image']))
+				$this->news->removeImage();
+
 			$this->news->uploadImage($uploaded_image);
 
 			Flash::success('News was updated successfully.');
@@ -88,6 +92,7 @@ class NewsController extends \BaseController {
 	{
 		if(Request::ajax())
 		{
+			$news->removeImage();
 			$news->delete();
 			$response = ['data' => "destroyed"];
 		}

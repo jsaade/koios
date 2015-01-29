@@ -52,6 +52,7 @@ class AssetController extends \BaseController {
 	{
 		if(Request::ajax())
 		{
+			$asset->removeAsset();
 			$asset->delete();
 			$response = ['data' => "destroyed"];
 		}

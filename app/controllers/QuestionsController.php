@@ -62,6 +62,9 @@ class QuestionsController extends \BaseController {
 
 		if($this->question->isValid($input))
 		{
+			if(isset($input['remove_image']))
+				$this->question->removeImage();
+
 			unset($input['image']);
 			$this->question->update(['description' => $input['description']]);
 			$this->question->uploadImage($uploaded_image);
@@ -81,6 +84,7 @@ class QuestionsController extends \BaseController {
 	{
 		if(Request::ajax())
 		{
+			$question->removeImage();
 			$question->delete();
 			$response = ['data' => "destroyed"];
 		}

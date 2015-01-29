@@ -124,4 +124,18 @@ class News extends \Eloquent {
 		}
 		return $filename;
 	}
+
+
+	/** Remove Image **/
+	public function removeImage()
+	{
+		if($this->image)
+		{
+			$image_path = $this->getUploadsPath().$this->image;
+			$thumb_path = $this->getUploadsPath()."thumb-".$this->image;
+			File::delete($image_path);
+			File::delete($thumb_path);
+			$this->update(['image' => '']);
+		}
+	}
 }

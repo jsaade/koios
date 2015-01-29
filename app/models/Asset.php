@@ -67,4 +67,15 @@ class Asset extends \Eloquent {
 		return $filename;
 	}
 
+
+	public function removeAsset()
+	{
+		if($this->url)
+		{
+			$asset_path = public_path()."/".$this->url;
+			File::delete($asset_path);
+			$this->update(['url' => '']);
+		}
+	}
+
 }
