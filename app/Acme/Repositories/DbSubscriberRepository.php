@@ -227,7 +227,7 @@ class DbSubscriberRepository extends DbRepos
 		if(!$page) $page = 1;
 		if(!$sort) $sort = 'DESC';
 
-		$subscribers = $application->subscribers()->with('profile')->orderBy($order, $sort)->paginate($limit);
+		$subscribers = $application->subscribers()->with('profile')->whereIsVerified(true)->orderBy($order, $sort)->paginate($limit);
 		foreach($subscribers as $subscriber)
 		{
 			$arr['id']			= $subscriber->id;
