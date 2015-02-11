@@ -12,6 +12,8 @@ class News extends \Eloquent {
 		return $this->belongsTo('NewsCategory');
 	}
 
+
+
 	/*******************
 	 * FORM VALIDATION *
 	 *******************/
@@ -33,6 +35,8 @@ class News extends \Eloquent {
 		$this->errors = $validation->messages();
 		return false;
 	}
+
+
 
 	/****************
 	 * IMAGE UPLOAD *
@@ -93,7 +97,7 @@ class News extends \Eloquent {
 	}
 
 
-	/** Upload Image **/
+	/** Upload Image file **/
 
 	public function uploadImage($uploaded_image)
 	{
@@ -119,14 +123,12 @@ class News extends \Eloquent {
 			}
 			//save thumb	  
 			$image->save($this->getUploadsPath()."thumb-".$filename);
-
-			$this->update(['image' => $filename]);
 		}
 		return $filename;
 	}
 
 
-	/** Remove Image **/
+	/** Remove Image file **/
 	public function removeImage()
 	{
 		if($this->image)
@@ -135,7 +137,6 @@ class News extends \Eloquent {
 			$thumb_path = $this->getUploadsPath()."thumb-".$this->image;
 			File::delete($image_path);
 			File::delete($thumb_path);
-			$this->update(['image' => '']);
 		}
 	}
 }

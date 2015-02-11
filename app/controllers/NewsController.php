@@ -37,21 +37,16 @@ class NewsController extends \BaseController {
 	public function store(Application $application)
 	{
 		$input = Input::all();
-		$uploaded_image = Input::file('image');
 
 		if($this->news->isValid($input))
 		{
 			$this->news = News::create($input);
-			if($uploaded_image)
-				$this->news->uploadImage($uploaded_image);
 
 			Flash::success('News was created successfully.');
 			return Redirect::route('application.{application}.news.index', $application->slug);
 		}
 
-		return Redirect::route('application.{application}.news.create', $application->slug)
-				->withInput()
-				->withErrors($this->news->errors);
+		return Redirect::route('application.{application}.news.create', $application->slug)->withInput()->withErrors($this->news->errors);
 	}
 
 
@@ -65,26 +60,17 @@ class NewsController extends \BaseController {
 	public function update(Application $application, News $news)
 	{
 		$input = Input::all();
-		$uploaded_image = Input::file('image');
 		$this->news = $news;
 
 		if($this->news->isValid($input))
 		{
-			unset($input['image']);
 			$this->news->update($input);
-
-			if(isset($input['remove_image']))
-				$this->news->removeImage();
-
-			$this->news->uploadImage($uploaded_image);
 
 			Flash::success('News was updated successfully.');
 			return Redirect::route('application.{application}.news.index', $application->slug);
 		}
 
-		return Redirect::route('application.{application}.news.edit', [$application->slug, $this->news->id])
-				->withInput()
-				->withErrors($this->news->errors);
+		return Redirect::route('application.{application}.news.edit', [$application->slug, $this->news->id])->withInput()->withErrors($this->news->errors);
 	}
 
 
@@ -92,7 +78,6 @@ class NewsController extends \BaseController {
 	{
 		if(Request::ajax())
 		{
-			$news->removeImage();
 			$news->delete();
 			$response = ['data' => "destroyed"];
 		}
