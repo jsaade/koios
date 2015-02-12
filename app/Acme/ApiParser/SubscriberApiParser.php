@@ -76,6 +76,7 @@ class SubscriberApiParser extends ApiParser
 				'os'        => $device['os'], 
 				'version'   => $device['version'], 
 				'token'     => $device['token'], 
+				'uid'       => $device['uid'] 
 			];
 		}, $devices);
 	}

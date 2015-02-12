@@ -11,7 +11,7 @@ class ApplicationController extends \BaseController {
 	}
 
 	public function index()
-	{			
+	{		
 		$clients = Client::with('applications')->has('applications')->get();
 		return View::make('application.index')->with('clients' , $clients);
 	}

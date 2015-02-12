@@ -95,6 +95,7 @@ Content-Type: application/json; charset=utf-8
 			<li>model <code class="tip" class="tip">required</code></li>
 			<li>version</li>
 			<li>os <code class="tip">required</code></li>
+			<li>uid <code class="tip">required</code></li>
 			<li>token <code class="tip">required</code></li>
 		</ul>
 		The request will return the <code class="tip">subscriberId</code> and the <code class="tip">deviceId</code>.

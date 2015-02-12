@@ -78,6 +78,7 @@ class DbSubscriberRepository extends DbRepos
 				$arr['os']        = $device->os;
 				$arr['version']   = $device->version;
 				$arr['token']     = $device->token;
+				$arr['uid']       = $device->uid;
 				array_push($output['devices'], $arr);
 			}
 		}
