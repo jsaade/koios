@@ -5,26 +5,39 @@ use News;
 class NewsObserver  
 {
 	
+	public function created($news)
+	{
+		$input = Input::all();
+		$uploaded_image = Input::file('image');
+		$filename = $news->uploadImage($uploaded_image);
+		$news->update(['image' => $filename]);
+	}	
+
 	/**
-	 * upload/remove image upon create/update news
+	 * Upload/Remove image upon create/update news
 	 * @param News the news model being saved
 	 */
 	public function saving($model)
     {
 		$input = Input::all();
 		$uploaded_image = Input::file('image');
-		$news = News::find($model->id);
-
-		if(isset($input['remove_image']))
+	
+		//edit case
+		if($model->id)
 		{
-			$news->removeImage();
-			$model->image = '';
-		}
-
-		if($uploaded_image)
-		{
-			$filename = $news->uploadImage($uploaded_image);
-			$model->image = $filename;
+			$news = News::find($model->id);
+			//remove old picture
+			if(isset($input['remove_image']))
+			{
+				$news->removeImage();
+				$model->image = '';
+			}
+			//update new picture
+			if($uploaded_image)
+			{
+				$filename = $news->uploadImage($uploaded_image);
+				$model->image = $filename;
+			}
 		}
     }
 

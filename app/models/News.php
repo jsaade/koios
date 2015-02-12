@@ -37,6 +37,15 @@ class News extends \Eloquent {
 	}
 
 
+	/*******************
+	 * MODEL OBSERVERS *
+	 *******************/
+	public static function boot()
+	{
+		parent::boot();
+		News::observe(new \Acme\Observers\NewsObserver);
+	}
+
 
 	/****************
 	 * IMAGE UPLOAD *
