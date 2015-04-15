@@ -64,12 +64,11 @@ class ApplicationController extends \BaseController {
 	public function show(Application $application)
 	{
 		
-		Mail::send('emails.activation', [ 'link' => "http://www.google.com" ], function($message)
+		Mail::send('emails.activation', ['link' => "http://www.google.com"], function($message)
 		{
-			$message->from("test@mcsaatchi.me", "test@mcsaatchi.me");
-		    $message->to("elie.andraos.lb@gmail.com", "elie.andraos.lb@gmail.com")
-		    		->subject( "test | Activate account" );
+		    $message->to('elie.andraos.lb@gmail.com', 'Elie Andraos')->subject('Welcome!');
 		});
+
 		die('s');
 
 		View::share('showAppMenu',true);
