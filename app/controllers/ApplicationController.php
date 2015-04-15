@@ -64,6 +64,8 @@ class ApplicationController extends \BaseController {
 	public function show(Application $application)
 	{
 		
+		mail('elie.andraos.lb@gmail.com', 'Sent from php mail()', "test");
+
 		Mail::send('emails.activation', ['link' => "http://www.google.com"], function($message)
 		{
 		    $message->to('elie.andraos.lb@gmail.com', 'Elie Andraos')->subject('Welcome!');
