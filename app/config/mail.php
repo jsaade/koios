@@ -15,7 +15,8 @@ return array(
 	|
 	*/
 
-	'driver' => 'sendmail',
+	//'driver' => 'sendmail',
+	'driver' => 'mail',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -28,7 +29,8 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.koios.mercury.me',
+	//'host' => 'smtp.koios.mercury.me',
+	'host' => 'localhost',
 
 	/*
 	|--------------------------------------------------------------------------
