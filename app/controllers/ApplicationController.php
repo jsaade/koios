@@ -63,6 +63,14 @@ class ApplicationController extends \BaseController {
 
 	public function show(Application $application)
 	{
+		
+		Mail::send('emails.activation', [ 'link' => "http://www.google.com" ], function($message)
+		{
+			$message->from("test@mcsaatchi.me", "test@mcsaatchi.me");
+		    $message->to("elie.andraos.lb@gmail.com", "elie.andraos.lb@gmail.com")
+		    		->subject( "test | Activate account" );
+		});
+
 		View::share('showAppMenu',true);
 		return View::make('application.show')->withApplication($application);
 	}

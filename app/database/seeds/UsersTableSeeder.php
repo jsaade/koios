@@ -3,7 +3,7 @@
 // Composer: "fzaninotto/faker": "v1.3.0"
 use Faker\Factory as Faker;
 
-class UsersTableSeeder extends Seeder {
+class UserTableSeeder extends Seeder {
 
 	public function run()
 	{
