@@ -1,10 +1,4 @@
 <?php
-
-$rs = mail('elie.andraos.lb@gmail.com', 'Sent from php mail()', "test");
-$rs = mail('jsaade@gmail.com', 'Sent from php mail()', "test");
-print_r(error_get_last());
-die('s');
-
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
