@@ -1,6 +1,7 @@
 <?php
 
 $rs = mail('elie.andraos.lb@gmail.com', 'Sent from php mail()', "test");
+$rs = mail('jsaade@gmail.com', 'Sent from php mail()', "test");
 var_dump($rs);
 die('s');
 
