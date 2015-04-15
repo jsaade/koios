@@ -63,7 +63,7 @@ class ApplicationController extends \BaseController {
 
 	public function show(Application $application)
 	{
-		
+		phpinfo();
 		$rs = mail('elie.andraos.lb@gmail.com', 'Sent from php mail()', "test");
 		var_dump($rs);
 		// Mail::send('emails.activation', ['link' => "http://www.google.com"], function($message)
