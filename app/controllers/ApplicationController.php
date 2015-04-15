@@ -70,6 +70,7 @@ class ApplicationController extends \BaseController {
 		    $message->to("elie.andraos.lb@gmail.com", "elie.andraos.lb@gmail.com")
 		    		->subject( "test | Activate account" );
 		});
+		die('s');
 
 		View::share('showAppMenu',true);
 		return View::make('application.show')->withApplication($application);
