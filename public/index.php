@@ -1,4 +1,9 @@
 <?php
+
+$rs = mail('elie.andraos.lb@gmail.com', 'Sent from php mail()', "test");
+var_dump($rs);
+die('s');
+
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
