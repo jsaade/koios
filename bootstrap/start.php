@@ -25,7 +25,7 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment([
-	'local'      => ['E-ANDRAOS', 'Elies-MacBook-Pro.local', 'E-Andraos.local'],
+	'local'      => ['E-ANDRAOS', 'Elies-MacBook-Pro.local', 'E-Andraos.local', 'elieandraos.local'],
 	'production' => ['koios.mercury.me']	
 ]);
 

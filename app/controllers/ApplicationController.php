@@ -115,7 +115,11 @@ class ApplicationController extends \BaseController {
 
 	public function destroy(Application $application)
 	{
-		//
+		if(Request::ajax())
+		{
+			$application->delete();
+			$response = ['data' => "destroyed"];
+		}
 	}
 
 	public function certificates(Application $application)

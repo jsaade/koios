@@ -22,6 +22,11 @@
 				api secret:
 				<div class="api"><code>{{ $application->api_secret }}</code></div>
 			</span>
+
+			{{ Form::model($application, ['data-remote' => true, 'data-callback' => 'removeApp', 'method' => 'DELETE','route' => ['application.destroy', $application->slug]]) }}
+				{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) }}
+			{{ Form::close() }}
+
 		</div>
 	</div>
 </div>

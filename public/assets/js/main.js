@@ -111,7 +111,6 @@ function sortCategories(e)
 {
 	$(form).closest('tr').fadeOut(750);
 }
-
 /********************
  * QUESTIONS MODULE *
  ********************/
@@ -138,6 +137,11 @@ function sortCategories(e)
  function removeAsset(response, form)
 {
 	$(form).closest('tr').fadeOut(750);
+}
+
+function removeApp(response, form)
+{
+	$(form).closest('.application-card').fadeOut(750);
 }
 
 /*********************
